@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="1.8.0_242" jdk_type="JavaSDK">
+	<output-test url="file://$MODULE_DIR$/../out/production/test/clases_marzo_2021"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$/.."/>
+	<levels>
+		<level name="h2" value="project"/>
+		<level name="h2-1.3.176" value="project"/>
+	</levels>
+</component>
