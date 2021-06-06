@@ -30,10 +30,9 @@ public class DBManager {
 			c = DriverManager.getConnection(url, DB_USERNAME, DB_PASSWORD);
 			c.setAutoCommit(false);
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Hubo un error con la conexion a la base de datos, el sistema se va a cerrar",
+			JOptionPane.showMessageDialog(null, "Hubo un error con la conexion a la base de datos",
 					"Error tipo DB-CON", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
-			System.exit(0);
 		}
 
 		return c;
