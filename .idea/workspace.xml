@@ -2,9 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/CONSIGNA.TXT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/IntegerVaciaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entidades/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Alumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/AlumnoDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAOH2Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/AlumnoNoExiste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/AlumnoNoExiste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/ClaveDuplicadaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ClaveDuplicadaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/ClaveNoExisteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ClaveNoExisteException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/StringVaciaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/StringVaciaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ObtenerBaseMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/ObtenerBaseMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/TableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/TableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/EliminarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EliminarAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +39,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -74,11 +93,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="Services" />
       <recent name="Service.Exceptions" />
       <recent name="Service" />
       <recent name="TODO" />
       <recent name="viernes07_may" />
-      <recent name="viernes16_abr" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/viernes16_abr" />
@@ -129,12 +148,12 @@
       </method>
     </configuration>
     <configuration name="ObtenerBaseMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Service.ObtenerBaseMain" />
+      <option name="MAIN_CLASS_NAME" value="Main.DAO.ObtenerBaseMain" />
       <module name="2do_Parcial_MOVIGLIA_2021" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Service.Exceptions.*" />
+          <option name="PATTERN" value="Exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -230,6 +249,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -259,19 +290,19 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Service/TableManager.java</url>
+          <url>file://$PROJECT_DIR$/src/Main/DAO/TableManager.java</url>
           <line>9</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Service/DBManager.java</url>
+          <url>file://$PROJECT_DIR$/src/Main/DAO/DBManager.java</url>
           <line>41</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Service/AlumnoDAOH2Impl.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="71" />
+          <url>file://$PROJECT_DIR$/src/Main/Main.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="org.h2.jdbc.JdbcSQLException" package="org.h2.jdbc" />
@@ -282,20 +313,16 @@
           <option name="timeStamp" value="38" />
         </breakpoint>
         <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="68" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="69" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Service/AlumnoDAOH2Impl.java</url>
-          <line>57</line>
-          <properties class="Service.AlumnoDAOH2Impl" method="borraAlumno">
+          <url>file://$PROJECT_DIR$/src/Services/AlumnoServicio.java</url>
+          <line>38</line>
+          <properties class="Services.AlumnoServicio" method="editar">
             <option name="EMULATED" value="true" />
           </properties>
-          <option name="timeStamp" value="72" />
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

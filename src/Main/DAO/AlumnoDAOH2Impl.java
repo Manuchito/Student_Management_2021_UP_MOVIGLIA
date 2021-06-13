@@ -1,9 +1,10 @@
-package Service;
+package Main.DAO;
 
 
 import Entidades.Alumno;
-import Service.Exceptions.AlumnoNoExiste;
-import Service.Exceptions.ClaveDuplicadaException;
+import Exceptions.AlumnoNoExiste;
+import Exceptions.IntegerVaciaException;
+import Exceptions.ClaveDuplicadaException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,20 +15,11 @@ import java.util.List;
 
 public class AlumnoDAOH2Impl implements AlumnoDAO {
 
-    public void checkCharacters(Alumno a){
-        if(a.getNombre().matches(".*\\d.*") || a.getApellido().matches(".*\\d.*") || a.getNombre().matches("[^A-Za-z0-9]") || a.getApellido().matches("[^A-Za-z0-9]")){
-            throw new NumberFormatException("Nombre y/o Apellido tienen numeros o caracteres especiales en su contenido");
-        }
-        else if(a.getNombre().isEmpty() || a.getApellido().isEmpty()){
-            throw new NumberFormatException("Nombre, id y/o apellido esta vacio");
-        }
-    }
 
     public void crearAlumno(Alumno unAlumno) throws ClaveDuplicadaException, NumberFormatException{
         int id = unAlumno.getLegajo();
         String nombre = unAlumno.getNombre();
         String apellido = unAlumno.getApellido();
-        checkCharacters(unAlumno);
 
         Connection c = DBManager.connect();
         try {
@@ -53,7 +45,7 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
                 e1.printStackTrace();
             }
         }
-    } //DONE
+    }
 
     public void borraAlumno(int id) throws AlumnoNoExiste {
         String sql = "DELETE FROM alumnos WHERE ID_ALUMNO = '" + id + "'";
@@ -83,12 +75,10 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         }
     }
 
-    public void actualizaAlumno(Alumno unAlumno) throws AlumnoNoExiste{
+    public void actualizaAlumno(Alumno unAlumno) throws AlumnoNoExiste {
         int id = unAlumno.getLegajo();
         String nombre = unAlumno.getNombre();
         String apellido = unAlumno.getApellido();
-
-        checkCharacters(unAlumno);
 
         Connection c = DBManager.connect();
         try {
@@ -149,7 +139,7 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         return resultado;
     }
 
-    public Alumno muestraAlumno(int id) throws AlumnoNoExiste {
+    public Alumno muestraAlumno(int id) throws IntegerVaciaException {
         Alumno resultado = null;
         String sql = "SELECT * FROM alumnos WHERE ID_ALUMNO = '" + id + "'";
         Connection c = DBManager.connect();
@@ -176,7 +166,7 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         } finally {
             if(resultado == null)
             {
-                throw new AlumnoNoExiste();
+                throw new IntegerVaciaException();
             }
             try {
                 c.close();

@@ -1,0 +1,19 @@
+La entrega estará acotada a UNA entidad del tp elegido, debiendo realizar un "ABM" o "CRUD": ALTA, BAJA, MODIFICACION, LISTADO, CONSULTA de una entidad. Usando lo del punto 2
+
+Es INDISPENSABLE aplicar los conceptos vistos en la materia* en lo que respecta a:
+2.a) orientacion a objetos,
+2.b) diseño orientado a objetos (clases, objetos, relaciones, clases abstractas, interfaces, etc) : Pensar diseño orientado a objetos, *no diseño relacional*.
+Es decir, una entidad puede tener un atributo "id" para representarlo, pero las relaciones NO deben estar planteadas como si fueran relacionales.
+2.c) reutilización de código,
+2.d) diseño en tres capas (esta en los modulos que faltan ver)
+2.e) conceptos de Java:
+2.e.i) E/S (si el tp lo necesita, esta en los modulos que faltan ver)
+2.e.ii) JDBC (esta en los modulos que faltan ver)
+2.e.iii) *Correcto* Manejo de Excepciones,
+2.e.iv) Swing: NO SE DEBE USAR PLUGINES para armar la UI => SE DEBE HACER A MANO. No se evaluará la estética del TP, solo debe estar prolijo. (esta en los modulos que faltan ver)
+3- NO HACER MENOS de 4 entidades. NO HACER MAS de 6 entidades.
+4- NO debe ser una aplicacion web.
+5- NO se debe usar ningun framework (Spring, JOOQ, JPA, Hibernate, etc)
+6- NO SE DEBE usar ningun plugin para armar la interfaz grafica (ni el de netbeans sni el de idea, el código swing es A MANO)
+
+Evaluacion Entrega del segundo parcial: Tomo la entidad MAS SENCILLA (Paciente, por tomar el ejemplo 1) y hago lo referido al ABM (desde pantllas en swing hasta acceso a base datos, excepciones, etc.).

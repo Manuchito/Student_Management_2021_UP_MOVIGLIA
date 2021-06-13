@@ -1,8 +1,8 @@
 package Swing;
 
-import Service.AlumnoDAO;
-import Service.AlumnoDAOH2Impl;
-import Service.Exceptions.AlumnoNoExiste;
+import Services.AlumnoServicio;
+import Exceptions.AlumnoNoExiste;
+import Exceptions.IntegerVaciaException;
 import Main.PanelManager;
 
 import java.awt.event.*;
@@ -10,7 +10,6 @@ import javax.swing.*;
 
 public class EliminarAlumno_Swing extends JPanel {
     private PanelManager panelManager;
-
 
     public EliminarAlumno_Swing(PanelManager m){
         super();
@@ -35,8 +34,8 @@ public class EliminarAlumno_Swing extends JPanel {
                     int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere eliminar el alumno con LEGAJO: " + fieldLegajo.getText() + " ?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (exit == JOptionPane.YES_OPTION) {
                         int legajo_alumno = Integer.parseInt(fieldLegajo.getText());
-                        AlumnoDAO dao = new AlumnoDAOH2Impl();
-                        dao.borraAlumno(legajo_alumno);
+                        AlumnoServicio alumnoServicio = new AlumnoServicio();
+                        alumnoServicio.eliminar(legajo_alumno);
                         JOptionPane.showMessageDialog(null, "Usted elimino al alumno con LEGAJO: " + legajo_alumno, "Aviso de eliminación", JOptionPane.INFORMATION_MESSAGE);
                         panelManager.mostrarPanelParcial();
                     }
@@ -48,6 +47,10 @@ public class EliminarAlumno_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El alumno a eliminar no existe",
                             "Error tipo base de datos", JOptionPane.ERROR_MESSAGE);
                     alumnoNoExiste.printStackTrace();
+                } catch (IntegerVaciaException integerVaciaException) {
+                    JOptionPane.showMessageDialog(null, "El contenido del campo legajo esta vacio",
+                            "Error tipo formato", JOptionPane.ERROR_MESSAGE);
+                    integerVaciaException.printStackTrace();
                 }
             }
         });

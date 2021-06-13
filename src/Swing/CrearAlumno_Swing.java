@@ -1,10 +1,8 @@
 package Swing;
 
-import Service.AlumnoDAO;
-import Service.AlumnoDAOH2Impl;
-import Service.Exceptions.ClaveDuplicadaException;
+import Services.AlumnoServicio;
+import Exceptions.ClaveDuplicadaException;
 import Main.PanelManager;
-import Entidades.Alumno;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +13,6 @@ public class CrearAlumno_Swing extends JPanel {
     private JTextField fieldLegajo;
     private JTextField fieldNombre;
     private JTextField fieldApellido;
-
 
     public CrearAlumno_Swing(PanelManager m){
         super();
@@ -48,9 +45,8 @@ public class CrearAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     int legajo = Integer.parseInt(fieldLegajo.getText());
-                    Alumno a = new Alumno(legajo ,fieldNombre.getText(),fieldApellido.getText());
-                    AlumnoDAO dao = new AlumnoDAOH2Impl();
-                    dao.crearAlumno(a);
+                    AlumnoServicio alumnoServicio = new AlumnoServicio();
+                    alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText());
                     JOptionPane.showMessageDialog(null, "Se a creado un nuevo alumno", "Aviso de creacion", JOptionPane.INFORMATION_MESSAGE);
                     clearText();
                 } catch (ClaveDuplicadaException claveDuplicadaException) {

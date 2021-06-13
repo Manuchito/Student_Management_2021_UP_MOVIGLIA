@@ -1,4 +1,4 @@
-package Service.Exceptions;
+package Exceptions;
 
 public class ClaveDuplicadaException extends Exception {
     public ClaveDuplicadaException() {

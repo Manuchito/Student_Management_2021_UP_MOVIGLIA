@@ -1,9 +1,9 @@
 package Swing;
 
 import Entidades.Alumno;
-import Service.AlumnoDAO;
-import Service.AlumnoDAOH2Impl;
-import Service.Exceptions.AlumnoNoExiste;
+import Services.AlumnoServicio;
+import Exceptions.AlumnoNoExiste;
+import Exceptions.IntegerVaciaException;
 import Main.PanelManager;
 
 import java.awt.event.*;
@@ -16,6 +16,7 @@ public class EditarAlumno_Swing extends JPanel {
     private JTextField fieldNombre;
     private JTextField fieldApellido;
     private JToggleButton toggleBuscar;
+    public AlumnoServicio alumnoServicio;
 
 
     public EditarAlumno_Swing(PanelManager m){
@@ -56,8 +57,8 @@ public class EditarAlumno_Swing extends JPanel {
         setLayout(null); // para poder ubicar libremente los componentes en JFrame
 
         //servicios a usar
-        AlumnoDAO daoA = new AlumnoDAOH2Impl();
         Alumno a = new Alumno();
+        AlumnoServicio alumnoServicio = new AlumnoServicio();
 
         //bloqueo estos componentes para que sea imposbile editarlos
         fieldNombre.setEnabled(false);
@@ -70,7 +71,7 @@ public class EditarAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(toggleBuscar.isSelected()){
                     try{
-                        Alumno a = daoA.muestraAlumno(Integer.parseInt(fieldLegajo.getText()));
+                        Alumno a = alumnoServicio.mostrar(Integer.parseInt(fieldLegajo.getText()));
                         fieldNombre.setText(a.getNombre());
                         fieldApellido.setText(a.getApellido());
                         fieldLegajo.setEnabled(false);
@@ -88,8 +89,8 @@ public class EditarAlumno_Swing extends JPanel {
                         toggleBuscar.setSelected(true);
                         buttonEditar.setEnabled(false);
 
-                    }catch (AlumnoNoExiste a) {
-                        JOptionPane.showMessageDialog(null, "El alumno no existe",
+                    }catch (IntegerVaciaException a) {
+                        JOptionPane.showMessageDialog(null, "El legajo esta vacio",
                                 "Error tipo missing", JOptionPane.ERROR_MESSAGE);
                         fieldLegajo.setEnabled(true);
                         fieldNombre.setEnabled(false);
@@ -124,8 +125,7 @@ public class EditarAlumno_Swing extends JPanel {
                 if (exit == JOptionPane.YES_OPTION)
                 {
                     try {
-                        Alumno a = new Alumno(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText());
-                        daoA.actualizaAlumno(a);
+                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText());
                         JOptionPane.showMessageDialog(null, "Usted edito con exito al alumno con LEGAJO: " + fieldLegajo.getText(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
                         fieldLegajo.setText("");
                         fieldLegajo.setEnabled(true);
