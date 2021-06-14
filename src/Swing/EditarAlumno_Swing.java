@@ -174,6 +174,7 @@ public class EditarAlumno_Swing extends JPanel {
         add(toggleBuscar);
         add(textAprobado);
         add(comboAprobado);
+        
         //ubico componentes en JFrame
         fieldLegajo.setBounds(160, 70, 115, 25);
         legajoText.setBounds(25, 70, 100, 25);

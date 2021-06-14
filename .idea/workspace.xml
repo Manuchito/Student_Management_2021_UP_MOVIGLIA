@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entidades/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Alumno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/AlumnoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/AlumnoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/DAO/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/DAO/ObtenerBaseMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ObtenerBaseMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/DAO/TableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/TableManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
