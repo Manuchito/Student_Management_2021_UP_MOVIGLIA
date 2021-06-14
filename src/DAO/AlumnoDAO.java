@@ -1,4 +1,4 @@
-package Main.DAO;
+package DAO;
 
 import Entidades.Alumno;
 import Exceptions.AlumnoNoExiste;

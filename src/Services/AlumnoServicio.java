@@ -1,7 +1,7 @@
 package Services;
 
 import Entidades.Alumno;
-import Main.DAO.AlumnoDAOH2Impl;
+import DAO.AlumnoDAOH2Impl;
 import Exceptions.AlumnoNoExiste;
 import Exceptions.ClaveDuplicadaException;
 import Exceptions.IntegerVaciaException;
@@ -19,11 +19,11 @@ public class AlumnoServicio {
         }
     }
 
-    public void registrar(int legajo, String nombre, String apellido) throws ClaveDuplicadaException {
+    public void registrar(int legajo, String nombre, String apellido, String aprobacion) throws ClaveDuplicadaException {
 
         validad(legajo,nombre,apellido);
 
-        Alumno alumno = new Alumno(legajo, nombre, apellido);
+        Alumno alumno = new Alumno(legajo, nombre, apellido, aprobacion);
 
         alumnoDAO.crearAlumno(alumno);
     }
@@ -36,11 +36,11 @@ public class AlumnoServicio {
         alumnoDAO.borraAlumno(legajo);
     }
 
-    public void editar(int legajo, String nombre, String apellido) throws AlumnoNoExiste {
+    public void editar(int legajo, String nombre, String apellido, String aprobacion) throws AlumnoNoExiste {
 
         validad(legajo,nombre,apellido);
 
-        Alumno alumno = new Alumno(legajo, nombre, apellido);
+        Alumno alumno = new Alumno(legajo, nombre, apellido, aprobacion);
 
         alumnoDAO.actualizaAlumno(alumno);
 

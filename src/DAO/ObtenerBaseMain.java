@@ -1,4 +1,4 @@
-package Main.DAO;
+package DAO;
 
 public class ObtenerBaseMain {
 

@@ -2,26 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/CONSIGNA.TXT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/IntegerVaciaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entidades/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Alumno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/AlumnoDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/AlumnoNoExiste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/AlumnoNoExiste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/ClaveDuplicadaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ClaveDuplicadaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/ClaveNoExisteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ClaveNoExisteException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Exceptions/StringVaciaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/StringVaciaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/ObtenerBaseMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/ObtenerBaseMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/TableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/DAO/TableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/AlumnoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/DAO/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/AlumnoDAOH2Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/DAO/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/DAO/ObtenerBaseMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ObtenerBaseMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/DAO/TableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/TableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/EliminarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EliminarAlumno_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
     </list>
@@ -148,7 +139,7 @@
       </method>
     </configuration>
     <configuration name="ObtenerBaseMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main.DAO.ObtenerBaseMain" />
+      <option name="MAIN_CLASS_NAME" value="DAO.ObtenerBaseMain" />
       <module name="2do_Parcial_MOVIGLIA_2021" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -290,12 +281,12 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main/DAO/TableManager.java</url>
+          <url>file://$PROJECT_DIR$/src/DAO/TableManager.java</url>
           <line>9</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main/DAO/DBManager.java</url>
+          <url>file://$PROJECT_DIR$/src/DAO/DBManager.java</url>
           <line>41</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
@@ -316,14 +307,6 @@
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="69" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Services/AlumnoServicio.java</url>
-          <line>38</line>
-          <properties class="Services.AlumnoServicio" method="editar">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
