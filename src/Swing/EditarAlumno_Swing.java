@@ -1,9 +1,8 @@
 package Swing;
 
 import Entidades.Alumno;
+import Exceptions.ServiceLegajoNoExsiteException;
 import Services.AlumnoServicio;
-import Exceptions.AlumnoNoExiste;
-import Exceptions.IntegerVaciaException;
 import Main.PanelManager;
 
 import java.awt.event.*;
@@ -96,10 +95,11 @@ public class EditarAlumno_Swing extends JPanel {
                         toggleBuscar.setSelected(true);
                         buttonEditar.setEnabled(false);
 
-
-                    }catch (IntegerVaciaException a) {
-                        JOptionPane.showMessageDialog(null, "El legajo esta vacio",
+                    }
+                    catch (ServiceLegajoNoExsiteException legajoNoExsite) {
+                        JOptionPane.showMessageDialog(null, "El alumno con legajo " + fieldLegajo.getText() + " no existe",
                                 "Error tipo missing", JOptionPane.ERROR_MESSAGE);
+                        legajoNoExsite.printStackTrace();
                         fieldLegajo.setEnabled(true);
                         fieldNombre.setEnabled(false);
                         fieldApellido.setEnabled(false);
@@ -148,7 +148,7 @@ public class EditarAlumno_Swing extends JPanel {
                         comboAprobado.setEnabled(false);
                         toggleBuscar.setSelected(false);
                         buttonEditar.setEnabled(false);
-                    } catch (AlumnoNoExiste alumnoNoExiste) {
+                    } catch (ServiceLegajoNoExsiteException alumnoNoExiste) {
                         JOptionPane.showMessageDialog(null, "El alumno no existe",
                                 "Error tipo missing", JOptionPane.ERROR_MESSAGE);
 
@@ -174,7 +174,7 @@ public class EditarAlumno_Swing extends JPanel {
         add(toggleBuscar);
         add(textAprobado);
         add(comboAprobado);
-        
+
         //ubico componentes en JFrame
         fieldLegajo.setBounds(160, 70, 115, 25);
         legajoText.setBounds(25, 70, 100, 25);

@@ -77,7 +77,7 @@ public class Inicio_Swing extends JPanel {
         buttonEditarAlumno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelEditarAlumno();
+                panelManager.mostrarPanelProfesor();
             }
         });
 

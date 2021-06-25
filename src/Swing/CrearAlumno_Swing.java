@@ -1,7 +1,8 @@
 package Swing;
 
+import Exceptions.ServiceClaveDuplicadaException;
 import Services.AlumnoServicio;
-import Exceptions.ClaveDuplicadaException;
+import Exceptions.DAOClaveDuplicadaException;
 import Main.PanelManager;
 
 import java.awt.event.ActionEvent;
@@ -36,7 +37,6 @@ public class CrearAlumno_Swing extends JPanel {
         JLabel textNombre = new JLabel("Nombres Alumno");
         JLabel textApellido = new JLabel("Apellido Alumno");
         JLabel textAprobado = new JLabel("Estado Alumno");
-        String[] jcomp1Items = {"CURSANDO", "APROBADO", "DESAPROBADO"};
         JComboBox comboAprobado = new JComboBox(new String[]{"CURSANDO", "APROBADO", "DESAPROBADO"});
         fieldNombre = new JTextField (5);
         fieldApellido = new JTextField (5);
@@ -52,10 +52,9 @@ public class CrearAlumno_Swing extends JPanel {
                     alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText(), (String)comboAprobado.getSelectedItem());
                     JOptionPane.showMessageDialog(null, "Se a creado un nuevo alumno", "Aviso de creacion", JOptionPane.INFORMATION_MESSAGE);
                     clearText();
-                } catch (ClaveDuplicadaException claveDuplicadaException) {
+                } catch (ServiceClaveDuplicadaException claveDuplicadaException) {
                     JOptionPane.showMessageDialog(null, "El alumno con legajo " + Integer.parseInt(fieldLegajo.getText()) + " ya existe",
                             "Error alumno repetido", JOptionPane.ERROR_MESSAGE);
-                    claveDuplicadaException.printStackTrace();
                 } catch (NumberFormatException numberFormatException){
                     JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",
                             "Error tipo formato", JOptionPane.ERROR_MESSAGE);

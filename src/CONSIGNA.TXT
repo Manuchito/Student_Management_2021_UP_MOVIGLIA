@@ -17,3 +17,29 @@ Es decir, una entidad puede tener un atributo "id" para representarlo, pero las 
 6- NO SE DEBE usar ningun plugin para armar la interfaz grafica (ni el de netbeans sni el de idea, el código swing es A MANO)
 
 Evaluacion Entrega del segundo parcial: Tomo la entidad MAS SENCILLA (Paciente, por tomar el ejemplo 1) y hago lo referido al ABM (desde pantllas en swing hasta acceso a base datos, excepciones, etc.).
+
+Funcionalidad básica:
+
+ Administrar usuarios: los administradores pueden crear cursos y dar de alta
+alumnos. Los usuarios profesores pueden ingresar datos sobre el curso o alumno
+(calificaciones, por ejemplo).
+ Cada curso tiene un precio y un cupo.
+ Cada alumno debe tener un límite de cursos a los que se puede anotar a la vez.
+Como cada curso debe aprobarse, se deben manejar calificaciones (solo finales).
+ Cada curso debe tener el parámetro de aprobación (nota). Si un alumno se anotó
+en 3 cursos (suponiendo que 3 es el cupo), debe finalizar y aprobar un curso para
+poder anotarse en el otro.
+ Se debe poder emitir un reporte de los cursos, sus anotados y su recaudación en
+dinero.
+ Mostrar un reporte de la recaudación de los cursos
+
+Adicionales:
+
+ Manejar calificaciones parciales. No se puede incluir una nota final si no se tienen
+las N parciales aprobados.
+ En este caso cada curso tendrá una configuración de cuantas notas parciales son
+necesarias.
+ Manejar promociones por fechas, donde el valor del curso pueda tener un valor
+reducido entre un rango de fechas.
+ Mostrar un reporte de recaudación por curso. Mostrar un reporte de anotados vs
+aprobados por curso.

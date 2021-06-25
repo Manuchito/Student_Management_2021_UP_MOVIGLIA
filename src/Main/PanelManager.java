@@ -1,9 +1,6 @@
 package Main;
 
-import Swing.CrearAlumno_Swing;
-import Swing.EditarAlumno_Swing;
-import Swing.EliminarAlumno_Swing;
-import Swing.Inicio_Swing;
+import Swing.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +11,8 @@ public class PanelManager {
     private CrearAlumno_Swing crearAlumno;
     private EliminarAlumno_Swing eliminarAlumno;
     private EditarAlumno_Swing editarAlumno;
+    private InscribirAlumno_Swing inscribirAlumno;
+    private Profesor_Swing profesor;
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 
@@ -37,6 +36,21 @@ public class PanelManager {
 
         editarAlumno = new EditarAlumno_Swing(this);
         editarAlumno.armarEditarAlumno();
+
+        inscribirAlumno = new InscribirAlumno_Swing(this);
+        inscribirAlumno.armarInscribirAlumnoSwing();
+
+        profesor = new Profesor_Swing(this);
+        profesor.armarProfesorSwing();
+    }
+
+    public void mostrarPanelProfesor(){
+        frame.getContentPane().removeAll();
+        frame.setSize(800, 575);
+        centerFrame(frame);
+        frame.getContentPane().add(profesor);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     public void mostrarPanelParcial(){
@@ -72,6 +86,15 @@ public class PanelManager {
         frame.setSize(540, 370);
         centerFrame(frame);
         frame.getContentPane().add(editarAlumno);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
+    public void mostrarPanelInscribirAlumno(){
+        frame.getContentPane().removeAll();
+        frame.setSize(950, 475);
+        centerFrame(frame);
+        frame.getContentPane().add(inscribirAlumno);
         frame.getContentPane().validate();
         frame.getContentPane().repaint();
     }

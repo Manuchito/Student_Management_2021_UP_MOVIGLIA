@@ -1,7 +1,7 @@
 package Swing;
 
+import Exceptions.ServiceLegajoNoExsiteException;
 import Services.AlumnoServicio;
-import Exceptions.AlumnoNoExiste;
 import Exceptions.IntegerVaciaException;
 import Main.PanelManager;
 
@@ -43,7 +43,7 @@ public class EliminarAlumno_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",
                             "Error tipo formato", JOptionPane.ERROR_MESSAGE);
                     numberFormatException.printStackTrace();
-                } catch (AlumnoNoExiste alumnoNoExiste){
+                } catch (ServiceLegajoNoExsiteException alumnoNoExiste){
                     JOptionPane.showMessageDialog(null, "El alumno a eliminar no existe",
                             "Error tipo base de datos", JOptionPane.ERROR_MESSAGE);
                     alumnoNoExiste.printStackTrace();

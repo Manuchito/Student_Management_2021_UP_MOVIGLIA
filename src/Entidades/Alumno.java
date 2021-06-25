@@ -7,6 +7,7 @@ public class Alumno {
     private String nombre;
     private String apellido;
     private String aprobacion;
+    private List<Curso> cursos;
     /*
     * Tenia entendido que solamente se solicitaba un CRUD de una entidad sencilla,
     * y no que manejar atributos tales como "aprobado no aprobado"
@@ -62,7 +63,16 @@ public class Alumno {
         this.legajo = legajo;
     }
 
+    public List<Curso> getCursos() {
+        return cursos;
+    }
 
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
 
-
+    public void addCurso(Curso curso){
+        curso.getAlumnos().add(this);
+        cursos.add(curso);
+    }
 }
