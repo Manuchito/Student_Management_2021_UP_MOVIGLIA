@@ -46,7 +46,7 @@ public class PanelManager {
 
     public void mostrarPanelProfesor(){
         frame.getContentPane().removeAll();
-        frame.setSize(800, 575);
+        frame.setSize(800, 600);
         centerFrame(frame);
         frame.getContentPane().add(profesor);
         frame.getContentPane().validate();

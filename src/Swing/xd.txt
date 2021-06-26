@@ -1,0 +1,2 @@
+AL costado de buscar  curso, poner un botton de editar
+no preocuparme por la estatica del tp

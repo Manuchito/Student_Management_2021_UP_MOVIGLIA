@@ -26,20 +26,20 @@ public class Profesor_Swing extends JPanel {
     public void reiniciarTablaAlumnosCurso(DefaultTableModel modeloTabla, int id_curso){
         modeloTabla.setRowCount(0);
 
-        Curso c = new Curso();
+        CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
 
         try {
-            c = serv.cursoConAlumnos(id_curso);
-        } catch (ServiceCursoNoExisteException e) {
-           e.printStackTrace();
-        }
-
-        for(Alumno a : c.getAlumnos()){
-            modeloTabla.addRow(new Object[]{
-                    a.getLegajo(),
-                    a.getNombre(),
-                    a.getApellido(),
-            });
+            for(Alumno a : cursoDAO.listaAlumnosCurso(cursoDAO.muestraCurso(id_curso))){
+                modeloTabla.addRow(new Object[]{
+                        a.getLegajo(),
+                        a.getNombre(),
+                        a.getApellido(),
+                });
+            }
+        } catch (DAOLegajoNoExisteException legajoNoExisteException) {
+            legajoNoExisteException.printStackTrace();
+        } catch (DAOCursoNoExisteException cursoNoExisteException) {
+            cursoNoExisteException.printStackTrace();
         }
     }
 
@@ -48,7 +48,6 @@ public class Profesor_Swing extends JPanel {
         AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
         try {
             for(Curso c : alumnoDAO.listaCursosAlumno(alumnoDAO.muestraAlumno(legajo))){
-                System.out.println(c);
                 modeloTabla.addRow(new Object[]{
                         c.getId(),
                         c.getNombre(),
@@ -129,6 +128,21 @@ public class Profesor_Swing extends JPanel {
             }
         });
 
+        buttonInscribir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelInscribirAlumno();
+            }
+        });
+
+        buttonCrear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelCreacionAlumno();
+            }
+        });
+
+
 
 
 
@@ -154,8 +168,8 @@ public class Profesor_Swing extends JPanel {
         add (buttonReporte);
 
         //set component bounds (only needed by Absolute Positioning)
-        scrollPaneAlumnosCurso.setBounds (385, 90, 330, 115);
-        scrollPaneCursosAlumno.setBounds (385, 305, 330, 220);
+        scrollPaneAlumnosCurso.setBounds ( 385, 305, 330, 220);
+        scrollPaneCursosAlumno.setBounds (385, 90, 330, 115);
         textAlumno.setBounds (385, 50, 100, 25);
         buttonBuscarAlumno.setBounds (625, 50, 90, 25);
         textCursosAlumno.setBounds (410, 10, 120, 25);
@@ -164,11 +178,11 @@ public class Profesor_Swing extends JPanel {
         fieldAlumno.setBounds (475, 50, 135, 25);
         fieldCurso.setBounds (475, 265, 135, 25);
         buttonBuscarCurso.setBounds (625, 265, 90, 25);
-        buttonCrear.setBounds (70, 80, 140, 45);
-        buttonInscribir.setBounds (70, 180, 140, 45);
-        buttonVolver.setBounds (70, 485, 120, 40);
-        buttonEditar.setBounds (70, 280, 140, 45);
-        buttonReporte.setBounds (70, 380, 140, 45);
+        buttonCrear.setBounds (100, 80, 140, 45);
+        buttonInscribir.setBounds (100, 180, 140, 45);
+        buttonVolver.setBounds (110, 485, 120, 40);
+        buttonEditar.setBounds (100, 280, 140, 45);
+        buttonReporte.setBounds (100, 380, 140, 45);
     }
 
 

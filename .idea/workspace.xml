@@ -2,33 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DAO/Curso/CursoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entidades/Curso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/DAOCursoNoExisteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/DAOLegajoNoExisteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/ServiceClaveDuplicadaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/ServiceCursoNoExisteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/ServiceLegajoNoExsiteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/CursoServicio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Swing/InscribirAlumno_Swing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Swing/Profesor_Swing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/xd.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CONSIGNA.TXT" beforeDir="false" afterPath="$PROJECT_DIR$/src/CONSIGNA.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/AlumnoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/AlumnoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/AlumnoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entidades/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entidades/Alumno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/AlumnoNoExiste.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/ClaveDuplicadaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/DAOClaveDuplicadaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/PanelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/PanelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/CrearAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EditarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/EliminarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/EliminarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/InscribirAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/InscribirAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +66,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/dev/android-sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/h2/bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -214,10 +196,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.ManipularAlumno_Swing" />
-        <item itemvalue="Application.InscribirAlumno_Swing" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.ObtenerBaseMain" />
+        <item itemvalue="Application.ManipularAlumno_Swing" />
+        <item itemvalue="Application.InscribirAlumno_Swing" />
       </list>
     </recent_temporary>
   </component>
@@ -322,9 +304,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/clases_marzo_2021$Parcial.ic" NAME="Parcial Coverage Results" MODIFIED="1619089896095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/clases_marzo_2021$LectorDeTexto.ic" NAME="LectorDeTexto Coverage Results" MODIFIED="1619830787463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>viernes30_abr.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/clases_marzo_2021$Parcial.ic" NAME="Parcial Coverage Results" MODIFIED="1619089896095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

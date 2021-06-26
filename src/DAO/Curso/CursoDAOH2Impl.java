@@ -176,7 +176,7 @@ public class CursoDAOH2Impl implements CursoDAO {
     public List<Alumno> listaAlumnosCurso(Curso unCurso) throws DAOLegajoNoExisteException {
         List<Alumno> alumnos = new ArrayList<>();
         AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-        String sql = "SELECT ID_CURSO FROM alumnoxcurso WHERE ID_CURSO = " + unCurso.getId();
+        String sql = "SELECT ID_ALUMNO  FROM alumnoxcurso WHERE ID_CURSO = " + unCurso.getId();
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();

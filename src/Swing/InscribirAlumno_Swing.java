@@ -104,6 +104,13 @@ public class InscribirAlumno_Swing extends JPanel {
             }
         });
 
+        buttonCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelProfesor();
+            }
+        });
+
         //Codigo creacion y display de tabla
         scrollPane.setViewportView(tabla);
         tabla.setEnabled(false);
