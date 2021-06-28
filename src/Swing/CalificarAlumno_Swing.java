@@ -112,7 +112,7 @@ public class CalificarAlumno_Swing extends JPanel {
                     servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt(fieldNota.getText()));
                     parcialTableModel.setContenido(null);
                     parcialTableModel.setContenido(servParcial.listarParcialesAlumno(Integer.parseInt(fieldLegajo.getText())));
-
+                    parcialTableModel.fireTableDataChanged();
                     //parcialTableModel.fireTableDataChanged(); NOT WORKING
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {

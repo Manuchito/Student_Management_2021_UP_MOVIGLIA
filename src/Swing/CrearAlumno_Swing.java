@@ -36,8 +36,7 @@ public class CrearAlumno_Swing extends JPanel {
         JLabel textLegajo = new JLabel("Legajo Alumno");
         JLabel textNombre = new JLabel("Nombres Alumno");
         JLabel textApellido = new JLabel("Apellido Alumno");
-        JLabel textAprobado = new JLabel("Estado Alumno");
-        JComboBox comboAprobado = new JComboBox(new String[]{"CURSANDO", "APROBADO", "DESAPROBADO"});
+
         fieldNombre = new JTextField (5);
         fieldApellido = new JTextField (5);
         setLayout(null); // para poder ubicar libremente los componentes en JFrame
@@ -83,8 +82,6 @@ public class CrearAlumno_Swing extends JPanel {
         add(textApellido);
         add(fieldNombre);
         add(fieldApellido);
-        add(comboAprobado);
-        add(textAprobado);
 
         //ubico componentes en JFrame
         buttonCancelar.setBounds(410, 260, 100, 30);
@@ -92,11 +89,11 @@ public class CrearAlumno_Swing extends JPanel {
         fieldLegajo.setBounds(180, 40, 115, 25);
         fieldNombre.setBounds(180, 100, 155, 25);
         fieldApellido.setBounds(180, 160, 155, 25);
-        comboAprobado.setBounds(180, 220, 155, 25);
+
         textLegajo.setBounds(55, 40, 100, 25);
         textNombre.setBounds(55, 100, 100, 25);
         textApellido.setBounds(55, 160, 100, 25);
-        textAprobado.setBounds(55, 220, 100, 25);
+
 
     }
 
