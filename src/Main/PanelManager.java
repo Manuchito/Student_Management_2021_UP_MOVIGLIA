@@ -13,8 +13,8 @@ public class PanelManager {
     private EditarAlumno_Swing editarAlumno;
     private InscribirAlumno_Swing inscribirAlumno;
     private Profesor_Swing profesor;
+    private CalificarAlumno_Swing calificarAlumno;
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
 
     public PanelManager(){
 
@@ -42,11 +42,23 @@ public class PanelManager {
 
         profesor = new Profesor_Swing(this);
         profesor.armarProfesorSwing();
+
+        calificarAlumno = new CalificarAlumno_Swing(this);
+        calificarAlumno.armarCalificarCurso();
+    }
+
+    public void mostrarPanelCalificarAlumno(){
+        frame.getContentPane().removeAll();
+        frame.setSize(700, 520);
+        centerFrame(frame);
+        frame.getContentPane().add(calificarAlumno);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     public void mostrarPanelProfesor(){
         frame.getContentPane().removeAll();
-        frame.setSize(800, 575);
+        frame.setSize(800, 600);
         centerFrame(frame);
         frame.getContentPane().add(profesor);
         frame.getContentPane().validate();
@@ -67,7 +79,6 @@ public class PanelManager {
         frame.setSize(575, 340);
         centerFrame(frame);
         frame.getContentPane().add(crearAlumno);
-
         frame.getContentPane().validate();
         frame.getContentPane().repaint();
     }

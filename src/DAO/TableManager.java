@@ -63,7 +63,7 @@ public class TableManager {
 
 		Connection c = DBManager.connect();
 
-		String sql = "CREATE TABLE cursos(id_curso integer primary key, nombre VARCHAR(256) unique, precio INTEGER not null, cupo_maximo INTEGER not null)";
+		String sql = "CREATE TABLE cursos(id_curso integer primary key, nombre VARCHAR(256) unique, precio INTEGER not null, cupo_maximo INTEGER not null, cantidad_parciales INTEGER not null)";
 
 
 
@@ -114,5 +114,31 @@ public class TableManager {
 			}
 		}
 	}
+
+	public void createParcialesTable(){
+		Connection c = DBManager.connect();
+
+		String sql = "CREATE TABLE parcial (ID_ALUMNO integer not null, ID_CURSO integer not null, TIPO_NOTA VARCHAR(256) not null, NOTA integer not null, CONSTRAINT pk_parcial PRIMARY KEY(ID_ALUMNO, ID_CURSO, TIPO_NOTA), FOREIGN KEY (ID_ALUMNO) REFERENCES ALUMNOS (ID_ALUMNO) ON DELETE CASCADE, FOREIGN KEY (ID_CURSO) REFERENCES CURSOS (ID_CURSO) ON DELETE CASCADE )";
+
+		try {
+			Statement s = c.createStatement();
+			s.execute(sql);
+		} catch (SQLException e) {
+			try {
+				c.rollback();
+				e.printStackTrace();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 
 }

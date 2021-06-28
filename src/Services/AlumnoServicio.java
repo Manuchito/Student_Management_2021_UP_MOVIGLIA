@@ -2,7 +2,7 @@ package Services;
 
 import DAO.Curso.CursoDAOH2Impl;
 import Entidades.Alumno;
-import DAO.AlumnoDAOH2Impl;
+import DAO.Alumno.AlumnoDAOH2Impl;
 import Entidades.Curso;
 import Exceptions.*;
 
@@ -65,6 +65,15 @@ public class AlumnoServicio {
 
     }
 
+    public List<Alumno> listarAlumnos() throws ServiceLegajoNoExsiteException {
+        List<Alumno> alumnos = null;
+        try{
+            return alumnoDAO.listaTodosLosAlumnos();
+        } catch (Exception e) {
+            throw new ServiceLegajoNoExsiteException("El alumno con legajo no existe.");
+        }
+    }
+
 
     public void inscribirAlumnoxCurso(int legajo, int curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
         try{
@@ -78,7 +87,7 @@ public class AlumnoServicio {
         }
     }
 
-    public List<Curso> alumnoConCursos(int legajo) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
+    public List<Curso> listarCursosDelAlumno(int legajo) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
         try{
             return alumnoDAO.listaCursosAlumno(alumnoDAO.muestraAlumno(legajo));
         } catch (DAOCursoNoExisteException cursoNoExisteException) {

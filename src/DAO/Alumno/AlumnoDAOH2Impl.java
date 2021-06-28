@@ -1,8 +1,10 @@
-package DAO;
+package DAO.Alumno;
 
 
+import DAO.Alumno.AlumnoDAO;
 import DAO.Curso.CursoDAO;
 import DAO.Curso.CursoDAOH2Impl;
+import DAO.DBManager;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Exceptions.DAOCursoNoExisteException;

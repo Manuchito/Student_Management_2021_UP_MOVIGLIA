@@ -1,28 +1,32 @@
-import DAO.AlumnoDAO;
-import DAO.AlumnoDAOH2Impl;
-import DAO.Curso.CursoDAO;
+import DAO.Alumno.AlumnoDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
-import Entidades.Alumno;
+import DAO.Parcial.ParcialDAOH2Impl;
 import Entidades.Curso;
-import Exceptions.IntegerVaciaException;
-import Exceptions.DAOClaveDuplicadaException;
-import Exceptions.ClaveNoExisteException;
+import Entidades.Parcial;
+import Exceptions.*;
 import DAO.TableManager;
+import Services.AlumnoServicio;
+import Services.CursoServicio;
 
 import java.sql.SQLException;
+import java.sql.SQLOutput;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class test {
 
-	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException {
+	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException {
 
 		TableManager t = new TableManager();
-		AlumnoDAO x = new AlumnoDAOH2Impl();
-		CursoDAO ca = new CursoDAOH2Impl();
-		Curso c = new Curso(6,"xd", 2, 23);
-		Alumno a = new Alumno(2, "s", "s", "CURSANDO");
+		AlumnoDAOH2Impl x = new AlumnoDAOH2Impl();
+		CursoDAOH2Impl ca = new CursoDAOH2Impl();
+		ParcialDAOH2Impl pa = new ParcialDAOH2Impl();
+		AlumnoServicio alumnoServicio = new AlumnoServicio();
+		CursoServicio cursoServicio = new CursoServicio();
 
-		x.inscribirAlumnoxCurso(a,c);
-
+		List<Parcial> parciales = pa.listaParcialesAlumno(x.muestraAlumno(1));
+		System.out.println(parciales);
 	}
 
 }

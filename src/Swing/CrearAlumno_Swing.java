@@ -69,7 +69,7 @@ public class CrearAlumno_Swing extends JPanel {
                 int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere volver al menu principal?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION)
                 {
-                    panelManager.mostrarPanelParcial();
+                    panelManager.mostrarPanelProfesor();
                 }
             }
         });

@@ -7,16 +7,18 @@ public class Curso {
     private String nombre;
     private int cupo;
     private int precio;
+    private int cantidad_parciales;
     private List<Alumno> alumnos;
 
     public Curso(){
     }
 
-    public Curso(int id, String nombre, int cupo, int precio){
+    public Curso(int id, String nombre, int cupo, int precio, int cantidad_parciales){
         this.id = id;
         this.nombre = nombre;
         this.cupo = cupo;
         this.precio = precio;
+        this.cantidad_parciales = cantidad_parciales;
     }
 
     public String getNombre() {
@@ -57,5 +59,13 @@ public class Curso {
 
     public void setAlumnos(List<Alumno> alumnos) {
         this.alumnos = alumnos;
+    }
+
+    public int getCantidad_parciales() {
+        return cantidad_parciales;
+    }
+
+    public void setCantidad_parciales(int cantidad_parciales) {
+        this.cantidad_parciales = cantidad_parciales;
     }
 }

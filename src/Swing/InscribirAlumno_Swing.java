@@ -1,6 +1,6 @@
 package Swing;
 
-import DAO.AlumnoDAOH2Impl;
+import DAO.Alumno.AlumnoDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
@@ -101,6 +101,13 @@ public class InscribirAlumno_Swing extends JPanel {
                 } catch (ServiceCursoNoExisteException serviceCursoNoExiste) {
                     serviceCursoNoExiste.printStackTrace();
                 }
+            }
+        });
+
+        buttonCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelProfesor();
             }
         });
 

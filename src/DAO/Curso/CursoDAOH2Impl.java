@@ -1,6 +1,6 @@
 package DAO.Curso;
 
-import DAO.AlumnoDAOH2Impl;
+import DAO.Alumno.AlumnoDAOH2Impl;
 import DAO.DBManager;
 import Entidades.Alumno;
 import Entidades.Curso;
@@ -24,12 +24,13 @@ public class CursoDAOH2Impl implements CursoDAO {
         String nombre = unCurso.getNombre();
         int precio = unCurso.getPrecio();
         int cupo_maximo = unCurso.getCupo();
+        int cantidad_parciales = unCurso.getCantidad_parciales();
 
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
 
-            String sql = "INSERT INTO cursos (id_curso,nombre,precio,cupo_maximo) VALUES ('" + id_curso + "', '" + nombre + "', '" + precio + "','" + cupo_maximo + "')";
+            String sql = "INSERT INTO cursos (id_curso,nombre,precio,cupo_maximo,cantidad_parciales) VALUES ('" + id_curso + "', '" + nombre + "', '" + precio + "','" + cupo_maximo + "' ,'" + cantidad_parciales + "')";
             s.executeUpdate(sql);
             c.commit();
         } catch (SQLException e) {
@@ -80,8 +81,9 @@ public class CursoDAOH2Impl implements CursoDAO {
         String nombre = unCurso.getNombre();
         int precio = unCurso.getPrecio();
         int capacidad = unCurso.getCupo();
+        int cantidad_parciales = unCurso.getCantidad_parciales();
 
-        String sql = "UPDATE cursos set nombre = '" + nombre + "', precio = '" + precio + "', cupo_maximo = '" + nombre + "' WHERE curso_id = '" + id + "'";
+        String sql = "UPDATE cursos set nombre = '" + nombre + "', precio = '" + precio + "', cupo_maximo = '" + nombre + "', cantidad_parciales = '" + cantidad_parciales + "' WHERE curso_id = '" + id + "'";
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
@@ -116,7 +118,8 @@ public class CursoDAOH2Impl implements CursoDAO {
                 String nombre = rs.getString("nombre");
                 int precio = rs.getInt("precio");
                 int capacidad = rs.getInt("cupo_maximo");
-                Curso u = new Curso(id, nombre, precio, capacidad);
+                int parciales = rs.getInt("cantidad_parciales");
+                Curso u = new Curso(id, nombre, precio, capacidad, parciales);
                 cursos.add(u);
             }
         } catch (SQLException e) {
@@ -149,7 +152,8 @@ public class CursoDAOH2Impl implements CursoDAO {
                 String nombreCurso = rs.getString("nombre");
                 int precioCurso = rs.getInt("precio");
                 int capacidad = rs.getInt("cupo_maximo");
-                curso = new Curso(id, nombreCurso, precioCurso,capacidad);
+                int parciales = rs.getInt("cantidad_parciales");
+                curso = new Curso(id, nombreCurso, precioCurso,capacidad, parciales);
             }
 
         } catch (SQLException e) {
@@ -176,7 +180,7 @@ public class CursoDAOH2Impl implements CursoDAO {
     public List<Alumno> listaAlumnosCurso(Curso unCurso) throws DAOLegajoNoExisteException {
         List<Alumno> alumnos = new ArrayList<>();
         AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-        String sql = "SELECT ID_CURSO FROM alumnoxcurso WHERE ID_CURSO = " + unCurso.getId();
+        String sql = "SELECT ID_ALUMNO  FROM alumnoxcurso WHERE ID_CURSO = " + unCurso.getId();
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();

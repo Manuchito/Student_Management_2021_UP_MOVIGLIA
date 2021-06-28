@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Alumno;
 
 import Entidades.Alumno;
 import Entidades.Curso;
