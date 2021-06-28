@@ -25,8 +25,8 @@ public class test {
 		AlumnoServicio alumnoServicio = new AlumnoServicio();
 		CursoServicio cursoServicio = new CursoServicio();
 
-		List<Parcial> parciales = pa.listaParcialesAlumno(x.muestraAlumno(1));
-		System.out.println(parciales);
+
+		System.out.println(alumnoServicio.listarAlumnos());
 	}
 
 }

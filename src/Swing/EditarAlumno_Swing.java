@@ -51,8 +51,6 @@ public class EditarAlumno_Swing extends JPanel {
         JTextField fieldNombre = new JTextField (5);
         JTextField fieldApellido = new JTextField (5);
         JLabel textAprobado = new JLabel("Estado Alumno");
-        String[] jcomp1Items = {"CURSANDO", "APROBADO", "DESAPROBADO"};
-        JComboBox comboAprobado = new JComboBox(new String[]{"CURSANDO", "APROBADO", "DESAPROBADO"});
         JLabel textNombre = new JLabel("Nombre Alumno");
         JLabel textApellido = new JLabel("Apellido Alumno");
         JToggleButton toggleBuscar = new JToggleButton ("Buscar Alumno", false);
@@ -66,7 +64,6 @@ public class EditarAlumno_Swing extends JPanel {
         fieldNombre.setEnabled(false);
         fieldApellido.setEnabled(false);
         buttonEditar.setEnabled(false);
-        comboAprobado.setEnabled(false);
 
         //Listeners de los botones
         toggleBuscar.addActionListener(new ActionListener() {
@@ -77,12 +74,10 @@ public class EditarAlumno_Swing extends JPanel {
                         Alumno a = alumnoServicio.mostrar(Integer.parseInt(fieldLegajo.getText()));
                         fieldNombre.setText(a.getNombre());
                         fieldApellido.setText(a.getApellido());
-                        comboAprobado.setSelectedItem(a.getAprobacion());
                         fieldLegajo.setEnabled(false);
                         fieldNombre.setEnabled(true);
                         fieldApellido.setEnabled(true);
                         buttonEditar.setEnabled(true);
-                        comboAprobado.setEnabled(true);
 
                     }catch(NumberFormatException numberFormatException){
                         JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",
@@ -91,7 +86,6 @@ public class EditarAlumno_Swing extends JPanel {
                         fieldLegajo.setEnabled(true);
                         fieldNombre.setEnabled(false);
                         fieldApellido.setEnabled(false);
-                        comboAprobado.setEnabled(false);
                         toggleBuscar.setSelected(true);
                         buttonEditar.setEnabled(false);
 
@@ -103,7 +97,6 @@ public class EditarAlumno_Swing extends JPanel {
                         fieldLegajo.setEnabled(true);
                         fieldNombre.setEnabled(false);
                         fieldApellido.setEnabled(false);
-                        comboAprobado.setEnabled(false);
                         toggleBuscar.setSelected(true);
                         buttonEditar.setEnabled(false);
 
@@ -113,7 +106,6 @@ public class EditarAlumno_Swing extends JPanel {
                     fieldLegajo.setEnabled(true);
                     fieldNombre.setEnabled(false);
                     fieldApellido.setEnabled(false);
-                    comboAprobado.setEnabled(false);
                 }
 
             }
@@ -136,7 +128,7 @@ public class EditarAlumno_Swing extends JPanel {
                 if (exit == JOptionPane.YES_OPTION)
                 {
                     try {
-                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText(), (String)comboAprobado.getSelectedItem());
+                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText());
                         JOptionPane.showMessageDialog(null, "Usted edito con exito al alumno con LEGAJO: " + fieldLegajo.getText(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
                         fieldLegajo.setText("");
                         fieldLegajo.setEnabled(true);
@@ -144,8 +136,6 @@ public class EditarAlumno_Swing extends JPanel {
                         fieldNombre.setEnabled(false);
                         fieldApellido.setText("");
                         fieldApellido.setEnabled(false);
-                        comboAprobado.getEditor().setItem("");
-                        comboAprobado.setEnabled(false);
                         toggleBuscar.setSelected(false);
                         buttonEditar.setEnabled(false);
                     } catch (ServiceLegajoNoExsiteException alumnoNoExiste) {
@@ -173,7 +163,7 @@ public class EditarAlumno_Swing extends JPanel {
         add(textApellido);
         add(toggleBuscar);
         add(textAprobado);
-        add(comboAprobado);
+
 
         //ubico componentes en JFrame
         fieldLegajo.setBounds(160, 70, 115, 25);
@@ -183,7 +173,6 @@ public class EditarAlumno_Swing extends JPanel {
         textDescripcion.setBounds(140, 0, 240, 50);
         fieldNombre.setBounds(160, 130, 135, 25);
         fieldApellido.setBounds(160, 190, 135, 25);
-        comboAprobado.setBounds(160, 250, 135, 25);
         textNombre.setBounds(25, 130, 100, 25);
         textApellido.setBounds(25, 190, 100, 25);
         textAprobado.setBounds(25, 250, 100, 25);

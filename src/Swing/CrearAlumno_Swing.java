@@ -49,7 +49,7 @@ public class CrearAlumno_Swing extends JPanel {
                 try {
                     int legajo = Integer.parseInt(fieldLegajo.getText());
                     AlumnoServicio alumnoServicio = new AlumnoServicio();
-                    alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText(), (String)comboAprobado.getSelectedItem());
+                    alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText());
                     JOptionPane.showMessageDialog(null, "Se a creado un nuevo alumno", "Aviso de creacion", JOptionPane.INFORMATION_MESSAGE);
                     clearText();
                 } catch (ServiceClaveDuplicadaException claveDuplicadaException) {

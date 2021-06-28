@@ -21,10 +21,10 @@ public class AlumnoServicio {
         }
     }
 
-    public void registrar(int legajo, String nombre, String apellido, String aprobacion) throws ServiceClaveDuplicadaException, NumberFormatException {
+    public void registrar(int legajo, String nombre, String apellido) throws ServiceClaveDuplicadaException, NumberFormatException {
         try {
             validad(legajo, nombre, apellido);
-            alumnoDAO.crearAlumno(new Alumno(legajo, nombre, apellido, aprobacion));
+            alumnoDAO.crearAlumno(new Alumno(legajo, nombre, apellido));
         } catch (DAOClaveDuplicadaException daoClaveDuplicadaException) {
             throw new ServiceClaveDuplicadaException(daoClaveDuplicadaException.getMessage());
         }
@@ -44,11 +44,11 @@ public class AlumnoServicio {
         }
     }
 
-    public void editar(int legajo, String nombre, String apellido, String aprobacion) throws ServiceLegajoNoExsiteException, NumberFormatException {
+    public void editar(int legajo, String nombre, String apellido) throws ServiceLegajoNoExsiteException, NumberFormatException {
 
         try {
             validad(legajo, nombre, apellido);
-            alumnoDAO.actualizaAlumno(new Alumno(legajo, nombre, apellido, aprobacion));
+            alumnoDAO.actualizaAlumno(new Alumno(legajo, nombre, apellido));
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
             throw new ServiceLegajoNoExsiteException(daoLegajoNoExiste.getMessage());
         }
@@ -66,7 +66,6 @@ public class AlumnoServicio {
     }
 
     public List<Alumno> listarAlumnos() throws ServiceLegajoNoExsiteException {
-        List<Alumno> alumnos = null;
         try{
             return alumnoDAO.listaTodosLosAlumnos();
         } catch (Exception e) {

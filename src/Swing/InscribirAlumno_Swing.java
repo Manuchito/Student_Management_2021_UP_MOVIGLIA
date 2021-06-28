@@ -8,9 +8,13 @@ import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
 import Services.AlumnoServicio;
+import Services.CursoServicio;
+import Swing.Tablas.AlumnoTableModel;
+import Swing.Tablas.CursoTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,38 +23,13 @@ public class InscribirAlumno_Swing extends JPanel {
 
     private PanelManager panelManager;
 
-    public void reiniciarTablaAlumnos(JTable tabla){
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.setRowCount(0);
-        modeloTabla.setColumnIdentifiers(new Object[]{"LEGAJO", "NOMBRE", "APELLIDO","APROBACION"});
-        tabla.setModel(modeloTabla);
-        AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-        for(Alumno a : alumnoDAO.listaTodosLosAlumnos()){
-            modeloTabla.addRow(new Object[]{
-                    a.getLegajo(),
-                    a.getNombre(),
-                    a.getApellido(),
-                    a.getAprobacion(),
-            });
-        }
-    }
+    private CursoTableModel cursoTableModel;
+    private JTable tabla;
+    private JScrollPane scrollTable;
 
-
-    public void reiniciarTablaCursos(JTable tabla ){
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.setRowCount(0);
-        modeloTabla.setColumnIdentifiers(new Object[]{"ID", "NOMBRE", "PRECIO", "CUPO_MAXIMO"});
-        tabla.setModel(modeloTabla);
-        CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
-        for(Curso c : cursoDAO.listaTodosLosCursos()){
-            modeloTabla.addRow(new Object[]{
-                    c.getId(),
-                    c.getNombre(),
-                    c.getPrecio(),
-                    c.getCupo(),
-            });
-        }
-    }
+    private AlumnoTableModel alumnoTableModel;
+    private AlumnoServicio servAlumno;
+    private CursoServicio servCurso;
 
     public InscribirAlumno_Swing(PanelManager m){
         super();
@@ -60,7 +39,7 @@ public class InscribirAlumno_Swing extends JPanel {
     public void armarInscribirAlumnoSwing() {
 
         //componentes del JFrame
-        JTable tabla = new JTable();
+
         JButton buttonMostrarAlumnos = new JButton ("Mosatrar Alumnos");
         JButton buttonMostrarCursos = new JButton ("Mostrar Cursos");
         JLabel textAlumno = new JLabel ("Legajo Alumno");
@@ -71,23 +50,43 @@ public class InscribirAlumno_Swing extends JPanel {
         JButton buttonCancelar = new JButton ("Cancelar");
         JLabel textInscribir = new JLabel ("Inscribir Alumno en Curso");
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        JScrollPane scrollPane = new JScrollPane();
         setLayout(null);
 
         AlumnoServicio alumnoServicio = new AlumnoServicio();
+
+        alumnoTableModel = new AlumnoTableModel();
+        cursoTableModel = new CursoTableModel();
+        tabla = new JTable();
+        scrollTable = new JScrollPane(tabla);
+
 
         //Listeners de los botones
         buttonMostrarAlumnos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reiniciarTablaAlumnos(tabla);
+                servAlumno = new AlumnoServicio();
+                tabla.setModel(alumnoTableModel);
+
+                try {
+                    alumnoTableModel.setContenido(servAlumno.listarAlumnos());
+                    alumnoTableModel.fireTableDataChanged();
+                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                    serviceLegajoNoExsiteException.printStackTrace();
+                }
+
             }
         });
 
         buttonMostrarCursos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reiniciarTablaCursos(tabla);
+                servCurso = new CursoServicio();
+                tabla.setModel(cursoTableModel);
+                try{
+                    cursoTableModel.setContenido(servCurso.listarCursos());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
 
@@ -111,13 +110,9 @@ public class InscribirAlumno_Swing extends JPanel {
             }
         });
 
-        //Codigo creacion y display de tabla
-        scrollPane.setViewportView(tabla);
-        tabla.setEnabled(false);
-        tabla.setDefaultEditor(Object.class, null);
 
         //agrego componentes al JFrame (Mismo que hacer frame.add(XXX))
-        add (scrollPane);
+        add (scrollTable);
         add (buttonMostrarAlumnos);
         add (buttonMostrarCursos);
         add (fieldAlumno);
@@ -129,7 +124,7 @@ public class InscribirAlumno_Swing extends JPanel {
         add (textInscribir);
 
         //ubico componentes en JFrame
-        scrollPane.setBounds (375, 90, 490, 325);
+        scrollTable.setBounds (375, 90, 490, 325);
         buttonMostrarAlumnos.setBounds (435, 35, 150, 30);
         buttonMostrarCursos.setBounds (655, 35, 150, 30);
         textAlumno.setBounds (50, 150, 100, 25);
