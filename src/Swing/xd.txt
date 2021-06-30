@@ -1,0 +1,16 @@
+AL costado de buscar  curso, poner un botton de editar
+no preocuparme por la estatica del tp
+
+
+en panel profesor:
+
+cuando selecciono un curso, ponerlo en la tabla de abajo
+lo mismo cuando selecciono un alumno
+
+En panel inscribir:
+
+Cuando selecciono un alumno, ponerlo en el field
+lo mismo con curso
+
+LA NOTA PARCIAL HACERLO UN JCOMBOBOX
+

@@ -108,6 +108,7 @@ public class CalificarAlumno_Swing extends JPanel {
                     servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt((String)fieldNota.getSelectedItem()));
                     parcialTableModel.setContenido(null);
                     parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), curso.getId()));
+                    parcialTableModel.setContenido(servParcial.listarNotasAlumno(Integer.parseInt(fieldLegajo.getText())));
                     parcialTableModel.fireTableDataChanged();
                     //parcialTableModel.fireTableDataChanged(); NOT WORKING
 

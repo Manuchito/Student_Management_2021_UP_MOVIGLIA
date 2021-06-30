@@ -61,7 +61,6 @@ public class InscribirAlumno_Swing extends JPanel {
         tabla = new JTable();
         scrollTable = new JScrollPane(tabla);
 
-
         tabla.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -82,6 +81,7 @@ public class InscribirAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 servAlumno = new AlumnoServicio();
                 tabla.setModel(alumnoTableModel);
+                System.out.printf(String.valueOf(tabla.getModel()));
                 try {
                     alumnoTableModel.setContenido(servAlumno.listarAlumnos());
                     alumnoTableModel.fireTableDataChanged();
