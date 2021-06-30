@@ -1,22 +1,24 @@
 package Swing;
 
 import Entidades.Curso;
+import Entidades.Nota;
 import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
 import Services.AlumnoServicio;
 import Services.CursoServicio;
-import Services.ParcialServicio;
+import Services.NotaServicio;
 import Swing.Tablas.CursoTableModel;
 import Swing.Tablas.NotaTableModel;
 
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
 
 public class CalificarAlumno_Swing extends JPanel {
     private JTextField fieldLegajo;
     private JTextField fieldCurso;
-    private JTextField fieldNota;
+    private JComboBox fieldNota;
     private JLabel textAlumno;
     private JLabel textCurso;
     private JLabel textNumeroNota;
@@ -38,7 +40,7 @@ public class CalificarAlumno_Swing extends JPanel {
 
     AlumnoServicio servAlumno = new AlumnoServicio();
     CursoServicio servCurso = new CursoServicio();
-    ParcialServicio servParcial = new ParcialServicio();
+    NotaServicio servParcial = new NotaServicio();
 
     private PanelManager panelManager;
 
@@ -46,27 +48,18 @@ public class CalificarAlumno_Swing extends JPanel {
         super();
         this.panelManager = m;
     }
-    private void tablaCursosAlumnoMouseClicked(MouseEvent evt){
-        CursoTableModel model = new CursoTableModel();
-        int selectedRowIndex = tablaCursosAlumno.getSelectedRow();
-        fieldCurso.setText(model.getValueAt(selectedRowIndex, 1).toString());
 
-    }
     public void armarCalificarCurso() {
-        //construct preComponents
-
-
-
-
         //construct components
+
+        String[] tablaCursosAlumnoItems = {"1","2","3","4","5","6","7","8","9","10"};
         fieldLegajo = new JTextField (5);
         fieldCurso = new JTextField (5);
-        fieldNota = new JTextField (5);
+        fieldNota = new JComboBox (tablaCursosAlumnoItems);
         textAlumno = new JLabel ("Legajo Alumno");
         textCurso = new JLabel ("Id Curso");
         textNumeroNota = new JLabel ("Numero Parcial");
-        fieldTipoNota = new JComboBox ();
-        fieldTipoNota.addItem("FINAL");
+        fieldTipoNota = new JComboBox();
         textParcial = new JLabel ("Nota Parcial");
         jcomp11 = new JLabel ("NOTAS DEL ALUMNO");
         buttonCalificarAlumno = new JButton ("Calificar Alumno");
@@ -94,8 +87,9 @@ public class CalificarAlumno_Swing extends JPanel {
                 try {
                     cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
                     cursoTableModel.fireTableDataChanged();
-                    parcialTableModel.setContenido(servParcial.listarParcialesAlumno(Integer.parseInt(fieldLegajo.getText())));
+                    parcialTableModel.setContenido(servParcial.listarNotasAlumno(Integer.parseInt(fieldLegajo.getText())));
                     parcialTableModel.fireTableDataChanged();
+                    fieldCurso.setText("");
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
@@ -107,18 +101,22 @@ public class CalificarAlumno_Swing extends JPanel {
         buttonCalificarAlumno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                servParcial = new ParcialServicio();
+                servParcial = new NotaServicio();
+                int filaSeleccionada = tablaCursosAlumno.getSelectedRow();
+                Curso curso = cursoTableModel.getContenido().get(filaSeleccionada);
                 try{
-                    servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt(fieldNota.getText()));
+                    servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt((String)fieldNota.getSelectedItem()));
                     parcialTableModel.setContenido(null);
-                    parcialTableModel.setContenido(servParcial.listarParcialesAlumno(Integer.parseInt(fieldLegajo.getText())));
-
+                    parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), curso.getId()));
+                    parcialTableModel.fireTableDataChanged();
                     //parcialTableModel.fireTableDataChanged(); NOT WORKING
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                     serviceCursoNoExisteException.printStackTrace();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
                 }
 
             }
@@ -136,6 +134,15 @@ public class CalificarAlumno_Swing extends JPanel {
                 fieldTipoNota.addItem("FINAL");
                 for (int i = 1; i <= curso.getCantidad_parciales(); i++) {
                     fieldTipoNota.addItem("Parcial " + i);
+                }
+
+                try {
+                    parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), curso.getId()));
+                    parcialTableModel.fireTableDataChanged();
+                } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
+                    serviceCursoNoExisteException.printStackTrace();
+                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                    serviceLegajoNoExsiteException.printStackTrace();
                 }
 
             }

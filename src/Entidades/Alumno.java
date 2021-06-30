@@ -6,6 +6,7 @@ public class Alumno {
     private int legajo;
     private String nombre;
     private String apellido;
+    private int limiteCursos;
 
     private List<Curso> cursos;
 
@@ -13,12 +14,12 @@ public class Alumno {
 
     }
 
-    public Alumno(int legajo, String nombre, String apellido)
+    public Alumno(int legajo, String nombre, String apellido, int limiteCursos)
     {
         this.legajo = legajo;
         this.nombre = nombre;
         this.apellido = apellido;
-
+        this.limiteCursos = limiteCursos;
     }
 
 
@@ -57,5 +58,13 @@ public class Alumno {
     public void addCurso(Curso curso){
         curso.getAlumnos().add(this);
         cursos.add(curso);
+    }
+
+    public int getLimiteCursos() {
+        return limiteCursos;
+    }
+
+    public void setLimiteCursos(int limiteCursos) {
+        this.limiteCursos = limiteCursos;
     }
 }

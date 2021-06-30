@@ -14,6 +14,8 @@ import Swing.Tablas.CursoTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -60,13 +62,26 @@ public class InscribirAlumno_Swing extends JPanel {
         scrollTable = new JScrollPane(tabla);
 
 
+        tabla.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = tabla.getSelectedRow();
+                if(tabla.getModel() instanceof AlumnoTableModel){
+                    Alumno alumno = alumnoTableModel.getContenido().get(filaSeleccionada);
+                    fieldAlumno.setText(String.valueOf(alumno.getLegajo()));
+                }
+                else if(tabla.getModel() instanceof CursoTableModel){
+                    Curso curso = cursoTableModel.getContenido().get(filaSeleccionada);
+                    fieldCurso.setText(String.valueOf(curso.getId()));
+                }
+            }
+        });
         //Listeners de los botones
         buttonMostrarAlumnos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 servAlumno = new AlumnoServicio();
                 tabla.setModel(alumnoTableModel);
-
                 try {
                     alumnoTableModel.setContenido(servAlumno.listarAlumnos());
                     alumnoTableModel.fireTableDataChanged();
@@ -109,6 +124,7 @@ public class InscribirAlumno_Swing extends JPanel {
                 panelManager.mostrarPanelProfesor();
             }
         });
+
 
 
         //agrego componentes al JFrame (Mismo que hacer frame.add(XXX))

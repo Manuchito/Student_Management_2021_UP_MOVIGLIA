@@ -128,7 +128,7 @@ public class EditarAlumno_Swing extends JPanel {
                 if (exit == JOptionPane.YES_OPTION)
                 {
                     try {
-                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText());
+                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText(), 3);
                         JOptionPane.showMessageDialog(null, "Usted edito con exito al alumno con LEGAJO: " + fieldLegajo.getText(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
                         fieldLegajo.setText("");
                         fieldLegajo.setEnabled(true);

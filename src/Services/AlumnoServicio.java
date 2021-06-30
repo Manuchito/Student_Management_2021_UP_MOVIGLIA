@@ -21,10 +21,10 @@ public class AlumnoServicio {
         }
     }
 
-    public void registrar(int legajo, String nombre, String apellido) throws ServiceClaveDuplicadaException, NumberFormatException {
+    public void registrar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceClaveDuplicadaException, NumberFormatException {
         try {
             validad(legajo, nombre, apellido);
-            alumnoDAO.crearAlumno(new Alumno(legajo, nombre, apellido));
+            alumnoDAO.crearAlumno(new Alumno(legajo, nombre, apellido, limiteCursos));
         } catch (DAOClaveDuplicadaException daoClaveDuplicadaException) {
             throw new ServiceClaveDuplicadaException(daoClaveDuplicadaException.getMessage());
         }
@@ -44,11 +44,11 @@ public class AlumnoServicio {
         }
     }
 
-    public void editar(int legajo, String nombre, String apellido) throws ServiceLegajoNoExsiteException, NumberFormatException {
+    public void editar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceLegajoNoExsiteException, NumberFormatException {
 
         try {
             validad(legajo, nombre, apellido);
-            alumnoDAO.actualizaAlumno(new Alumno(legajo, nombre, apellido));
+            alumnoDAO.actualizaAlumno(new Alumno(legajo, nombre, apellido, limiteCursos));
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
             throw new ServiceLegajoNoExsiteException(daoLegajoNoExiste.getMessage());
         }
@@ -78,11 +78,18 @@ public class AlumnoServicio {
         try{
             Alumno a = alumnoDAO.muestraAlumno(legajo);
             Curso c = cursoDAO.muestraCurso(curso);
-            alumnoDAO.inscribirAlumnoxCurso(a,c);
+            if(alumnoDAO.listaCursosAlumno(a).size() < a.getLimiteCursos()){
+                alumnoDAO.inscribirAlumnoxCurso(a,c);
+            }
+            else {
+                throw new Exception();
+            }
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
             throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
         } catch (DAOCursoNoExisteException daoCursoNoExiste){
             throw new ServiceCursoNoExisteException("El curso con id " + legajo + " no existe.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

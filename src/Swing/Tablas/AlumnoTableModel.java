@@ -14,13 +14,14 @@ public class AlumnoTableModel extends AbstractTableModel {
     private static final int COLUMNA_LEGAJO = 0;
     private static final int COLUMNA_NOMBRE = 1;
     private static final int COLUMNA_APELLIDO = 2;
+    private static final int COLUMNA_LIMITECURSOS = 3;
 
 
-    private String[] nombresColumnas = {"Legajo", "Nombre", "Apellido"};
-    private Class[] tiposColumnas = {Integer.class, String.class, String.class};
+    private String[] nombresColumnas = {"Legajo", "Nombre", "Apellido", "Limite Cursos"};
+    private Class[] tiposColumnas = {Integer.class, String.class, String.class, Integer.class};
 
     private List<Alumno> contenido;
-
+//QUE DICE?!?!?!!?!?
 
     public AlumnoTableModel() {
         contenido = new ArrayList<Alumno>();
@@ -66,6 +67,10 @@ public class AlumnoTableModel extends AbstractTableModel {
             case COLUMNA_APELLIDO:
                 result = a.getApellido();
                 break;
+            case COLUMNA_LIMITECURSOS:
+                result = a.getLimiteCursos();
+                break;
+
             default:
                 result = new String("");
         }

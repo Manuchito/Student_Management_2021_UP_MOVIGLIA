@@ -1,4 +1,6 @@
 package Swing;
+import Entidades.Alumno;
+import Entidades.Curso;
 import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
@@ -9,6 +11,8 @@ import Swing.Tablas.CursoTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class Profesor_Swing extends JPanel {
@@ -40,7 +44,7 @@ public class Profesor_Swing extends JPanel {
         JLabel textCursosAlumno = new JLabel("Cursos del Alumno");
         JLabel textAlumnosCurso = new JLabel("Alumnos del Curso");
         JLabel textCurso = new JLabel("Codigo Curso");
-        JTextField fieldAlumno = new JTextField(5);
+        JTextField fieldAlumno = new JTextField("");
         JTextField fieldCurso = new JTextField(5);
         JButton buttonBuscarCurso = new JButton("Buscar");
         JButton buttonCrear = new JButton("Crear Alumno");
@@ -107,6 +111,47 @@ public class Profesor_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelManager.mostrarPanelCalificarAlumno();
+            }
+        });
+
+        buttonReporte.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelReporteCurso();
+            }
+        });
+
+        tablaCursosAlumno.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = tablaCursosAlumno.getSelectedRow();
+                Curso curso = cursoTableModel.getContenido().get(filaSeleccionada);
+                try {
+                    alumnoTableModel.setContenido(servCurso.listarAlumnosDelCurso(curso.getId()));
+                    fieldCurso.setText(String.valueOf(curso.getId()));
+                    alumnoTableModel.fireTableDataChanged();
+                } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
+                    serviceCursoNoExisteException.printStackTrace();
+                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                    serviceLegajoNoExsiteException.printStackTrace();
+                }
+            }
+        });
+
+        tablaAlumnosCurso.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = tablaAlumnosCurso.getSelectedRow();
+                Alumno alumno = alumnoTableModel.getContenido().get(filaSeleccionada);
+                try {
+                    cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(alumno.getLegajo()));
+                    fieldAlumno.setText(String.valueOf(alumno.getLegajo()));
+                    cursoTableModel.fireTableDataChanged();
+                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                    serviceLegajoNoExsiteException.printStackTrace();
+                } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
+                    serviceCursoNoExisteException.printStackTrace();
+                }
             }
         });
 

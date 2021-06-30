@@ -1,7 +1,8 @@
 package Swing.Tablas;
 
 import Entidades.Curso;
-import Entidades.Parcial;
+import Entidades.Nota;
+
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -21,18 +22,18 @@ public class NotaTableModel extends AbstractTableModel {
     private String[] nombresColumnas = {"Legajo", "Curso", "Tipo Nota", "Nota"};
     private Class[] tiposColumnas = {Integer.class, String.class, String.class, Integer.class};
 
-    private List<Parcial> contenido;
+    private List<Nota> contenido;
 
 
     public NotaTableModel() {
-        contenido = new ArrayList<Parcial>();
+        contenido = new ArrayList<Nota>();
     }
 
     /**
      * CONSTRUCTOR CON CONTENIDO INICIAL
      * @param contenidoInicial
      */
-    public NotaTableModel(List<Parcial> contenidoInicial) {
+    public NotaTableModel(List<Nota> contenidoInicial) {
         contenido = contenidoInicial;
     }
 
@@ -48,7 +49,7 @@ public class NotaTableModel extends AbstractTableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
 
-        Parcial p = contenido.get(rowIndex);
+        Nota p = contenido.get(rowIndex);
 
         Object result = null;
         switch (columnIndex) {
@@ -84,7 +85,7 @@ public class NotaTableModel extends AbstractTableModel {
      * GETTER DE MIS FILAS
      * @return
      */
-    public List<Parcial> getContenido() {
+    public List<Nota> getContenido() {
         return contenido;
     }
     /**
@@ -92,7 +93,7 @@ public class NotaTableModel extends AbstractTableModel {
      *
      * @param contenido
      */
-    public void setContenido(List<Parcial> contenido) {
+    public void setContenido(List<Nota> contenido) {
         this.contenido = contenido;
     }
 

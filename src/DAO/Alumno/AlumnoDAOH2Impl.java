@@ -25,12 +25,13 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         int id = unAlumno.getLegajo();
         String nombre = unAlumno.getNombre();
         String apellido = unAlumno.getApellido();
+        int limiteCursos = unAlumno.getLimiteCursos();
 
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
 
-            String sql = "INSERT INTO alumnos (id_alumno,nombres,apellidos) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "')";
+            String sql = "INSERT INTO alumnos (id_alumno,nombres,apellidos,limite_cursos) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + limiteCursos + "')";
             s.executeUpdate(sql);
             c.commit();
         } catch (SQLException e) {
@@ -84,10 +85,11 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         int id = unAlumno.getLegajo();
         String nombre = unAlumno.getNombre();
         String apellido = unAlumno.getApellido();
+        int limiteCursos = unAlumno.getLimiteCursos();
 
         Connection c = DBManager.connect();
         try {
-            String sql = "UPDATE alumnos set nombres = '" + nombre + "', apellidos = '" + apellido + "'WHERE ID_ALUMNO = '" + id + "'";
+            String sql = "UPDATE alumnos set nombres = '" + nombre + "', apellidos = '" + apellido + "', limite_cursos = '" + limiteCursos + "'WHERE ID_ALUMNO = '" + id + "'";
             Statement s = c.createStatement();
             if(s.executeUpdate(sql) == 0){
                 throw new DAOLegajoNoExisteException("La clave ( "+ id +" ) no existe");
@@ -124,7 +126,8 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
             	int id = rs.getInt("id_alumno");
                 String nombre= rs.getString("nombres");
                 String apellido = rs.getString("apellidos");
-                Alumno u = new Alumno(id, nombre, apellido);
+                int limiteCursos = rs.getInt("limite_cursos");
+                Alumno u = new Alumno(id, nombre, apellido, limiteCursos);
                 resultado.add(u);
 
             }
@@ -157,7 +160,8 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
                 int id_alumno = rs.getInt("id_alumno");
                 String nombre = rs.getString("nombres");
                 String apellido = rs.getString("apellidos");
-                resultado = new Alumno(id_alumno ,nombre, apellido);
+                int limiteCursos = rs.getInt("limite_cursos");
+                resultado = new Alumno(id_alumno ,nombre, apellido, limiteCursos);
                 return resultado;
             }
 

@@ -29,15 +29,17 @@ public class CrearAlumno_Swing extends JPanel {
 
     public void armarCrearAlumno() {
 
-        //componentes del JFrame
+        String[] limiteCursosAlumno = {"1","2","3","4","5","6"};
         JButton buttonCancelar = new JButton("Cancelar");
         JButton buttonCrear = new JButton("Crear");
-        fieldLegajo = new JTextField (5);
+        fieldLegajo = new JTextField(5);
         JLabel textLegajo = new JLabel("Legajo Alumno");
         JLabel textNombre = new JLabel("Nombres Alumno");
         JLabel textApellido = new JLabel("Apellido Alumno");
-        JLabel textAprobado = new JLabel("Estado Alumno");
-        JComboBox comboAprobado = new JComboBox(new String[]{"CURSANDO", "APROBADO", "DESAPROBADO"});
+        JLabel textLimiteCursos = new JLabel("Limite Cursos Alumno");
+
+        JComboBox fieldLimiteCursos = new JComboBox(limiteCursosAlumno);
+
         fieldNombre = new JTextField (5);
         fieldApellido = new JTextField (5);
         setLayout(null); // para poder ubicar libremente los componentes en JFrame
@@ -49,7 +51,7 @@ public class CrearAlumno_Swing extends JPanel {
                 try {
                     int legajo = Integer.parseInt(fieldLegajo.getText());
                     AlumnoServicio alumnoServicio = new AlumnoServicio();
-                    alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText());
+                    alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText(), Integer.parseInt(String.valueOf(fieldLimiteCursos.getSelectedItem())));
                     JOptionPane.showMessageDialog(null, "Se a creado un nuevo alumno", "Aviso de creacion", JOptionPane.INFORMATION_MESSAGE);
                     clearText();
                 } catch (ServiceClaveDuplicadaException claveDuplicadaException) {
@@ -83,20 +85,23 @@ public class CrearAlumno_Swing extends JPanel {
         add(textApellido);
         add(fieldNombre);
         add(fieldApellido);
-        add(comboAprobado);
-        add(textAprobado);
+        add(fieldLimiteCursos);
+        add(textLimiteCursos);
 
         //ubico componentes en JFrame
-        buttonCancelar.setBounds(410, 260, 100, 30);
-        buttonCrear.setBounds(275, 260, 100, 30);
-        fieldLegajo.setBounds(180, 40, 115, 25);
-        fieldNombre.setBounds(180, 100, 155, 25);
-        fieldApellido.setBounds(180, 160, 155, 25);
-        comboAprobado.setBounds(180, 220, 155, 25);
+        buttonCancelar.setBounds(425, 280, 100, 30);
+        buttonCrear.setBounds(300, 280, 100, 30);
+
+        fieldLegajo.setBounds(220, 40, 115, 25);
+        fieldNombre.setBounds(220, 100, 155, 25);
+        fieldApellido.setBounds(220, 160, 155, 25);
+        fieldLimiteCursos.setBounds(220,220,155,25);
+
         textLegajo.setBounds(55, 40, 100, 25);
         textNombre.setBounds(55, 100, 100, 25);
         textApellido.setBounds(55, 160, 100, 25);
-        textAprobado.setBounds(55, 220, 100, 25);
+        textLimiteCursos.setBounds(55,220,200,25);
+
 
     }
 

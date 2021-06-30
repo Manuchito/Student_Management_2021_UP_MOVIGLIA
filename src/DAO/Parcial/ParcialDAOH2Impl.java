@@ -5,7 +5,7 @@ import DAO.Curso.CursoDAOH2Impl;
 import DAO.DBManager;
 import Entidades.Alumno;
 import Entidades.Curso;
-import Entidades.Parcial;
+import Entidades.Nota;
 import Exceptions.DAOCursoNoExisteException;
 
 import java.sql.Connection;
@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParcialDAOH2Impl {
-    public void crearParcial(Parcial unParcial){
-        int legajo = unParcial.getAlumno().getLegajo();
-        int id_curso = unParcial.getCurso().getId();
-        String tipoNota = unParcial.getTipoNota();
-        int notaParcial = unParcial.getNotaParcial();
+    public void crearNota(Nota unaNota){
+        int legajo = unaNota.getAlumno().getLegajo();
+        int id_curso = unaNota.getCurso().getId();
+        String tipoNota = unaNota.getTipoNota();
+        int notaParcial = unaNota.getNotaParcial();
 
         Connection c = DBManager.connect();
         try {
@@ -44,10 +44,8 @@ public class ParcialDAOH2Impl {
         }
     }
 
-
-
-    public List<Parcial> listaParcialesAlumno(Alumno unAlumno){
-        List<Parcial> parciales = new ArrayList<>();
+    public List<Nota> listaNotasAlumno(Alumno unAlumno){
+        List<Nota> notas = new ArrayList<>();
         CursoDAO cursoDAO = new CursoDAOH2Impl();
 
         String sql = "SELECT * FROM PARCIAL WHERE ID_ALUMNO = " + unAlumno.getLegajo();
@@ -62,8 +60,8 @@ public class ParcialDAOH2Impl {
                 String tipoNota = rs.getString("TIPO_NOTA");
                 int nota = rs.getInt("NOTA");
 
-                Parcial p = new Parcial(unAlumno, curso, tipoNota, nota);
-                parciales.add(p);
+                Nota n = new Nota(unAlumno, curso, tipoNota, nota);
+                notas.add(n);
 
             }
         } catch (SQLException e) {
@@ -81,7 +79,42 @@ public class ParcialDAOH2Impl {
                 e1.printStackTrace();
             }
         }
-        return parciales;
+        return notas;
 
     }
+
+    public List<Nota> listarNotasCursoALumno(Alumno unAlumno, Curso unCurso){
+        List<Nota> notas = new ArrayList<>();
+        CursoDAO cursoDAO = new CursoDAOH2Impl();
+
+        String sql = "SELECT * FROM PARCIAL WHERE ID_ALUMNO = " + unAlumno.getLegajo() + " AND ID_CURSO = " + unCurso.getId();
+        Connection c = DBManager.connect();
+        try {
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery(sql);
+
+            while (rs.next()) {
+                String tipoNota = rs.getString("TIPO_NOTA");
+                int nota = rs.getInt("NOTA");
+                Nota n = new Nota(unAlumno, unCurso, tipoNota, nota);
+                notas.add(n);
+
+            }
+        } catch (SQLException e) {
+            try {
+                c.rollback();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            try {
+                c.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return notas;
+
+    }
+
 }

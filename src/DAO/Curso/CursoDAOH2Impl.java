@@ -153,7 +153,7 @@ public class CursoDAOH2Impl implements CursoDAO {
                 int precioCurso = rs.getInt("precio");
                 int capacidad = rs.getInt("cupo_maximo");
                 int parciales = rs.getInt("cantidad_parciales");
-                curso = new Curso(id, nombreCurso, precioCurso,capacidad, parciales);
+                curso = new Curso(id, nombreCurso, capacidad, precioCurso, parciales);
             }
 
         } catch (SQLException e) {

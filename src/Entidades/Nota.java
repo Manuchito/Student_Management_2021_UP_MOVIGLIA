@@ -1,26 +1,26 @@
 package Entidades;
 
-public class Parcial {
+public class Nota {
     private Alumno alumno;
     private Curso curso;
     private String tipoNota;
-    private int notaParcial;
+    private int numeroNota;
 
-    public Parcial(){}
+    public Nota(){}
 
-    public Parcial(Alumno alumno, Curso curso, String tipoNota, int notaParcial){
+    public Nota(Alumno alumno, Curso curso, String tipoNota, int numeroNota){
         this.alumno = alumno;
         this.curso = curso;
         this.tipoNota = tipoNota;
-        this.notaParcial = notaParcial;
+        this.numeroNota = numeroNota;
     }
 
     public int getNotaParcial() {
-        return notaParcial;
+        return numeroNota;
     }
 
     public void setNotaParcial(int notaParcial) {
-        this.notaParcial = notaParcial;
+        this.numeroNota = notaParcial;
     }
 
     public Alumno getAlumno() {
