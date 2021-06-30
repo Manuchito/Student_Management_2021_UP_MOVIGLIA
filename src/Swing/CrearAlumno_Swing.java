@@ -95,13 +95,6 @@ public class CrearAlumno_Swing extends JPanel {
         fieldNombre.setBounds(220, 100, 155, 25);
         fieldApellido.setBounds(220, 160, 155, 25);
         fieldLimiteCursos.setBounds(220,220,155,25);
-
-        //ubico componentes en JFrame
-        buttonCancelar.setBounds(410, 260, 100, 30);
-        buttonCrear.setBounds(275, 260, 100, 30);
-        fieldLegajo.setBounds(180, 40, 115, 25);
-        fieldNombre.setBounds(180, 100, 155, 25);
-        fieldApellido.setBounds(180, 160, 155, 25);
         textLegajo.setBounds(55, 40, 100, 25);
         textNombre.setBounds(55, 100, 100, 25);
         textApellido.setBounds(55, 160, 100, 25);
