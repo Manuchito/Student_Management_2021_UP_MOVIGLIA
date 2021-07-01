@@ -6,6 +6,7 @@ import DAO.DBManager;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
+import Exceptions.DAOClaveDuplicadaException;
 import Exceptions.DAOCursoNoExisteException;
 
 import java.sql.Connection;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParcialDAOH2Impl {
-    public void crearNota(Nota unaNota){
+    public void crearNota(Nota unaNota) throws DAOClaveDuplicadaException {
         int legajo = unaNota.getAlumno().getLegajo();
         int id_curso = unaNota.getCurso().getId();
         String tipoNota = unaNota.getTipoNota();
@@ -29,6 +30,9 @@ public class ParcialDAOH2Impl {
             s.executeUpdate(sql);
             c.commit();
         } catch (SQLException e) {
+            if(e.getErrorCode() == 23505) {
+                throw new DAOClaveDuplicadaException("La nota ya existe");
+            }
             try {
                 e.printStackTrace();
                 c.rollback();

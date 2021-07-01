@@ -2,7 +2,9 @@ package Swing;
 
 import Entidades.Curso;
 import Entidades.Nota;
+import Exceptions.ServiceClaveDuplicadaException;
 import Exceptions.ServiceCursoNoExisteException;
+import Exceptions.ServiceInsificientesParcialesAprobadosException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
 import Services.AlumnoServicio;
@@ -12,6 +14,7 @@ import Swing.Tablas.CursoTableModel;
 import Swing.Tablas.NotaTableModel;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
@@ -67,6 +70,11 @@ public class CalificarAlumno_Swing extends JPanel {
         jcomp14 = new JLabel ("CURSOS DEL ALUMNO");
         buttonBuscarAlumno = new JToggleButton ("Buscar Alumno", false);
 
+        fieldCurso.setEnabled(false);
+        fieldTipoNota.setEnabled(false);
+        fieldNota.setEnabled(false);
+        buttonCalificarAlumno.setEnabled(false);
+
         //adjust size and set layout
         setLayout (null);
 
@@ -80,23 +88,64 @@ public class CalificarAlumno_Swing extends JPanel {
         tablaNotasAlumno = new JTable(parcialTableModel);
         scrollPaneNotasAlumno = new JScrollPane(tablaNotasAlumno);
 
-        buttonBuscarAlumno.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                servAlumno = new AlumnoServicio();
-                try {
-                    cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
-                    cursoTableModel.fireTableDataChanged();
-                    parcialTableModel.setContenido(servParcial.listarNotasAlumno(Integer.parseInt(fieldLegajo.getText())));
-                    parcialTableModel.fireTableDataChanged();
+
+        ItemListener itemListener = new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent)
+            {
+                int state = itemEvent.getStateChange();
+
+                if (state == ItemEvent.SELECTED) {
+                    try {
+                        if(buttonBuscarAlumno.isSelected()){
+                            cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
+                            cursoTableModel.fireTableDataChanged();
+                            parcialTableModel.setContenido(servParcial.listarNotasAlumno(Integer.parseInt(fieldLegajo.getText())));
+                            parcialTableModel.fireTableDataChanged();
+                            fieldCurso.setText("");
+                            fieldCurso.setEnabled(true);
+                            fieldTipoNota.setEnabled(true);
+                            fieldNota.setEnabled(true);
+                            fieldLegajo.setEnabled(false);
+                            buttonCalificarAlumno.setEnabled(true);
+
+                        }
+
+                    } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                        JOptionPane.showMessageDialog(null, "El alumno "+ fieldLegajo.getText() +" no existe.",
+                                "Error tipo missing", JOptionPane.ERROR_MESSAGE);
+                    } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
+                        serviceCursoNoExisteException.printStackTrace();
+                    }
+                }
+                else {
+
+                    fieldLegajo.setEnabled(true);
+
+                    fieldCurso.setEnabled(false);
                     fieldCurso.setText("");
-                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
-                    serviceLegajoNoExsiteException.printStackTrace();
-                } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    serviceCursoNoExisteException.printStackTrace();
+
+                    fieldNota.setSelectedItem("1");
+                    fieldNota.setEnabled(false);
+
+                    fieldTipoNota.setEnabled(false);
+                    fieldTipoNota.removeAllItems();
+
+                    buttonCalificarAlumno.setEnabled(false);
+
+                    parcialTableModel.setContenido(new ArrayList<>());
+                    cursoTableModel.setContenido(new ArrayList<>());
+
+                    parcialTableModel.fireTableDataChanged();
+                    cursoTableModel.fireTableDataChanged();
+
+
                 }
             }
-        });
+        };
+
+        buttonBuscarAlumno.addItemListener(itemListener);
+
+
 
         buttonCalificarAlumno.addActionListener(new ActionListener() {
             @Override
@@ -108,16 +157,22 @@ public class CalificarAlumno_Swing extends JPanel {
                     servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt((String)fieldNota.getSelectedItem()));
                     parcialTableModel.setContenido(null);
                     parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), curso.getId()));
-                    parcialTableModel.setContenido(servParcial.listarNotasAlumno(Integer.parseInt(fieldLegajo.getText())));
                     parcialTableModel.fireTableDataChanged();
+                    cursoTableModel.fireTableDataChanged();
                     //parcialTableModel.fireTableDataChanged(); NOT WORKING
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
-                    serviceLegajoNoExsiteException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El alumno "+ fieldLegajo.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    serviceCursoNoExisteException.printStackTrace();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCurso.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceInsificientesParcialesAprobadosException serviceInsificientesParcialesAprobadosException) {
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCurso.getText() +" no tiene los fucientes parciales para rendir FINAL.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceClaveDuplicadaException serviceClaveDuplicadaException) {
+                    JOptionPane.showMessageDialog(null, "El Alumno "+ fieldLegajo.getText() +" ya esta calificado en el " + fieldTipoNota.getSelectedItem() + " del Curso " + fieldCurso.getText(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }

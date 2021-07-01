@@ -1,7 +1,6 @@
 package DAO.Alumno;
 
 
-import DAO.Alumno.AlumnoDAO;
 import DAO.Curso.CursoDAO;
 import DAO.Curso.CursoDAOH2Impl;
 import DAO.DBManager;
@@ -10,6 +9,7 @@ import Entidades.Curso;
 import Exceptions.DAOCursoNoExisteException;
 import Exceptions.DAOLegajoNoExisteException;
 import Exceptions.DAOClaveDuplicadaException;
+import Exceptions.DAOInscripcionDublicadaException;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -219,7 +219,7 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
 
     }
 
-    public void inscribirAlumnoxCurso(Alumno unAlumno, Curso unCurso){
+    public void inscribirAlumnoxCurso(Alumno unAlumno, Curso unCurso) throws DAOInscripcionDublicadaException {
         int id = unAlumno.getLegajo();
         int id_curso = unCurso.getId();
 
@@ -232,10 +232,39 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
             c.commit();
         } catch (SQLException e) {
             try {
+                if(e.getErrorCode() == 23505) {
+                    throw new DAOInscripcionDublicadaException("La inscripcion del Alumno " + id + "y con el Curso " + id_curso + " ya existen");
+                }
                 e.printStackTrace();
                 c.rollback();
             } catch (SQLException e1) {
                 e.printStackTrace();
+            }
+        } finally {
+            try {
+                c.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    public void borrarCursada(int id, int id_curso) throws DAOLegajoNoExisteException {
+        String sql = "DELETE FROM ALUMNOXCURSO WHERE ID_ALUMNO = '" + id + "' AND ID_CURSO = '" + id_curso + "'";
+        Connection c = DBManager.connect();
+        try {
+            Statement s = c.createStatement();
+            if(s.executeUpdate(sql) == 0){
+                System.out.println("error");
+            }
+            c.commit();
+
+        } catch (SQLException e) {
+            try {
+
+                c.rollback();
+                e.printStackTrace();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
             }
         } finally {
             try {

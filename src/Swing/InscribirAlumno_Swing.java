@@ -1,12 +1,13 @@
 package Swing;
 
-import DAO.Alumno.AlumnoDAOH2Impl;
-import DAO.Curso.CursoDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
+import Exceptions.ServiceCapacidadMaximaCursosAlumnoException;
+import Exceptions.ServiceCupoCompletoException;
+import Exceptions.ServiceInscripcionRepetidaException;
 import Services.AlumnoServicio;
 import Services.CursoServicio;
 import Swing.Tablas.AlumnoTableModel;
@@ -16,7 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -81,7 +81,6 @@ public class InscribirAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 servAlumno = new AlumnoServicio();
                 tabla.setModel(alumnoTableModel);
-                System.out.printf(String.valueOf(tabla.getModel()));
                 try {
                     alumnoTableModel.setContenido(servAlumno.listarAlumnos());
                     alumnoTableModel.fireTableDataChanged();
@@ -111,9 +110,23 @@ public class InscribirAlumno_Swing extends JPanel {
                 try {
                     alumnoServicio.inscribirAlumnoxCurso(Integer.parseInt(fieldAlumno.getText()), Integer.parseInt(fieldCurso.getText()));
                 } catch (ServiceLegajoNoExsiteException legajoNoExsite) {
-                    legajoNoExsite.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El alumno "+ fieldAlumno.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceCursoNoExisteException serviceCursoNoExiste) {
-                    serviceCursoNoExiste.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCurso.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceInscripcionRepetidaException serviceInscripcionRepetidaException) {
+                    JOptionPane.showMessageDialog(null, "Ya existe la inscripcion del Alumno " + fieldAlumno.getText() + " al Curso " + fieldCurso.getText(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceCupoCompletoException serviceCupoCompletoException) {
+                    JOptionPane.showMessageDialog(null, "Inscribir al alumno " + fieldAlumno.getText() + " al curso " + fieldCurso.getText() +" excede el cupo maximo.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceCapacidadMaximaCursosAlumnoException serviceCapacidadMaximaCursosAlumnoException) {
+                    JOptionPane.showMessageDialog(null, "Inscribir al alumno " + fieldAlumno.getText() + " a un nuevo curso excede su limite de los mismos.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException numberFormatException){
+                    JOptionPane.showMessageDialog(null, "Alguno de los campos incluye letras o caracteres especiales",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

@@ -27,6 +27,9 @@ public class test {
 		CursoServicio cursoServicio = new CursoServicio();
 		NotaServicio n = new NotaServicio();
 
+		t.dropTable("alumnos");
+		t.createAlumnoTable();
+
 	}
 
 }

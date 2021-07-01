@@ -5,6 +5,10 @@ import Entidades.Alumno;
 import DAO.Alumno.AlumnoDAOH2Impl;
 import Entidades.Curso;
 import Exceptions.*;
+import Exceptions.DAOInscripcionDublicadaException;
+import Exceptions.ServiceCapacidadMaximaCursosAlumnoException;
+import Exceptions.ServiceCupoCompletoException;
+import Exceptions.ServiceInscripcionRepetidaException;
 
 import java.util.List;
 
@@ -74,15 +78,20 @@ public class AlumnoServicio {
     }
 
 
-    public void inscribirAlumnoxCurso(int legajo, int curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
+    public void inscribirAlumnoxCurso(int legajo, int curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceCupoCompletoException, ServiceCapacidadMaximaCursosAlumnoException, ServiceInscripcionRepetidaException {
         try{
             Alumno a = alumnoDAO.muestraAlumno(legajo);
             Curso c = cursoDAO.muestraCurso(curso);
-            if(alumnoDAO.listaCursosAlumno(a).size() < a.getLimiteCursos()){
+            if(alumnoDAO.listaCursosAlumno(a).size() < a.getLimiteCursos() && cursoDAO.listaAlumnosCurso(c).size() < c.getCupo()){
                 alumnoDAO.inscribirAlumnoxCurso(a,c);
             }
-            else {
-                throw new Exception();
+            else if(cursoDAO.listaAlumnosCurso(c).size() >= c.getCupo()){
+
+                throw new ServiceCupoCompletoException("INSCRIBIR AL ALUMNO SUPERARIA LA CAPACIDAD DEL CURSO");
+            }
+            else if(alumnoDAO.listaCursosAlumno(a).size() >= a.getLimiteCursos()){
+
+                throw new ServiceCapacidadMaximaCursosAlumnoException("INSCRIBIR AL ALUMNO SUPERARIA LA CAPACIDAD DE CURSOS QUE SE PUEDE ANOTAR");
             }
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
             throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
@@ -90,6 +99,8 @@ public class AlumnoServicio {
             throw new ServiceCursoNoExisteException("El curso con id " + legajo + " no existe.");
         } catch (Exception e) {
             e.printStackTrace();
+        } catch (DAOInscripcionDublicadaException e) {
+            throw new ServiceInscripcionRepetidaException();
         }
     }
 
