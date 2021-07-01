@@ -6,10 +6,7 @@ import DAO.Parcial.ParcialDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
-import Exceptions.DAOCursoNoExisteException;
-import Exceptions.DAOLegajoNoExisteException;
-import Exceptions.ServiceCursoNoExisteException;
-import Exceptions.ServiceLegajoNoExsiteException;
+import Exceptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +24,7 @@ public class NotaServicio {
         }
 
     }
-    public void calificarAlumno(int legajo, int curso, String tipoNota, int nota) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, Exception {
+    public void calificarAlumno(int legajo, int curso, String tipoNota, int nota) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceInsificientesParcialesAprobadosException, ServiceClaveDuplicadaException {
         try{
             Curso c = cursoDAO.muestraCurso(curso);
             Alumno a = alumnoDAO.muestraAlumno(legajo);
@@ -40,7 +37,10 @@ public class NotaServicio {
             }
 
             if(tipoNota == "FINAL" && notasAprobadas.size() < c.getCantidad_parciales()){
-                throw new Exception(); //TODO
+                throw new ServiceInsificientesParcialesAprobadosException("El alumno " + a.getLegajo() + " no tiene suficiente parciales aprobados para calificar nota FINAL"); //TODO
+            }
+            else if(tipoNota == "FINAL" && notasAprobadas.size() == c.getCantidad_parciales()){
+                alumnoDAO.borrarCursada(a.getLegajo(),c.getId());
             }
             else {
                 parcialDAO.crearNota(new Nota(a, c, tipoNota, nota));
@@ -49,6 +49,8 @@ public class NotaServicio {
             throw new ServiceCursoNoExisteException("El curso con id " + curso + " no existe.");
         } catch (DAOLegajoNoExisteException legajoNoExisteException) {
             throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
+        } catch (DAOClaveDuplicadaException claveDuplicadaException){
+            throw new ServiceClaveDuplicadaException("La nota ya existe en sistema");
         }
     }
 
@@ -62,7 +64,7 @@ public class NotaServicio {
         }
     }
 
-    public List<Nota> listarNotasAprobadasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
+    public List<Nota> listarNotasAprobadasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException, ServiceNoHayAprobadosException {
         try{
             List<Nota> notasAprobadas = new ArrayList<>();
             List<Nota> notas = parcialDAO.listarNotasCursoALumno(alumnoDAO.muestraAlumno(legajo), cursoDAO.muestraCurso(curso));
@@ -70,6 +72,9 @@ public class NotaServicio {
                 if(n.getNotaParcial() >= 4){
                     notasAprobadas.add(n);
                 }
+            }
+            if(notasAprobadas.size() == 0){
+                throw new ServiceNoHayAprobadosException("El curso "+ curso + " no tiene ninguna aprobado actualmente.");
             }
             return notasAprobadas;
         } catch (DAOCursoNoExisteException cursoNoExisteException) {
