@@ -2,10 +2,7 @@ package Swing;
 
 import Entidades.Curso;
 import Entidades.Nota;
-import Exceptions.ServiceClaveDuplicadaException;
-import Exceptions.ServiceCursoNoExisteException;
-import Exceptions.ServiceInsificientesParcialesAprobadosException;
-import Exceptions.ServiceLegajoNoExsiteException;
+import Exceptions.*;
 import Main.PanelManager;
 import Services.AlumnoServicio;
 import Services.CursoServicio;
@@ -32,6 +29,7 @@ public class CalificarAlumno_Swing extends JPanel {
     private JButton buttonVolver;
     private JLabel jcomp14;
     private JToggleButton buttonBuscarAlumno;
+    private JButton buttonEliminarNota;
 
     private CursoTableModel cursoTableModel;
     private JTable tablaCursosAlumno;
@@ -69,12 +67,13 @@ public class CalificarAlumno_Swing extends JPanel {
         buttonVolver = new JButton ("Volver");
         jcomp14 = new JLabel ("CURSOS DEL ALUMNO");
         buttonBuscarAlumno = new JToggleButton ("Buscar Alumno", false);
+        buttonEliminarNota = new JButton("Eliminar Nota");
 
         fieldCurso.setEnabled(false);
         fieldTipoNota.setEnabled(false);
         fieldNota.setEnabled(false);
         buttonCalificarAlumno.setEnabled(false);
-
+        buttonEliminarNota.setEnabled(false);
         //adjust size and set layout
         setLayout (null);
 
@@ -107,6 +106,7 @@ public class CalificarAlumno_Swing extends JPanel {
                             fieldNota.setEnabled(true);
                             fieldLegajo.setEnabled(false);
                             buttonCalificarAlumno.setEnabled(true);
+                            buttonEliminarNota.setEnabled(true);
 
                         }
 
@@ -131,6 +131,7 @@ public class CalificarAlumno_Swing extends JPanel {
                     fieldTipoNota.removeAllItems();
 
                     buttonCalificarAlumno.setEnabled(false);
+                    buttonEliminarNota.setEnabled(false);
 
                     parcialTableModel.setContenido(new ArrayList<>());
                     cursoTableModel.setContenido(new ArrayList<>());
@@ -145,20 +146,18 @@ public class CalificarAlumno_Swing extends JPanel {
 
         buttonBuscarAlumno.addItemListener(itemListener);
 
-
-
         buttonCalificarAlumno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 servParcial = new NotaServicio();
-                int filaSeleccionada = tablaCursosAlumno.getSelectedRow();
-                Curso curso = cursoTableModel.getContenido().get(filaSeleccionada);
+
                 try{
                     servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt((String)fieldNota.getSelectedItem()));
                     parcialTableModel.setContenido(null);
-                    parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), curso.getId()));
-                    parcialTableModel.fireTableDataChanged();
-                    cursoTableModel.fireTableDataChanged();
+                    parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText())));
+                    cursoTableModel.setContenido(null);
+                    cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
+
                     //parcialTableModel.fireTableDataChanged(); NOT WORKING
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
@@ -196,7 +195,8 @@ public class CalificarAlumno_Swing extends JPanel {
                     parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), curso.getId()));
                     parcialTableModel.fireTableDataChanged();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    serviceCursoNoExisteException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCurso.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
                 }
@@ -208,6 +208,22 @@ public class CalificarAlumno_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelManager.mostrarPanelProfesor();
+            }
+        });
+
+        buttonEliminarNota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int filaSeleccionada = tablaNotasAlumno.getSelectedRow();
+                Nota n = parcialTableModel.getContenido().get(filaSeleccionada);
+                try{
+                    servParcial.eliminarNota(n.getAlumno().getLegajo(),n.getCurso().getId(),n.getTipoNota());
+                    parcialTableModel.getContenido().remove(filaSeleccionada);
+                    parcialTableModel.fireTableDataChanged();
+
+                } catch (ServiceNotaNoExisteException serviceNotaNoExisteException) {
+                    serviceNotaNoExisteException.printStackTrace();
+                }
             }
         });
 
@@ -227,6 +243,7 @@ public class CalificarAlumno_Swing extends JPanel {
         add (buttonVolver);
         add (jcomp14);
         add (buttonBuscarAlumno);
+        add (buttonEliminarNota);
 
         //set component bounds (only needed by Absolute Positioning)
         scrollPaneNotasAlumno.setBounds (395, 265, 250, 155);
@@ -244,6 +261,9 @@ public class CalificarAlumno_Swing extends JPanel {
         buttonVolver.setBounds (550, 445, 100, 25);
         jcomp14.setBounds (455, 40, 130, 25);
         buttonBuscarAlumno.setBounds (55, 395, 130, 25);
+        buttonEliminarNota.setBounds(130, 435,130,25);
+
+
     }
 
 

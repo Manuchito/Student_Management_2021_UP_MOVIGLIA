@@ -3,14 +3,11 @@ package Services;
 
 import DAO.Alumno.AlumnoDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
-import DAO.Parcial.ParcialDAOH2Impl;
+import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
-import Exceptions.DAOCursoNoExisteException;
-import Exceptions.DAOLegajoNoExisteException;
-import Exceptions.ServiceCursoNoExisteException;
-import Exceptions.ServiceLegajoNoExsiteException;
+import Exceptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +15,19 @@ import java.util.List;
 public class CursoServicio {
     AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
     CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
-    ParcialDAOH2Impl parcialDAO = new ParcialDAOH2Impl();
+    NotaDAOH2Impl parcialDAO = new NotaDAOH2Impl();
+
+    public void crearCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoYaExisteException {
+        try{
+            cursoDAO.crearCurso(new Curso(id_curso,nombre,cupo_maximo,precio,cantidad_parciales));
+        } catch (DAOClaveDuplicadaException daoClaveDuplicadaException) {
+            throw new ServiceCursoYaExisteException("El curso "+ id_curso + " ya existe.");
+        }
+    }
+
+    public void borrarCurso(int id_curso){
+        cursoDAO.borraCurso(id_curso);
+    }
 
     public List<Alumno> listarAlumnosDelCurso(int id_curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
         try {
@@ -30,12 +39,8 @@ public class CursoServicio {
         }
     }
 
-    public List<Curso> listarCursos() throws Exception {
-        try{
-            return cursoDAO.listaTodosLosCursos();
-        } catch (Exception e) {
-            throw new Exception();
-        }
+    public List<Curso> listarCursos(){
+        return cursoDAO.listaTodosLosCursos();
     }
 
     public Curso muestraCurso(int id_curso) throws ServiceCursoNoExisteException {
@@ -59,7 +64,7 @@ public class CursoServicio {
         }
     }
 
-    public List<Alumno> mostrarAlumnosAprobadosParaFinal(int id_curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
+    public List<Alumno> mostrarAlumnosAprobadosParaFinal(int id_curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException, ServiceNoHayAprobadosException {
         List<Alumno> aprobados = new ArrayList<>();
         try {
             Curso curso = cursoDAO.muestraCurso(id_curso);
@@ -72,9 +77,12 @@ public class CursoServicio {
                         notasAprobadasAlumno.add(n);
                     }
                 }
-                if(notasAprobadasAlumno.size() >= curso.getCantidad_parciales()){
+                if(notasAprobadasAlumno.size() == curso.getCantidad_parciales()){
                     aprobados.add(a);
                 }
+            }
+            if(aprobados.size() == 0){
+                throw new ServiceNoHayAprobadosException("El curso "+ curso + " no tiene ninguna aprobado actualmente.");
             }
             return aprobados;
 

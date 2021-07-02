@@ -1,6 +1,7 @@
 package Main;
 
 import Swing.*;
+import Swing.Admin.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,9 @@ public class PanelManager {
     private Profesor_Swing profesor;
     private CalificarAlumno_Swing calificarAlumno;
     private ReporteCurso_Swing reporteCurso;
+    private ReporteAlumno_Swing reporteAlumno;
+    private Admin_Swing admin;
+    private CrearCurso_Swing crearCurso;
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
     public PanelManager(){
@@ -49,6 +53,42 @@ public class PanelManager {
 
         reporteCurso = new ReporteCurso_Swing(this);
         reporteCurso.armarReporteCurso();
+
+        reporteAlumno = new ReporteAlumno_Swing(this);
+        reporteAlumno.armarReporteAlumno();
+
+        admin = new Admin_Swing(this);
+        admin.armarAdminSwing();
+
+        crearCurso = new CrearCurso_Swing(this);
+        crearCurso.armarCrearCurso();
+    }
+
+    public void mostrarPanelCrearCurso(){
+        frame.getContentPane().removeAll();
+        frame.setSize(550, 400);
+        centerFrame(frame);
+        frame.getContentPane().add(crearCurso);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
+    public void mostrarPanelAdmin(){
+        frame.getContentPane().removeAll();
+        frame.setSize(1110, 870);
+        centerFrame(frame);
+        frame.getContentPane().add(admin);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
+    public void mostrarPanelReporteAlumno(){
+        frame.getContentPane().removeAll();
+        frame.setSize(1200, 550);
+        centerFrame(frame);
+        frame.getContentPane().add(reporteAlumno);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     public void mostrarPanelReporteCurso(){

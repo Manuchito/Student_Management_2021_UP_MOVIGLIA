@@ -1,4 +1,4 @@
-package Swing;
+package Swing.Admin;
 
 import Exceptions.ServiceClaveDuplicadaException;
 import Services.AlumnoServicio;
@@ -48,9 +48,9 @@ public class CrearAlumno_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int legajo = Integer.parseInt(fieldLegajo.getText());
+
                     AlumnoServicio alumnoServicio = new AlumnoServicio();
-                    alumnoServicio.registrar(legajo ,fieldNombre.getText(),fieldApellido.getText(), Integer.parseInt(String.valueOf(fieldLimiteCursos.getSelectedItem())));
+                    alumnoServicio.registrar(Integer.parseInt(fieldLegajo.getText()) ,fieldNombre.getText(),fieldApellido.getText(), Integer.parseInt(String.valueOf(fieldLimiteCursos.getSelectedItem())));
                     JOptionPane.showMessageDialog(null, "Se a creado un nuevo alumno", "Aviso de creacion", JOptionPane.INFORMATION_MESSAGE);
                     clearText();
                 } catch (ServiceClaveDuplicadaException claveDuplicadaException) {
@@ -70,7 +70,7 @@ public class CrearAlumno_Swing extends JPanel {
                 int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere volver al menu principal?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION)
                 {
-                    panelManager.mostrarPanelProfesor();
+                    panelManager.mostrarPanelAdmin();
                 }
             }
         });

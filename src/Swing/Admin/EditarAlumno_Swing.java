@@ -1,4 +1,4 @@
-package Swing;
+package Swing.Admin;
 
 import Entidades.Alumno;
 import Exceptions.ServiceLegajoNoExsiteException;
@@ -42,7 +42,8 @@ public class EditarAlumno_Swing extends JPanel {
 
     public void armarEditarAlumno() {
 
-        //componentes del JFrame
+
+        String[] limiteCursosAlumno = {"1","2","3","4","5","6"};
         JTextField fieldLegajo = new JTextField (5);
         JLabel legajoText = new JLabel("Legajo Alumno");
         JButton buttonEditar = new JButton ("Editar");
@@ -50,10 +51,12 @@ public class EditarAlumno_Swing extends JPanel {
         JLabel textDescripcion = new JLabel("Ingrese el LEGAJO del alumno a modificar");
         JTextField fieldNombre = new JTextField (5);
         JTextField fieldApellido = new JTextField (5);
-        JLabel textAprobado = new JLabel("Estado Alumno");
         JLabel textNombre = new JLabel("Nombre Alumno");
         JLabel textApellido = new JLabel("Apellido Alumno");
         JToggleButton toggleBuscar = new JToggleButton ("Buscar Alumno", false);
+        JComboBox fieldLimiteCursos = new JComboBox(limiteCursosAlumno);
+        JLabel textLimiteCursos = new JLabel("Limite Cursos Alumno");
+
         setLayout(null); // para poder ubicar libremente los componentes en JFrame
 
         //servicios a usar
@@ -64,6 +67,7 @@ public class EditarAlumno_Swing extends JPanel {
         fieldNombre.setEnabled(false);
         fieldApellido.setEnabled(false);
         buttonEditar.setEnabled(false);
+        fieldLimiteCursos.setEnabled(false);
 
         //Listeners de los botones
         toggleBuscar.addActionListener(new ActionListener() {
@@ -74,10 +78,12 @@ public class EditarAlumno_Swing extends JPanel {
                         Alumno a = alumnoServicio.mostrar(Integer.parseInt(fieldLegajo.getText()));
                         fieldNombre.setText(a.getNombre());
                         fieldApellido.setText(a.getApellido());
+                        fieldLimiteCursos.setSelectedIndex(a.getLimiteCursos()-1);
                         fieldLegajo.setEnabled(false);
                         fieldNombre.setEnabled(true);
                         fieldApellido.setEnabled(true);
                         buttonEditar.setEnabled(true);
+                        fieldLimiteCursos.setEnabled(true);
 
                     }catch(NumberFormatException numberFormatException){
                         JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",
@@ -88,6 +94,7 @@ public class EditarAlumno_Swing extends JPanel {
                         fieldApellido.setEnabled(false);
                         toggleBuscar.setSelected(true);
                         buttonEditar.setEnabled(false);
+                        fieldLimiteCursos.setEnabled(false);
 
                     }
                     catch (ServiceLegajoNoExsiteException legajoNoExsite) {
@@ -99,6 +106,7 @@ public class EditarAlumno_Swing extends JPanel {
                         fieldApellido.setEnabled(false);
                         toggleBuscar.setSelected(true);
                         buttonEditar.setEnabled(false);
+                        fieldLimiteCursos.setEnabled(false);
 
                     }
                 }
@@ -106,6 +114,7 @@ public class EditarAlumno_Swing extends JPanel {
                     fieldLegajo.setEnabled(true);
                     fieldNombre.setEnabled(false);
                     fieldApellido.setEnabled(false);
+                    fieldLimiteCursos.setEnabled(false);
                 }
 
             }
@@ -117,7 +126,7 @@ public class EditarAlumno_Swing extends JPanel {
                 fieldLegajo.setText("");
                 fieldApellido.setText("");
                 fieldNombre.setText("");
-                panelManager.mostrarPanelParcial();
+                panelManager.mostrarPanelAdmin();
             }
         });
 
@@ -128,7 +137,7 @@ public class EditarAlumno_Swing extends JPanel {
                 if (exit == JOptionPane.YES_OPTION)
                 {
                     try {
-                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText(), 3);
+                        alumnoServicio.editar(Integer.parseInt(fieldLegajo.getText()), fieldNombre.getText(), fieldApellido.getText(), Integer.parseInt(String.valueOf(fieldLimiteCursos.getSelectedItem())));
                         JOptionPane.showMessageDialog(null, "Usted edito con exito al alumno con LEGAJO: " + fieldLegajo.getText(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
                         fieldLegajo.setText("");
                         fieldLegajo.setEnabled(true);
@@ -136,6 +145,8 @@ public class EditarAlumno_Swing extends JPanel {
                         fieldNombre.setEnabled(false);
                         fieldApellido.setText("");
                         fieldApellido.setEnabled(false);
+                        fieldLimiteCursos.setSelectedIndex(0);
+                        fieldLimiteCursos.setEnabled(false);
                         toggleBuscar.setSelected(false);
                         buttonEditar.setEnabled(false);
                     } catch (ServiceLegajoNoExsiteException alumnoNoExiste) {
@@ -162,7 +173,9 @@ public class EditarAlumno_Swing extends JPanel {
         add(textNombre);
         add(textApellido);
         add(toggleBuscar);
-        add(textAprobado);
+        add(fieldLimiteCursos);
+        add(textLimiteCursos);
+
 
 
         //ubico componentes en JFrame
@@ -175,8 +188,10 @@ public class EditarAlumno_Swing extends JPanel {
         fieldApellido.setBounds(160, 190, 135, 25);
         textNombre.setBounds(25, 130, 100, 25);
         textApellido.setBounds(25, 190, 100, 25);
-        textAprobado.setBounds(25, 250, 100, 25);
         toggleBuscar.setBounds(350, 70, 125, 25);
+        textLimiteCursos.setBounds(25,250,100,25);
+        fieldLimiteCursos.setBounds(160,250,135,25);
+
 
     }
 

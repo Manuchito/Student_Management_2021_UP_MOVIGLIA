@@ -21,7 +21,6 @@ public class AlumnoTableModel extends AbstractTableModel {
     private Class[] tiposColumnas = {Integer.class, String.class, String.class, Integer.class};
 
     private List<Alumno> contenido;
-//QUE DICE?!?!?!!?!?
 
     public AlumnoTableModel() {
         contenido = new ArrayList<Alumno>();

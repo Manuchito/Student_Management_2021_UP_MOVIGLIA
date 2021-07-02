@@ -1,4 +1,4 @@
-package Swing;
+package Swing.Admin;
 
 import Exceptions.ServiceLegajoNoExsiteException;
 import Services.AlumnoServicio;
@@ -43,14 +43,6 @@ public class EliminarAlumno_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",
                             "Error tipo formato", JOptionPane.ERROR_MESSAGE);
                     numberFormatException.printStackTrace();
-                } catch (ServiceLegajoNoExsiteException alumnoNoExiste){
-                    JOptionPane.showMessageDialog(null, "El alumno a eliminar no existe",
-                            "Error tipo base de datos", JOptionPane.ERROR_MESSAGE);
-                    alumnoNoExiste.printStackTrace();
-                } catch (IntegerVaciaException integerVaciaException) {
-                    JOptionPane.showMessageDialog(null, "El contenido del campo legajo esta vacio",
-                            "Error tipo formato", JOptionPane.ERROR_MESSAGE);
-                    integerVaciaException.printStackTrace();
                 }
             }
         });
@@ -58,7 +50,7 @@ public class EliminarAlumno_Swing extends JPanel {
         buttonCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelParcial();
+                panelManager.mostrarPanelAdmin();
 
             }
         });

@@ -53,10 +53,11 @@ public class CursoDAOH2Impl implements CursoDAO {
     }
 
     public void borraCurso(int id) {
-        String sql = "DELETE FROM cursos WHERE curso_id = '" + id + "'";
+        String sql = "DELETE FROM cursos WHERE id_curso = '" + id + "'";
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
+
             s.executeUpdate(sql);
             c.commit();
         } catch (SQLException e) {

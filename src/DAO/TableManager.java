@@ -118,7 +118,7 @@ public class TableManager {
 	public void createParcialesTable(){
 		Connection c = DBManager.connect();
 
-		String sql = "CREATE TABLE parcial (ID_ALUMNO integer not null, ID_CURSO integer not null, TIPO_NOTA VARCHAR(256) not null, NOTA integer not null, CONSTRAINT pk_parcial PRIMARY KEY(ID_ALUMNO, ID_CURSO, TIPO_NOTA), FOREIGN KEY (ID_ALUMNO) REFERENCES ALUMNOS (ID_ALUMNO) ON DELETE CASCADE, FOREIGN KEY (ID_CURSO) REFERENCES CURSOS (ID_CURSO) ON DELETE CASCADE )";
+		String sql = "CREATE TABLE notas (ID_ALUMNO integer not null, ID_CURSO integer not null, TIPO_NOTA VARCHAR(256) not null, NOTA integer not null, CONSTRAINT pk_parcial PRIMARY KEY(ID_ALUMNO, ID_CURSO, TIPO_NOTA), FOREIGN KEY (ID_ALUMNO) REFERENCES ALUMNOS (ID_ALUMNO) ON DELETE CASCADE, FOREIGN KEY (ID_CURSO) REFERENCES CURSOS (ID_CURSO) ON DELETE CASCADE )";
 
 		try {
 			Statement s = c.createStatement();

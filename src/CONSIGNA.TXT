@@ -42,6 +42,5 @@ DONE:
   las N parciales aprobados.
    En este caso cada curso tendrá una configuración de cuantas notas parciales son
   necesarias.
-
    Mostrar un reporte de recaudación por curso. Mostrar un reporte de anotados vs
   aprobados por curso.

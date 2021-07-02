@@ -53,16 +53,12 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         }
     }
 
-    public void borraAlumno(int id) throws DAOLegajoNoExisteException {
+    public void borraAlumno(int id){
         String sql = "DELETE FROM alumnos WHERE ID_ALUMNO = '" + id + "'";
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
-            if(s.executeUpdate(sql) == 0){
-                throw new DAOLegajoNoExisteException("La clave ( "+ id +" ) no existe");
-            }
             c.commit();
-
 
         } catch (SQLException e) {
             try {

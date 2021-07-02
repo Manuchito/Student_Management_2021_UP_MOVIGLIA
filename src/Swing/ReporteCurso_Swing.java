@@ -4,6 +4,7 @@ import Entidades.Alumno;
 import Entidades.Curso;
 import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
+import Exceptions.ServiceNoHayAprobadosException;
 import Main.PanelManager;
 import Services.CursoServicio;
 import Swing.Tablas.AlumnoTableModel;
@@ -11,6 +12,7 @@ import Swing.Tablas.CursoTableModel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -106,13 +108,16 @@ public class ReporteCurso_Swing extends JPanel {
                     fieldCantidad.setText(String.valueOf(c.getCantidad_parciales()));
                     fieldCantidadAlumnos.setText(String.valueOf(alumnosCurso.size()));
                     fieldCapacidadMaxima.setText(String.valueOf(c.getCupo()));
-                    fieldAprobados.setText(String.valueOf(servCurso.mostrarAlumnosAprobadosParaFinal(c.getId()).size()));
                     fieldRecaudacionTotal.setText("$" + String.valueOf(servCurso.muestraRecaudacionTotal(c.getId())));
+                    fieldAprobados.setText(String.valueOf(servCurso.mostrarAlumnosAprobadosParaFinal(c.getId()).size()));
 
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    serviceCursoNoExisteException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
+                } catch (ServiceNoHayAprobadosException serviceNoHayAprobadosException) {
+                    fieldAprobados.setText("0");
                 }
             }
         });
@@ -122,12 +127,16 @@ public class ReporteCurso_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 alumnoTableModel.setContenido(null);
                 try {
-                    alumnoTableModel.setContenido(servCurso.mostrarAlumnosAprobadosParaFinal(Integer.parseInt(fieldCurso.getText())));
+                    alumnoTableModel.setContenido(servCurso.mostrarAlumnosAprobadosParaFinal(Integer.parseInt(fieldCursoBuscar.getText())));
                     alumnoTableModel.fireTableDataChanged();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    serviceCursoNoExisteException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getText() +" no existe.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
+                } catch (ServiceNoHayAprobadosException serviceNoHayAprobadosException){
+                    JOptionPane.showMessageDialog(null, "El Curso "+ fieldCurso.getText() + " acutalmente no tiene ningun aprobado para rendir final.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

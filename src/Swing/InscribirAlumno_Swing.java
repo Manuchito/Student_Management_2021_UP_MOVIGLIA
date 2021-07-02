@@ -2,12 +2,8 @@ package Swing;
 
 import Entidades.Alumno;
 import Entidades.Curso;
-import Exceptions.ServiceCursoNoExisteException;
-import Exceptions.ServiceLegajoNoExsiteException;
+import Exceptions.*;
 import Main.PanelManager;
-import Exceptions.ServiceCapacidadMaximaCursosAlumnoException;
-import Exceptions.ServiceCupoCompletoException;
-import Exceptions.ServiceInscripcionRepetidaException;
 import Services.AlumnoServicio;
 import Services.CursoServicio;
 import Swing.Tablas.AlumnoTableModel;
@@ -81,12 +77,9 @@ public class InscribirAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 servAlumno = new AlumnoServicio();
                 tabla.setModel(alumnoTableModel);
-                try {
-                    alumnoTableModel.setContenido(servAlumno.listarAlumnos());
-                    alumnoTableModel.fireTableDataChanged();
-                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
-                    serviceLegajoNoExsiteException.printStackTrace();
-                }
+                alumnoTableModel.setContenido(servAlumno.listarAlumnos());
+                alumnoTableModel.fireTableDataChanged();
+
 
             }
         });
@@ -126,6 +119,12 @@ public class InscribirAlumno_Swing extends JPanel {
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException numberFormatException){
                     JOptionPane.showMessageDialog(null, "Alguno de los campos incluye letras o caracteres especiales",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceAlmunoYaCursoMateria serviceAlmunoYaCursoMateria) {
+                    JOptionPane.showMessageDialog(null, "El Alumno " + fieldAlumno.getText() + " ya aprobo con Final el Curso " + fieldCurso.getText(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (ServiceFinalPendiente serviceFinalPendiente) {
+                    JOptionPane.showMessageDialog(null, "El Alumno " + fieldAlumno.getText() + " ya tiene un final pendiente del Curso " + fieldCurso.getText(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }

@@ -45,13 +45,11 @@ public class Inicio_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                try {
-                    alumnoServicio = new AlumnoServicio();
-                    modelo.setContenido(alumnoServicio.listarAlumnos());
-                    modelo.fireTableDataChanged();
-                } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
-                    serviceLegajoNoExsiteException.printStackTrace();
-                }
+
+                alumnoServicio = new AlumnoServicio();
+                modelo.setContenido(alumnoServicio.listarAlumnos());
+                modelo.fireTableDataChanged();
+
 
             }
         });

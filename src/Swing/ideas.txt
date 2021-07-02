@@ -1,9 +1,8 @@
 faltan administradores
 
-cuando rinde final, sacarlo de la cursada.
 
-hacer una tabla de muestra recaudacion, donde parece el curso, y su recaudacion
-con una entidad "recaudacion"
+
 
 PONER PANELES DE PREGUNTA, CONFIRMACION Y AVISO DE LO QUE SE HIZO
 
+CUANDO MUESTRO UNA ENTIDAD EN DAO, HACERLO COMO LISTAR ALUMNOS

@@ -16,8 +16,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 public class Profesor_Swing extends JPanel {
-    private PanelManager panelManager;
-    CursoServicio serv = new CursoServicio();
     AlumnoServicio servAlumno = new AlumnoServicio();
     CursoServicio servCurso = new CursoServicio();
     private CursoTableModel cursoTableModel;
@@ -28,6 +26,7 @@ public class Profesor_Swing extends JPanel {
     private JTable tablaAlumnosCurso;
     private JScrollPane scrollPaneAlumnosCurso;
 
+    private PanelManager panelManager;
 
     public Profesor_Swing(PanelManager m){
         super();
@@ -47,7 +46,7 @@ public class Profesor_Swing extends JPanel {
         JTextField fieldAlumno = new JTextField("");
         JTextField fieldCurso = new JTextField(5);
         JButton buttonBuscarCurso = new JButton("Buscar");
-        JButton buttonCrear = new JButton("Crear Alumno");
+        JButton buttonReporteAlumno = new JButton("Reporte Alumno");
         JButton buttonInscribir = new JButton("Inscribir Alumno");
         JButton buttonVolver = new JButton("Volver");
         JButton buttonCalificar = new JButton("Calificar Alumno");
@@ -100,10 +99,10 @@ public class Profesor_Swing extends JPanel {
             }
         });
 
-        buttonCrear.addActionListener(new ActionListener() {
+        buttonReporteAlumno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelCreacionAlumno();
+                panelManager.mostrarPanelReporteAlumno();
             }
         });
 
@@ -174,7 +173,7 @@ public class Profesor_Swing extends JPanel {
         add (fieldAlumno);
         add (fieldCurso);
         add (buttonBuscarCurso);
-        add (buttonCrear);
+        add (buttonReporteAlumno);
         add (buttonInscribir);
         add (buttonVolver);
         add (buttonCalificar);
@@ -193,7 +192,7 @@ public class Profesor_Swing extends JPanel {
         fieldAlumno.setBounds (475, 50, 135, 25);
         fieldCurso.setBounds (475, 265, 135, 25);
         buttonBuscarCurso.setBounds (625, 265, 90, 25);
-        buttonCrear.setBounds (100, 80, 140, 45);
+        buttonReporteAlumno.setBounds (100, 80, 140, 45);
         buttonInscribir.setBounds (100, 180, 140, 45);
         buttonVolver.setBounds (110, 485, 120, 40);
         buttonCalificar.setBounds (100, 280, 140, 45);
