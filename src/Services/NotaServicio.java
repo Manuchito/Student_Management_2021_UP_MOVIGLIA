@@ -36,6 +36,7 @@ public class NotaServicio {
             Curso c = cursoDAO.muestraCurso(curso);
             Alumno a = alumnoDAO.muestraAlumno(legajo);
             List<Nota> notasCursoAlumno = notaDAO.listarNotasCursoALumno(a,c);
+
             List<Nota> notasAprobadas = new ArrayList<>();
             for(Nota n : notasCursoAlumno){
                 if(n.getNotaParcial() >= 4){
@@ -44,7 +45,7 @@ public class NotaServicio {
             }
 
             if(tipoNota == "FINAL" && notasAprobadas.size() < c.getCantidad_parciales()){
-                throw new ServiceInsificientesParcialesAprobadosException("El alumno " + a.getLegajo() + " no tiene suficiente parciales aprobados para calificar nota FINAL"); //TODO
+                throw new ServiceInsificientesParcialesAprobadosException("El alumno " + a.getLegajo() + " no tiene suficiente parciales aprobados para calificar nota FINAL");
             }
             else if(tipoNota == "FINAL" && notasAprobadas.size() == c.getCantidad_parciales()){
                 notaDAO.crearNota(new Nota(a, c, tipoNota, nota));
@@ -62,15 +63,60 @@ public class NotaServicio {
         }
     }
 
-    public void eliminarNota(int legajo, int id_curso, String tipo_nota) throws ServiceNotaNoExisteException {
+    public void eliminarNota(int legajo, int id_curso, String tipo_nota) throws ServiceNotaNoExisteException, ServiceNotaParcialesDependenDeFinalException {
+
         try {
-            notaDAO.borrarNota(legajo,id_curso,tipo_nota);
+            Curso c = cursoDAO.muestraCurso(id_curso);
+            Alumno a = alumnoDAO.muestraAlumno(legajo);
+            List<Nota> notasCursoAlumno = notaDAO.listarNotasCursoALumno(a,c);
+            List<Nota> notasAprobadas = new ArrayList<>();
+            for(Nota n : notasCursoAlumno){
+                if(n.getNotaParcial() >= 4){
+                    notasAprobadas.add(n);
+                }
+            }
+
+            if(!tipo_nota.equals("FINAL") && notasAprobadas.size() > c.getCantidad_parciales()){
+                throw new ServiceNotaParcialesDependenDeFinalException("El final de la materia depende de la nota a eliminar");
+            }
+            else {
+                notaDAO.borrarNota(legajo,id_curso,tipo_nota);
+            }
         } catch (DAONotaNoExisteException e) {
             throw new ServiceNotaNoExisteException();
+        } catch (DAOCursoNoExisteException cursoNoExisteException) {
+            cursoNoExisteException.printStackTrace();
+        } catch (DAOLegajoNoExisteException legajoNoExisteException) {
+            legajoNoExisteException.printStackTrace();
         }
     }
 
-    public List<Nota> listarNotasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
+    public void editarNota(int legajo, int curso, String tipoNota, int nota) throws ServiceNotaParcialesDependenDeFinalException {
+        try {
+            Curso c = cursoDAO.muestraCurso(curso);
+            Alumno a = alumnoDAO.muestraAlumno(legajo);
+            List<Nota> notasCursoAlumno = notaDAO.listarNotasCursoALumno(a,c);
+
+            List<Nota> notasAprobadas = new ArrayList<>();
+            for(Nota n : notasCursoAlumno){
+                if(n.getNotaParcial() >= 4){
+                    notasAprobadas.add(n);
+                }
+            }
+            if(tipoNota != "FINAL" && notasAprobadas.size() >= c.getCantidad_parciales() && nota < 4){
+                throw new ServiceNotaParcialesDependenDeFinalException("El final de la materia depende de la nota a eliminar");
+            }else {
+                Nota n = new Nota(a,c,tipoNota,nota);
+                notaDAO.editarNota(n);
+            }
+
+        } catch (DAOCursoNoExisteException cursoNoExisteException) {
+            cursoNoExisteException.printStackTrace();
+        } catch (DAOLegajoNoExisteException legajoNoExisteException) {
+            legajoNoExisteException.printStackTrace();
+        }
+    }
+        public List<Nota> listarNotasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
         try {
             return notaDAO.listarNotasCursoALumno(alumnoDAO.muestraAlumno(legajo), cursoDAO.muestraCurso(curso));
         } catch (DAOCursoNoExisteException cursoNoExisteException) {

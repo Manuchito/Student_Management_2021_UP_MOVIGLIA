@@ -77,18 +77,21 @@ public class CursoDAOH2Impl implements CursoDAO {
     }
 
     @Override
-    public void actualizaCurso(Curso unCurso) {
+    public void actualizaCurso(Curso unCurso) throws DAOCursoNoExisteException {
         int id = unCurso.getId();
         String nombre = unCurso.getNombre();
         int precio = unCurso.getPrecio();
         int capacidad = unCurso.getCupo();
         int cantidad_parciales = unCurso.getCantidad_parciales();
 
-        String sql = "UPDATE cursos set nombre = '" + nombre + "', precio = '" + precio + "', cupo_maximo = '" + nombre + "', cantidad_parciales = '" + cantidad_parciales + "' WHERE curso_id = '" + id + "'";
+        String sql = "UPDATE cursos set nombre = '" + nombre + "', precio = '" + precio + "', cupo_maximo = '" + capacidad + "', cantidad_parciales = '" + cantidad_parciales + "' WHERE ID_CURSO = '" + id + "'";
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
             s.executeUpdate(sql);
+            if(s.executeUpdate(sql) == 0){
+                throw new DAOCursoNoExisteException("La clave ( "+ id +" ) no existe");
+            }
             c.commit();
         } catch (SQLException e) {
             try {
@@ -167,7 +170,7 @@ public class CursoDAOH2Impl implements CursoDAO {
         } finally {
             if(curso == null)
             {
-                throw new DAOCursoNoExisteException();
+                throw new DAOCursoNoExisteException("La clave ( "+ id_curso +" ) no existe");
             }
             try {
                 c.close();

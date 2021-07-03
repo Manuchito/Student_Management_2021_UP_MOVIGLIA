@@ -29,6 +29,14 @@ public class CursoServicio {
         cursoDAO.borraCurso(id_curso);
     }
 
+    public void editarCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoNoExisteException {
+        try {
+            cursoDAO.actualizaCurso(new Curso(id_curso,nombre,cupo_maximo,precio,cantidad_parciales));
+        } catch (DAOCursoNoExisteException cursoNoExisteException) {
+            throw new ServiceCursoNoExisteException("El curso "+ id_curso + " no existe.");
+        }
+    }
+
     public List<Alumno> listarAlumnosDelCurso(int id_curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
         try {
             return cursoDAO.listaAlumnosCurso(cursoDAO.muestraCurso(id_curso));

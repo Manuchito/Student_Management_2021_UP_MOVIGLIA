@@ -249,9 +249,6 @@ public class AlumnoDAOH2Impl implements AlumnoDAO {
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
-            if(s.executeUpdate(sql) == 0){
-                System.out.println("error");
-            }
             c.commit();
 
         } catch (SQLException e) {

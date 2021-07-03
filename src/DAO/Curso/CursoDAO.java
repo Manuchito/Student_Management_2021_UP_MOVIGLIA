@@ -12,7 +12,7 @@ public interface CursoDAO {
 
     void borraCurso(int id);
 
-    void actualizaCurso(Curso unCurso);
+    void actualizaCurso(Curso unCurso) throws DAOCursoNoExisteException;
 
     Curso muestraCurso(int id) throws DAOCursoNoExisteException;
 

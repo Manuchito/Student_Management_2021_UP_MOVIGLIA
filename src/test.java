@@ -3,6 +3,7 @@ import DAO.Curso.CursoDAOH2Impl;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
+import Entidades.Nota;
 import Exceptions.*;
 import DAO.TableManager;
 import Services.AlumnoServicio;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 
 public class test {
 
-	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
+	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException {
 
 		TableManager t = new TableManager();
 		AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
@@ -26,8 +27,7 @@ public class test {
 		Alumno a = alumnoDAO.muestraAlumno(1);
 		Curso c = cursoDAO.muestraCurso(99);
 
-
-		System.out.println(alumnoServicio.listarCursosAprobados(1));
+		notaDAO.editarNota(new Nota(a,c,"Parcial 1", 9));
 
 
 	}

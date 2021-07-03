@@ -60,7 +60,6 @@ public class EditarAlumno_Swing extends JPanel {
         setLayout(null); // para poder ubicar libremente los componentes en JFrame
 
         //servicios a usar
-        Alumno a = new Alumno();
         AlumnoServicio alumnoServicio = new AlumnoServicio();
 
         //bloqueo estos componentes para que sea imposbile editarlos
@@ -89,33 +88,19 @@ public class EditarAlumno_Swing extends JPanel {
                         JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",
                                 "Error tipo formato", JOptionPane.ERROR_MESSAGE);
                         numberFormatException.printStackTrace();
-                        fieldLegajo.setEnabled(true);
-                        fieldNombre.setEnabled(false);
-                        fieldApellido.setEnabled(false);
-                        toggleBuscar.setSelected(true);
-                        buttonEditar.setEnabled(false);
-                        fieldLimiteCursos.setEnabled(false);
+                        toggleBuscar.setSelected(false);
 
                     }
                     catch (ServiceLegajoNoExsiteException legajoNoExsite) {
                         JOptionPane.showMessageDialog(null, "El alumno con legajo " + fieldLegajo.getText() + " no existe",
                                 "Error tipo missing", JOptionPane.ERROR_MESSAGE);
                         legajoNoExsite.printStackTrace();
-                        fieldLegajo.setEnabled(true);
-                        fieldNombre.setEnabled(false);
-                        fieldApellido.setEnabled(false);
-                        toggleBuscar.setSelected(true);
-                        buttonEditar.setEnabled(false);
-                        fieldLimiteCursos.setEnabled(false);
+                        toggleBuscar.setSelected(false);
+
 
                     }
                 }
-                else{
-                    fieldLegajo.setEnabled(true);
-                    fieldNombre.setEnabled(false);
-                    fieldApellido.setEnabled(false);
-                    fieldLimiteCursos.setEnabled(false);
-                }
+
 
             }
         });

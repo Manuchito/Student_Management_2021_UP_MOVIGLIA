@@ -8,10 +8,7 @@ import DAO.DBManager;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
-import Exceptions.DAOClaveDuplicadaException;
-import Exceptions.DAOCursoNoExisteException;
-import Exceptions.DAOLegajoNoExisteException;
-import Exceptions.DAONotaNoExisteException;
+import Exceptions.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -66,6 +63,34 @@ public class NotaDAOH2Impl {
         } catch (SQLException e) {
             try {
 
+                c.rollback();
+                e.printStackTrace();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            try {
+                c.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    public void editarNota(Nota unaNota){
+        int legajo = unaNota.getAlumno().getLegajo();
+        int id_curso = unaNota.getCurso().getId();
+        String tipo_nota = unaNota.getTipoNota();
+        int numero_nota = unaNota.getNotaParcial();
+        Connection c = DBManager.connect();
+        try {
+            String sql = "UPDATE notas set nota = " + numero_nota + " WHERE ID_ALUMNO = " + legajo + " AND ID_CURSO = " + id_curso + " AND TIPO_NOTA = '" + tipo_nota + "'";
+            Statement s = c.createStatement();
+            s.executeUpdate(sql);
+            c.commit();
+
+        } catch (SQLException e) {
+            try {
                 c.rollback();
                 e.printStackTrace();
             } catch (SQLException e1) {
@@ -175,7 +200,6 @@ public class NotaDAOH2Impl {
                 int nota = rs.getInt("NOTA");
                 Nota n = new Nota(unAlumno, unCurso, tipoNota, nota);
                 notas.add(n);
-
             }
         } catch (SQLException e) {
             try {

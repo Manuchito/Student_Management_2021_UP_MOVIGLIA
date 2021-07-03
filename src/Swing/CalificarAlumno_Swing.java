@@ -53,10 +53,10 @@ public class CalificarAlumno_Swing extends JPanel {
     public void armarCalificarCurso() {
         //construct components
 
-        String[] tablaCursosAlumnoItems = {"1","2","3","4","5","6","7","8","9","10"};
+        String[] numerNotasItems = {"1","2","3","4","5","6","7","8","9","10"};
         fieldLegajo = new JTextField (5);
         fieldCurso = new JTextField (5);
-        fieldNota = new JComboBox (tablaCursosAlumnoItems);
+        fieldNota = new JComboBox (numerNotasItems);
         textAlumno = new JLabel ("Legajo Alumno");
         textCurso = new JLabel ("Id Curso");
         textNumeroNota = new JLabel ("Numero Parcial");
@@ -167,12 +167,13 @@ public class CalificarAlumno_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El curso "+ fieldCurso.getText() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceInsificientesParcialesAprobadosException serviceInsificientesParcialesAprobadosException) {
-                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCurso.getText() +" no tiene los fucientes parciales para rendir FINAL.",
+                    JOptionPane.showMessageDialog(null, "El Alumno"+ fieldLegajo.getText() +" no tiene los fucientes parciales para rendir FINAL.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceClaveDuplicadaException serviceClaveDuplicadaException) {
                     JOptionPane.showMessageDialog(null, "El Alumno "+ fieldLegajo.getText() +" ya esta calificado en el " + fieldTipoNota.getSelectedItem() + " del Curso " + fieldCurso.getText(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
+
 
             }
 
@@ -201,6 +202,7 @@ public class CalificarAlumno_Swing extends JPanel {
                     serviceLegajoNoExsiteException.printStackTrace();
                 }
 
+
             }
         });
 
@@ -223,7 +225,10 @@ public class CalificarAlumno_Swing extends JPanel {
 
                 } catch (ServiceNotaNoExisteException serviceNotaNoExisteException) {
                     serviceNotaNoExisteException.printStackTrace();
+                } catch (ServiceNotaParcialesDependenDeFinalException serviceNotaParcialesDependenDeFinalException) {
+                    serviceNotaParcialesDependenDeFinalException.printStackTrace();
                 }
+
             }
         });
 

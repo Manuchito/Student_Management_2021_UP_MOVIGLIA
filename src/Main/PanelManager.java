@@ -19,6 +19,10 @@ public class PanelManager {
     private ReporteAlumno_Swing reporteAlumno;
     private Admin_Swing admin;
     private CrearCurso_Swing crearCurso;
+    private EditarCurso_Swing editarCurso;
+    private CrearNota_Swing crearNota;
+    private EditarNota_Swing editarNota;
+
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
     public PanelManager(){
@@ -62,6 +66,42 @@ public class PanelManager {
 
         crearCurso = new CrearCurso_Swing(this);
         crearCurso.armarCrearCurso();
+
+        editarCurso = new EditarCurso_Swing(this);
+        editarCurso.armarEditarCurso();
+
+        crearNota = new CrearNota_Swing(this);
+        crearNota.armarCrearNota();
+
+        editarNota = new EditarNota_Swing(this);
+        editarNota.armarEditarNota();
+    }
+
+    public void mostrarPanelEditarNota(){
+        frame.getContentPane().removeAll();
+        frame.setSize(550, 350);
+        centerFrame(frame);
+        frame.getContentPane().add(editarNota);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
+    public void mostrarPanelCrearNota(){
+        frame.getContentPane().removeAll();
+        frame.setSize(550, 350);
+        centerFrame(frame);
+        frame.getContentPane().add(crearNota);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
+    public void mostrarPanelEditarCurso(){
+        frame.getContentPane().removeAll();
+        frame.setSize(550, 400);
+        centerFrame(frame);
+        frame.getContentPane().add(editarCurso);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     public void mostrarPanelCrearCurso(){

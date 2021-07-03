@@ -21,17 +21,9 @@ public class AlumnoServicio {
     CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
     NotaDAOH2Impl notaDAO = new NotaDAOH2Impl();
 
-    private void validad(int legajo, String nombre, String apellido) {
-        if (nombre.matches(".*\\d.*") || apellido.matches(".*\\d.*") || nombre.matches("[^A-Za-z0-9]") || apellido.matches("[^A-Za-z0-9]")) {
-            throw new NumberFormatException("Nombre y/o Apellido no pueden tener numeros o caracteres especiales en su contenido");
-        } else if (nombre.isEmpty() || apellido.isEmpty() || Integer.valueOf(legajo) == null) {
-            throw new NumberFormatException("Nombre, id y/o apellido no puede estar vacio");
-        }
-    }
 
-    public void registrar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceClaveDuplicadaException, NumberFormatException {
+    public void registrar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceClaveDuplicadaException{
         try {
-            validad(legajo, nombre, apellido);
             alumnoDAO.crearAlumno(new Alumno(legajo, nombre, apellido, limiteCursos));
         } catch (DAOClaveDuplicadaException daoClaveDuplicadaException) {
             throw new ServiceClaveDuplicadaException(daoClaveDuplicadaException.getMessage());
@@ -47,7 +39,6 @@ public class AlumnoServicio {
     public void editar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceLegajoNoExsiteException, NumberFormatException {
 
         try {
-            validad(legajo, nombre, apellido);
             alumnoDAO.actualizaAlumno(new Alumno(legajo, nombre, apellido, limiteCursos));
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
             throw new ServiceLegajoNoExsiteException(daoLegajoNoExiste.getMessage());
