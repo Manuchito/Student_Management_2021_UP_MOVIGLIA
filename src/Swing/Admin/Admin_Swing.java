@@ -249,6 +249,13 @@ public class Admin_Swing extends JPanel {
             }
         });
 
+        buttonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelInicioSesion();
+            }
+        });
+
 
 
 

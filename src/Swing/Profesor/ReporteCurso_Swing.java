@@ -1,4 +1,4 @@
-package Swing;
+package Swing.Profesor;
 
 import Entidades.Alumno;
 import Entidades.Curso;

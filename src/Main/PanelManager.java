@@ -1,16 +1,15 @@
 package Main;
 
-import Swing.*;
 import Swing.Admin.*;
+import Swing.InicioSesion_Swing;
+import Swing.Profesor.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelManager {
     private JFrame frame;
-    private Inicio_Swing parcial;
     private CrearAlumno_Swing crearAlumno;
-    private EliminarAlumno_Swing eliminarAlumno;
     private EditarAlumno_Swing editarAlumno;
     private InscribirAlumno_Swing inscribirAlumno;
     private Profesor_Swing profesor;
@@ -22,6 +21,8 @@ public class PanelManager {
     private EditarCurso_Swing editarCurso;
     private CrearNota_Swing crearNota;
     private EditarNota_Swing editarNota;
+    private InicioSesion_Swing inicioSesion;
+    private LoginAdmin_Swing loginAdmin;
 
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -34,14 +35,8 @@ public class PanelManager {
         frame.setSize(950, 600);
         centerFrame(frame);
 
-        parcial = new Inicio_Swing(this);
-        parcial.armarParcialSwing();
-
         crearAlumno = new CrearAlumno_Swing(this);
         crearAlumno.armarCrearAlumno();
-
-        eliminarAlumno = new EliminarAlumno_Swing(this);
-        eliminarAlumno.armarEliminarAlumno();
 
         editarAlumno = new EditarAlumno_Swing(this);
         editarAlumno.armarEditarAlumno();
@@ -75,6 +70,30 @@ public class PanelManager {
 
         editarNota = new EditarNota_Swing(this);
         editarNota.armarEditarNota();
+
+        inicioSesion = new InicioSesion_Swing(this);
+        inicioSesion.armarInicioSesion();
+
+        loginAdmin = new LoginAdmin_Swing(this);
+        loginAdmin.armarLoginAdmin();
+    }
+    public void mostrarPanelLoginAdmin(){
+        frame.getContentPane().removeAll();
+        frame.setSize(410,300);
+        centerFrame(frame);
+        frame.setTitle("AAAAAAAAAAAAAAA");
+        frame.getContentPane().add(loginAdmin);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
+    public void mostrarPanelInicioSesion(){
+        frame.getContentPane().removeAll();
+        frame.setSize(875, 550);
+        centerFrame(frame);
+        frame.getContentPane().add(inicioSesion);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     public void mostrarPanelEditarNota(){
@@ -158,29 +177,12 @@ public class PanelManager {
         frame.getContentPane().repaint();
     }
 
-    public void mostrarPanelParcial(){
-        frame.getContentPane().removeAll();
-        frame.setSize(950, 600);
-        centerFrame(frame);
-        frame.getContentPane().add(parcial);
-        frame.getContentPane().validate();
-        frame.getContentPane().repaint();
-    }
 
     public void mostrarPanelCreacionAlumno(){
         frame.getContentPane().removeAll();
         frame.setSize(600, 370);
         centerFrame(frame);
         frame.getContentPane().add(crearAlumno);
-        frame.getContentPane().validate();
-        frame.getContentPane().repaint();
-    }
-
-    public void mostrarPanelEliminarAlumno(){
-        frame.getContentPane().removeAll();
-        frame.setSize(500, 300);
-        centerFrame(frame);
-        frame.getContentPane().add(eliminarAlumno);
         frame.getContentPane().validate();
         frame.getContentPane().repaint();
     }

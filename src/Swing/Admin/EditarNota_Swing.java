@@ -86,8 +86,10 @@ public class EditarNota_Swing extends JPanel {
 
                     } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                         serviceCursoNoExisteException.printStackTrace();
+                        toggleBuscarNotas.setSelected(false);
                     } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                         serviceLegajoNoExsiteException.printStackTrace();
+                        toggleBuscarNotas.setSelected(false);
                     }
                 }
                 else{
@@ -95,6 +97,7 @@ public class EditarNota_Swing extends JPanel {
                     fieldLegajo.setEnabled(true);
                     fieldNumeroNota.setEnabled(false);
                     fieldTipoNota.setEnabled(false);
+                    toggleBuscarNotas.setSelected(false);
                     fieldNumeroNota.setSelectedIndex(0);
                     fieldTipoNota.removeAllItems();
                 }
@@ -104,10 +107,23 @@ public class EditarNota_Swing extends JPanel {
         buttonEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
-                    servNota.editarNota(Integer.parseInt(fieldLegajo.getText()),Integer.parseInt(fieldIdCurso.getText()), (String)fieldTipoNota.getSelectedItem(), fieldNumeroNota.getSelectedIndex()+1);
-                } catch (ServiceNotaParcialesDependenDeFinalException serviceNotaParcialesDependenDeFinalException) {
-                    serviceNotaParcialesDependenDeFinalException.printStackTrace();
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar la nota?" , "Pregunta edición", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (exit == JOptionPane.YES_OPTION){
+                    try{
+                        servNota.editarNota(Integer.parseInt(fieldLegajo.getText()),Integer.parseInt(fieldIdCurso.getText()), (String)fieldTipoNota.getSelectedItem(), fieldNumeroNota.getSelectedIndex()+1);
+                        JOptionPane.showMessageDialog(null, "Usted edito con exito la nota del alumno con LEGAJO: " + fieldLegajo.getText() + ", ID_CURSO: " + fieldIdCurso.getText() + " y TIPO NOTA: " + fieldTipoNota.getSelectedItem(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
+                        fieldIdCurso.setEnabled(true);
+                        fieldLegajo.setEnabled(true);
+                        fieldNumeroNota.setEnabled(false);
+                        fieldTipoNota.setEnabled(false);
+                        toggleBuscarNotas.setSelected(false);
+                        fieldNumeroNota.setSelectedIndex(0);
+                        fieldTipoNota.removeAllItems();
+
+                    } catch (ServiceNotaParcialesDependenDeFinalException serviceNotaParcialesDependenDeFinalException) {
+                        JOptionPane.showMessageDialog(null, "El parcial a editar depende de la nota de Final",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });

@@ -18,7 +18,7 @@ public class CrearCurso_Swing extends JPanel {
     private JLabel textCantidadParciales;
     private JTextField fieldIdCurso;
     private JTextField fieldNombre;
-    private JTextField fieldCupoMaximo;
+    private JSpinner fieldCupoMaximo;
     private JSpinner fieldPrecio;
     private JButton buttonCrear;
     private JButton buttonCancelar;
@@ -43,11 +43,15 @@ public class CrearCurso_Swing extends JPanel {
         textCantidadParciales = new JLabel ("Cantidad Parciales");
         fieldIdCurso = new JTextField (5);
         fieldNombre = new JTextField (5);
-        fieldCupoMaximo = new JTextField (5);
-        fieldPrecio = new JSpinner(new SpinnerNumberModel());
-        JSpinner.NumberEditor jsEditor = (JSpinner.NumberEditor)fieldPrecio.getEditor();
-        DefaultFormatter formatter = (DefaultFormatter) jsEditor.getTextField().getFormatter();
-        formatter.setAllowsInvalid(false);
+        fieldPrecio = new JSpinner(new SpinnerNumberModel(0,0,50000,100));
+        JSpinner.NumberEditor jsEditorPrecio = (JSpinner.NumberEditor)fieldPrecio.getEditor();
+        DefaultFormatter formatterPrecio = (DefaultFormatter) jsEditorPrecio.getTextField().getFormatter();
+        formatterPrecio.setAllowsInvalid(false);
+
+        fieldCupoMaximo = new JSpinner(new SpinnerNumberModel(1,1,120,1));
+        JSpinner.NumberEditor jsEditorCupoMaximo = (JSpinner.NumberEditor)fieldCupoMaximo.getEditor();
+        DefaultFormatter formatterCupoMaximo = (DefaultFormatter) jsEditorCupoMaximo.getTextField().getFormatter();
+        formatterCupoMaximo.setAllowsInvalid(false);
 
         buttonCrear = new JButton ("Crear");
         buttonCancelar = new JButton ("Cancelar");
@@ -62,9 +66,9 @@ public class CrearCurso_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try{
                     CursoServicio cursoServicio = new CursoServicio();
-                    cursoServicio.crearCurso(Integer.parseInt(fieldIdCurso.getText()), fieldNombre.getText(),(Integer) fieldPrecio.getValue(),Integer.parseInt(fieldCupoMaximo.getText()),(fieldCantidadParciales.getSelectedIndex() + 1));
+                    cursoServicio.crearCurso(Integer.parseInt(fieldIdCurso.getText()), fieldNombre.getText(),(Integer) fieldPrecio.getValue(),(Integer) fieldCupoMaximo.getValue(),(fieldCantidadParciales.getSelectedIndex() + 1));
                 } catch (ServiceCursoYaExisteException serviceCursoYaExisteException) {
-                    JOptionPane.showMessageDialog(null, "El curso con legajo " + Integer.parseInt(fieldIdCurso.getText()) + " ya existe",
+                    JOptionPane.showMessageDialog(null, "El curso a crear ya existe (Id y/o Nombre repetido)",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException numberFormatException){
                     JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto",

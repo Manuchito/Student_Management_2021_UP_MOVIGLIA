@@ -1,4 +1,4 @@
-package Swing;
+package Swing.Profesor;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Exceptions.ServiceCursoNoExisteException;
@@ -154,6 +154,12 @@ public class Profesor_Swing extends JPanel {
             }
         });
 
+        buttonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelInicioSesion();
+            }
+        });
 
 
 

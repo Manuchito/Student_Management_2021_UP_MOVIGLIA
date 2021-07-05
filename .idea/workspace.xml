@@ -2,27 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/DAONoHayNotasException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/ServiceNotaParcialesDependenDeFinalException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/CrearNota_Swing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/EditarCurso_Swing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/EditarNota_Swing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/InicioSesion_Swing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/Profesor/LoginAdmin_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Curso/CursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Curso/CursoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/DAOCursoNoExisteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/DAOCursoNoExisteException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/PanelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/PanelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/CursoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/CursoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/NotaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/NotaServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/EditarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/EditarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/CalificarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/CalificarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearCurso_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/CrearCurso_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/EditarCurso_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/EditarCurso_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/EditarNota_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/EditarNota_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/EliminarAlumno_Swing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/CalificarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Inicio_Swing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/InscribirAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/ReporteAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/ReporteAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/ReporteCurso_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/ReporteCurso_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/ideas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ideas.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +105,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\manuc\Documents\GitHub\Student_Management_2021_UP_MOVIGLIA\src" />
       <recent name="C:\Users\manuc\Desktop\clases_marzo_2021\src" />
       <recent name="$PROJECT_DIR$/src/viernes05_mar" />
     </key>
@@ -162,7 +161,7 @@
       </method>
     </configuration>
     <configuration name="ReporteAlumno_Swing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Swing.ReporteAlumno_Swing" />
+      <option name="MAIN_CLASS_NAME" value="Swing.Profesor.ReporteAlumno_Swing" />
       <module name="2do_Parcial_MOVIGLIA_2021" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">

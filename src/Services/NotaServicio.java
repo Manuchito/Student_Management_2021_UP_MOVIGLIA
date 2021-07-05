@@ -103,7 +103,8 @@ public class NotaServicio {
                     notasAprobadas.add(n);
                 }
             }
-            if(tipoNota != "FINAL" && notasAprobadas.size() >= c.getCantidad_parciales() && nota < 4){
+            if(!tipoNota.equals("FINAL") && notasAprobadas.size() >= c.getCantidad_parciales() && nota < 4){
+                System.out.println(tipoNota);
                 throw new ServiceNotaParcialesDependenDeFinalException("El final de la materia depende de la nota a eliminar");
             }else {
                 Nota n = new Nota(a,c,tipoNota,nota);

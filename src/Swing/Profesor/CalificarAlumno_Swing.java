@@ -1,4 +1,4 @@
-package Swing;
+package Swing.Profesor;
 
 import Entidades.Curso;
 import Entidades.Nota;
@@ -157,8 +157,8 @@ public class CalificarAlumno_Swing extends JPanel {
                     parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText())));
                     cursoTableModel.setContenido(null);
                     cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
-
-                    //parcialTableModel.fireTableDataChanged(); NOT WORKING
+                    cursoTableModel.fireTableDataChanged();
+                    parcialTableModel.fireTableDataChanged();
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     JOptionPane.showMessageDialog(null, "El alumno "+ fieldLegajo.getText() +" no existe.",

@@ -20,7 +20,7 @@ public class EditarCurso_Swing extends JPanel {
     private JLabel textCantidadParciales;
     private JTextField fieldIdCurso;
     private JTextField fieldNombre;
-    private JTextField fieldCupoMaximo;
+    private JSpinner fieldCupoMaximo;
     private JSpinner fieldPrecio;
     private JButton buttonEditar;
     private JButton buttonCancelar;
@@ -45,15 +45,23 @@ public class EditarCurso_Swing extends JPanel {
         textCantidadParciales = new JLabel ("Cantidad Parciales");
         fieldIdCurso = new JTextField (5);
         fieldNombre = new JTextField (5);
-        fieldCupoMaximo = new JTextField (5);
-        fieldPrecio = new JSpinner(new SpinnerNumberModel());
-        JSpinner.NumberEditor jsEditor = (JSpinner.NumberEditor)fieldPrecio.getEditor();
-        DefaultFormatter formatter = (DefaultFormatter) jsEditor.getTextField().getFormatter();
-        formatter.setAllowsInvalid(false);
         buttonEditar = new JButton ("Editar");
         buttonCancelar = new JButton ("Cancelar");
         fieldCantidadParciales = new JComboBox (fieldCantidadParcialesItems);
         toggleBuscarCurso = new JToggleButton ("Buscar Curso", false);
+
+        fieldPrecio = new JSpinner(new SpinnerNumberModel(0,0,50000,100));
+        JSpinner.NumberEditor jsEditorPrecio = (JSpinner.NumberEditor)fieldPrecio.getEditor();
+        DefaultFormatter formatterPrecio = (DefaultFormatter) jsEditorPrecio.getTextField().getFormatter();
+        formatterPrecio.setAllowsInvalid(false);
+
+
+        fieldCupoMaximo = new JSpinner(new SpinnerNumberModel(1,1,120,1));
+        JSpinner.NumberEditor jsEditorCupoMaximo = (JSpinner.NumberEditor)fieldCupoMaximo.getEditor();
+        DefaultFormatter formatterCupoMaximo = (DefaultFormatter) jsEditorCupoMaximo.getTextField().getFormatter();
+        formatterCupoMaximo.setAllowsInvalid(false);
+
+
 
         //adjust size and set layout
         setPreferredSize (new Dimension (526, 347));
@@ -75,7 +83,7 @@ public class EditarCurso_Swing extends JPanel {
                         Curso c = servCurso.muestraCurso(Integer.parseInt(fieldIdCurso.getText()));
                         fieldNombre.setText(c.getNombre());
                         fieldPrecio.setValue(c.getPrecio());
-                        fieldCupoMaximo.setText(String.valueOf(c.getCupo()));
+                        fieldCupoMaximo.setValue(c.getCupo());
                         fieldCantidadParciales.setSelectedIndex(c.getCantidad_parciales()-1);
                         fieldNombre.setEnabled(true);
                         fieldCupoMaximo.setEnabled(true);
@@ -102,13 +110,15 @@ public class EditarCurso_Swing extends JPanel {
                 int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar el curso " + fieldIdCurso.getText() + " ?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION){
                     try {
-                        servCurso.editarCurso(Integer.parseInt(fieldIdCurso.getText()),fieldNombre.getText(),Integer.parseInt(fieldCupoMaximo.getText()),(Integer)fieldPrecio.getValue(),(fieldCantidadParciales.getSelectedIndex()+1));
+                        servCurso.editarCurso(Integer.parseInt(fieldIdCurso.getText()),fieldNombre.getText(), (Integer) fieldCupoMaximo.getValue(),(Integer)fieldPrecio.getValue(),(fieldCantidadParciales.getSelectedIndex()+1));
+                        JOptionPane.showMessageDialog(null, "Usted edito con exito al Curso con LEGAJO: " + fieldIdCurso.getText(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
                     } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                         JOptionPane.showMessageDialog(null, "El Curso "+ fieldIdCurso.getText() + " no existe",
-                                "Error tipo missing", JOptionPane.ERROR_MESSAGE);
+                                "Error", JOptionPane.ERROR_MESSAGE);
                     }catch (NumberFormatException numberFormatException){
                         JOptionPane.showMessageDialog(null, "El contenido de alguno de los campos es incorrecto", "Error tipo formato", JOptionPane.ERROR_MESSAGE);
                     }
+
                 }
             }
         });
@@ -120,7 +130,7 @@ public class EditarCurso_Swing extends JPanel {
                 fieldNombre.setText("");
                 fieldCantidadParciales.setSelectedIndex(0);
                 fieldPrecio.setValue(0);
-                fieldCupoMaximo.setText("");
+                fieldCupoMaximo.setValue(1);
                 fieldNombre.setEnabled(false);
                 fieldCupoMaximo.setEnabled(false);
                 fieldCantidadParciales.setEnabled(false);
