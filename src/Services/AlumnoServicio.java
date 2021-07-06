@@ -1,5 +1,6 @@
 package Services;
 
+import DAO.Cursada.CursadaDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
@@ -20,6 +21,7 @@ public class AlumnoServicio {
     AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
     CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
     NotaDAOH2Impl notaDAO = new NotaDAOH2Impl();
+    CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
 
 
     public void registrar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceClaveDuplicadaException{
@@ -43,8 +45,6 @@ public class AlumnoServicio {
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
             throw new ServiceLegajoNoExsiteException(daoLegajoNoExiste.getMessage());
         }
-
-
     }
 
     public Alumno mostrar(int legajo) throws ServiceLegajoNoExsiteException {
@@ -58,54 +58,6 @@ public class AlumnoServicio {
 
     public List<Alumno> listarAlumnos(){
         return alumnoDAO.listaTodosLosAlumnos();
-    }
-
-
-    public void inscribirAlumnoxCurso(int legajo, int curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceCupoCompletoException, ServiceCapacidadMaximaCursosAlumnoException, ServiceInscripcionRepetidaException, ServiceFinalPendiente, ServiceAlmunoYaCursoMateria {
-        try{
-            Alumno a = alumnoDAO.muestraAlumno(legajo);
-            Curso c = cursoDAO.muestraCurso(curso);
-            if(cursoDAO.listaAlumnosCurso(c).size() >= c.getCupo()){
-
-                throw new ServiceCupoCompletoException("INSCRIBIR AL ALUMNO SUPERARIA LA CAPACIDAD DEL CURSO");
-            }
-            else if(alumnoDAO.listaCursosAlumno(a).size() >= a.getLimiteCursos()){
-
-                throw new ServiceCapacidadMaximaCursosAlumnoException("INSCRIBIR AL ALUMNO SUPERARIA LA CAPACIDAD DE CURSOS QUE SE PUEDE ANOTAR");
-            }
-            else if(notaDAO.listarNotasCursoALumno(a,c).stream().anyMatch(nota -> "FINAL".equals(nota.getTipoNota()))){
-                for(Nota n : notaDAO.listarNotasCursoALumno(a,c)){
-                    if(n.getTipoNota().equals("FINAL") && n.getNotaParcial() >= 4){
-                        throw new ServiceAlmunoYaCursoMateria();
-                    }
-                    else if (n.getTipoNota().equals("FINAL") && n.getNotaParcial() < 4){
-                        throw new ServiceFinalPendiente();
-                    }
-                }
-            }
-            else if(alumnoDAO.listaCursosAlumno(a).size() < a.getLimiteCursos() && cursoDAO.listaAlumnosCurso(c).size() < c.getCupo()){
-                alumnoDAO.inscribirAlumnoxCurso(a,c);
-            }
-
-        } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {
-            throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
-        } catch (DAOCursoNoExisteException daoCursoNoExiste){
-            throw new ServiceCursoNoExisteException("El curso con id " + legajo + " no existe.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } catch (DAOInscripcionDublicadaException e) {
-            throw new ServiceInscripcionRepetidaException();
-        }
-    }
-
-    public List<Curso> listarCursosDelAlumno(int legajo) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
-        try{
-            return alumnoDAO.listaCursosAlumno(alumnoDAO.muestraAlumno(legajo));
-        } catch (DAOCursoNoExisteException cursoNoExisteException) {
-            throw new ServiceCursoNoExisteException("El curso con id " + legajo + " no existe.");
-        } catch (DAOLegajoNoExisteException legajoNoExisteException) {
-            throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
-        }
     }
 
     public List<Curso> listarCursosAprobados(int legajo) throws ServiceLegajoNoExsiteException {

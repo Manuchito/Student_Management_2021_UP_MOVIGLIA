@@ -1,14 +1,17 @@
 package Swing.Admin;
 
+import DAO.Cursada.CursadaDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
 import Exceptions.*;
 import Main.PanelManager;
 import Services.AlumnoServicio;
+import Services.CursadaServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
 import Swing.Tablas.AlumnoTableModel;
+import Swing.Tablas.CursadaTableModel;
 import Swing.Tablas.CursoTableModel;
 import Swing.Tablas.NotaTableModel;
 
@@ -24,10 +27,12 @@ public class Admin_Swing extends JPanel {
     AlumnoServicio servAlumno = new AlumnoServicio();
     CursoServicio servCurso = new CursoServicio();
     NotaServicio servNota = new NotaServicio();
+    CursadaServicio servCursada = new CursadaServicio();
 
     private JScrollPane scrollpaneAlumnos;
     private JScrollPane scrollpaneCursos;
     private JScrollPane scrollpaneNotas;
+    private JScrollPane scrollPaneCursadas;
 
     private JButton buttonCrearAlumno;
     private JButton buttonEliminarAlumno;
@@ -38,10 +43,14 @@ public class Admin_Swing extends JPanel {
     private JButton buttonCrearNota;
     private JButton buttonEliminarNota;
     private JButton buttonModificarNota;
+    private JButton buttonCrearCursada;
+    private JButton buttonEliminarCursada;
+    private JButton buttonModificarCursada;
 
     private JLabel textAlumnos;
     private JLabel textCursos;
     private JLabel textNotas;
+    private JLabel textCursadas;
 
     private JButton buttonVolver;
 
@@ -62,23 +71,22 @@ public class Admin_Swing extends JPanel {
         AlumnoTableModel alumnoTableModel = new AlumnoTableModel();
         CursoTableModel cursoTableModel = new CursoTableModel();
         NotaTableModel notaTableModel = new NotaTableModel();
+        CursadaTableModel cursadaTableModel = new CursadaTableModel();
 
         JTable tablaAlumnos = new JTable(alumnoTableModel);
         JTable tablaCursos = new JTable(cursoTableModel);
         JTable tablaNotas = new JTable(notaTableModel);
+        JTable tablaCursada = new JTable(cursadaTableModel);
 
         scrollpaneAlumnos = new JScrollPane (tablaAlumnos);
         scrollpaneCursos = new JScrollPane (tablaCursos);
         scrollpaneNotas = new JScrollPane (tablaNotas);
-
-
-
+        scrollPaneCursadas = new JScrollPane(tablaCursada);
 
         alumnoTableModel.setContenido(servAlumno.listarAlumnos());
-
         cursoTableModel.setContenido(servCurso.listarCursos());
-
         notaTableModel.setContenido(servNota.listarTodasLasNotas());
+        cursadaTableModel.setContenido(servCursada.mostrarCursadas());
 
         buttonCrearAlumno = new JButton ("Crear");
         buttonEliminarAlumno = new JButton ("Eliminar");
@@ -89,21 +97,24 @@ public class Admin_Swing extends JPanel {
         buttonCrearNota = new JButton ("Crear");
         buttonEliminarNota = new JButton ("Eliminar");
         buttonModificarNota = new JButton ("Modificar");
+        buttonCrearCursada = new JButton ("Crear");
+        buttonEliminarCursada = new JButton ("Eliminar");
+        buttonModificarCursada = new JButton ("Modificar");
+
         textAlumnos = new JLabel ("ALUMNOS");
         textCursos = new JLabel ("CURSOS");
         textNotas = new JLabel ("NOTAS");
+        textCursadas = new JLabel ("CURSADAS");
 
         buttonVolver = new JButton ("Volver");
         buttonActualizarTablas = new JButton ("Actualizar Tablas");
 
-
-
         buttonEliminarAlumno.setEnabled(false);
         buttonEliminarCurso.setEnabled(false);
         buttonEliminarNota.setEnabled(false);
+        buttonEliminarCursada.setEnabled(false);
 
         //adjust size and set layout
-
         setLayout (null);
 
         //listeners
@@ -192,8 +203,6 @@ public class Admin_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El final de la materia depende de la nota a eliminar",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-
             }
         });
 
@@ -246,6 +255,17 @@ public class Admin_Swing extends JPanel {
                 notaTableModel.setContenido(new ArrayList<>());
                 notaTableModel.setContenido(servNota.listarTodasLasNotas());
                 notaTableModel.fireTableDataChanged();
+
+                cursadaTableModel.setContenido(new ArrayList<>());
+                cursadaTableModel.setContenido(servCursada.mostrarCursadas());
+                cursoTableModel.fireTableDataChanged();
+            }
+        });
+
+        buttonCrearCursada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelCrearCursada();
             }
         });
 
@@ -256,13 +276,12 @@ public class Admin_Swing extends JPanel {
             }
         });
 
-
-
-
         //add components
         add (scrollpaneAlumnos);
         add (scrollpaneCursos);
         add (scrollpaneNotas);
+        add (scrollPaneCursadas);
+
         add (buttonCrearAlumno);
         add (buttonEliminarAlumno);
         add (buttonModificarAlumno);
@@ -272,15 +291,24 @@ public class Admin_Swing extends JPanel {
         add (buttonCrearNota);
         add (buttonEliminarNota);
         add (buttonModificarNota);
+
+        add (buttonCrearCursada);
+        add (buttonEliminarCursada);
+        add (buttonModificarCursada);
+
         add (textAlumnos);
         add (textCursos);
         add (textNotas);
+        add (textCursadas);
+
         add (buttonVolver);
         add (buttonActualizarTablas);
         //set component bounds (only needed by Absolute Positioning)
         scrollpaneAlumnos.setBounds (45, 255, 315, 515);
         scrollpaneCursos.setBounds (395, 255, 315, 515);
         scrollpaneNotas.setBounds (745, 255, 315, 515);
+        scrollPaneCursadas.setBounds (1095, 255, 315, 515);
+
         buttonCrearAlumno.setBounds (155, 70, 100, 25);
         buttonEliminarAlumno.setBounds (155, 130, 100, 25);
         buttonModificarAlumno.setBounds (155, 190, 100, 25);
@@ -290,11 +318,18 @@ public class Admin_Swing extends JPanel {
         buttonCrearNota.setBounds (850, 70, 100, 25);
         buttonEliminarNota.setBounds (850, 130, 100, 25);
         buttonModificarNota.setBounds (850, 190, 100, 25);
+        buttonCrearCursada.setBounds (1200, 70, 100, 25);
+        buttonEliminarCursada.setBounds (1200, 130, 100, 25);
+        buttonModificarCursada.setBounds (1200, 190, 100, 25);
+
         textAlumnos.setBounds (175, 25, 60, 25);
         textCursos.setBounds (525, 25, 50, 25);
         textNotas.setBounds (880, 20, 40, 25);
-        buttonVolver.setBounds (925, 790, 100, 25);
-        buttonActualizarTablas.setBounds (460, 785, 185, 35);
+        textCursadas.setBounds (1215, 20, 65, 25);
+        textCursadas.setBounds (1215, 20, 65, 25);
+
+        buttonVolver.setBounds (1300, 795, 100, 25);
+        buttonActualizarTablas.setBounds (635, 790, 185, 35);
     }
 
 

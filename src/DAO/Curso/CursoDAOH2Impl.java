@@ -181,36 +181,6 @@ public class CursoDAOH2Impl implements CursoDAO {
         return curso;
     }
 
-    public List<Alumno> listaAlumnosCurso(Curso unCurso) throws DAOLegajoNoExisteException {
-        List<Alumno> alumnos = new ArrayList<>();
-        AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-        String sql = "SELECT ID_ALUMNO  FROM alumnoxcurso WHERE ID_CURSO = " + unCurso.getId();
-        Connection c = DBManager.connect();
-        try {
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery(sql);
 
-            while (rs.next()) {
-                int legajo = rs.getInt("ID_ALUMNO");
-                Alumno alumno = alumnoDAO.muestraAlumno(legajo);
-                alumnos.add(alumno);
-
-            }
-        } catch (SQLException e) {
-            try {
-                c.rollback();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        } finally {
-            try {
-                c.close();
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }
-        return alumnos;
-
-    }
 }
 

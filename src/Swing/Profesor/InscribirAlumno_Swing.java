@@ -5,6 +5,7 @@ import Entidades.Curso;
 import Exceptions.*;
 import Main.PanelManager;
 import Services.AlumnoServicio;
+import Services.CursadaServicio;
 import Services.CursoServicio;
 import Swing.Tablas.AlumnoTableModel;
 import Swing.Tablas.CursoTableModel;
@@ -51,6 +52,7 @@ public class InscribirAlumno_Swing extends JPanel {
         setLayout(null);
 
         AlumnoServicio alumnoServicio = new AlumnoServicio();
+        CursadaServicio cursadaServicio = new CursadaServicio();
 
         alumnoTableModel = new AlumnoTableModel();
         cursoTableModel = new CursoTableModel();
@@ -101,7 +103,7 @@ public class InscribirAlumno_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    alumnoServicio.inscribirAlumnoxCurso(Integer.parseInt(fieldAlumno.getText()), Integer.parseInt(fieldCurso.getText()));
+                    cursadaServicio.inscribirAlumnoxCurso(Integer.parseInt(fieldAlumno.getText()), Integer.parseInt(fieldCurso.getText()));
                 } catch (ServiceLegajoNoExsiteException legajoNoExsite) {
                     JOptionPane.showMessageDialog(null, "El alumno "+ fieldAlumno.getText() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);

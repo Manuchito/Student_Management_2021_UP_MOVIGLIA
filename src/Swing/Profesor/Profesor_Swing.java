@@ -5,6 +5,7 @@ import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
 import Services.AlumnoServicio;
+import Services.CursadaServicio;
 import Services.CursoServicio;
 import Swing.Tablas.AlumnoTableModel;
 import Swing.Tablas.CursoTableModel;
@@ -18,6 +19,8 @@ import javax.swing.*;
 public class Profesor_Swing extends JPanel {
     AlumnoServicio servAlumno = new AlumnoServicio();
     CursoServicio servCurso = new CursoServicio();
+    CursadaServicio servCursada = new CursadaServicio();
+
     private CursoTableModel cursoTableModel;
     private JTable tablaCursosAlumno;
     private JScrollPane scrollPaneCursosAlumno;
@@ -60,7 +63,7 @@ public class Profesor_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     servCurso = new CursoServicio();
-                    alumnoTableModel.setContenido(servCurso.listarAlumnosDelCurso(Integer.parseInt(fieldCurso.getText())));
+                    alumnoTableModel.setContenido(servCursada.listarAlumnosDelCurso(Integer.parseInt(fieldCurso.getText())));
                     alumnoTableModel.fireTableDataChanged();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                     serviceCursoNoExisteException.printStackTrace();
@@ -79,7 +82,7 @@ public class Profesor_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try{
                     servAlumno = new AlumnoServicio();
-                    cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldAlumno.getText())));
+                    cursoTableModel.setContenido(servCursada.listarCursosDelAlumno(Integer.parseInt(fieldAlumno.getText())));
                     cursoTableModel.fireTableDataChanged();
                 } catch (NumberFormatException numberFormatException) {
                     numberFormatException.printStackTrace();
@@ -126,7 +129,7 @@ public class Profesor_Swing extends JPanel {
                 int filaSeleccionada = tablaCursosAlumno.getSelectedRow();
                 Curso curso = cursoTableModel.getContenido().get(filaSeleccionada);
                 try {
-                    alumnoTableModel.setContenido(servCurso.listarAlumnosDelCurso(curso.getId()));
+                    alumnoTableModel.setContenido(servCursada.listarAlumnosDelCurso(curso.getId()));
                     fieldCurso.setText(String.valueOf(curso.getId()));
                     alumnoTableModel.fireTableDataChanged();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
@@ -143,7 +146,7 @@ public class Profesor_Swing extends JPanel {
                 int filaSeleccionada = tablaAlumnosCurso.getSelectedRow();
                 Alumno alumno = alumnoTableModel.getContenido().get(filaSeleccionada);
                 try {
-                    cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(alumno.getLegajo()));
+                    cursoTableModel.setContenido(servCursada.listarCursosDelAlumno(alumno.getLegajo()));
                     fieldAlumno.setText(String.valueOf(alumno.getLegajo()));
                     cursoTableModel.fireTableDataChanged();
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {

@@ -23,6 +23,7 @@ public class PanelManager {
     private EditarNota_Swing editarNota;
     private InicioSesion_Swing inicioSesion;
     private LoginAdmin_Swing loginAdmin;
+    private CrearCursada_Swing crearCursada;
 
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -76,7 +77,21 @@ public class PanelManager {
 
         loginAdmin = new LoginAdmin_Swing(this);
         loginAdmin.armarLoginAdmin();
+
+        crearCursada = new CrearCursada_Swing(this);
+        crearCursada.armarCrearCursada();
     }
+
+    public void mostrarPanelCrearCursada(){
+        frame.getContentPane().removeAll();
+        frame.setSize(475, 270);
+        centerFrame(frame);
+        frame.setTitle("AAAAAAAAAAAAAAA");
+        frame.getContentPane().add(crearCursada);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
+    }
+
     public void mostrarPanelLoginAdmin(){
         frame.getContentPane().removeAll();
         frame.setSize(410,300);
@@ -134,7 +149,7 @@ public class PanelManager {
 
     public void mostrarPanelAdmin(){
         frame.getContentPane().removeAll();
-        frame.setSize(1110, 870);
+        frame.setSize(1500, 870);
         centerFrame(frame);
         frame.getContentPane().add(admin);
         frame.getContentPane().validate();

@@ -6,6 +6,7 @@ import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Exceptions.ServiceNoHayAprobadosException;
 import Main.PanelManager;
+import Services.CursadaServicio;
 import Services.CursoServicio;
 import Swing.Tablas.AlumnoTableModel;
 import Swing.Tablas.CursoTableModel;
@@ -45,6 +46,7 @@ public class ReporteCurso_Swing extends JPanel {
     private JScrollPane scrollTable;
 
     CursoServicio servCurso = new CursoServicio();
+    CursadaServicio servCursada = new CursadaServicio();
 
     private PanelManager panelManager;
 
@@ -99,7 +101,7 @@ public class ReporteCurso_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     Curso c = servCurso.muestraCurso(Integer.parseInt(fieldCursoBuscar.getText()));
-                    List<Alumno> alumnosCurso= servCurso.listarAlumnosDelCurso(c.getId());
+                    List<Alumno> alumnosCurso= servCursada.listarAlumnosDelCurso(c.getId());
                     alumnoTableModel.setContenido(alumnosCurso);
                     alumnoTableModel.fireTableDataChanged();
                     fieldCurso.setText(String.valueOf(c.getId()));

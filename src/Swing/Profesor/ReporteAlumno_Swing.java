@@ -5,6 +5,7 @@ import Exceptions.ServiceCursoNoExisteException;
 import Exceptions.ServiceLegajoNoExsiteException;
 import Main.PanelManager;
 import Services.AlumnoServicio;
+import Services.CursadaServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
 import Swing.Tablas.CursoTableModel;
@@ -48,6 +49,7 @@ public class ReporteAlumno_Swing extends JPanel {
     CursoServicio servCurso = new CursoServicio();
     NotaServicio servNota = new NotaServicio();
     AlumnoServicio servAlumno = new AlumnoServicio();
+    CursadaServicio servCursada = new CursadaServicio();
 
     private PanelManager panelManager;
 
@@ -109,7 +111,7 @@ public class ReporteAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                    tablaCursadaTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldBuscarLegajo.getText())));
+                    tablaCursadaTableModel.setContenido(servCursada.listarCursosDelAlumno(Integer.parseInt(fieldBuscarLegajo.getText())));
                     tablaCursadaTableModel.fireTableDataChanged();
 
                     tablaCursosAprobadosTableModel.setContenido(servAlumno.listarCursosAprobados(Integer.parseInt(fieldBuscarLegajo.getText())));
@@ -122,7 +124,7 @@ public class ReporteAlumno_Swing extends JPanel {
                     fieldLegajo.setText(String.valueOf(a.getLegajo()));
                     fieldNombre.setText(a.getNombre());
                     fieldApellido.setText(a.getApellido());
-                    fieldCantidadCursada.setText(String.valueOf(servAlumno.listarCursosDelAlumno(a.getLegajo()).size()));
+                    fieldCantidadCursada.setText(String.valueOf(servCursada.listarCursosDelAlumno(a.getLegajo()).size()));
                     fieldCantidadAprobados.setText(String.valueOf(servAlumno.listarCursosAprobados(a.getLegajo()).size()));
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {

@@ -1,4 +1,5 @@
 import DAO.Alumno.AlumnoDAOH2Impl;
+import DAO.Cursada.CursadaDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
@@ -11,10 +12,11 @@ import Services.CursoServicio;
 import Services.NotaServicio;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class test {
 
-	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException {
+	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException, DAOInscripcionDublicadaException {
 
 		TableManager t = new TableManager();
 		AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
@@ -23,11 +25,7 @@ public class test {
 		AlumnoServicio alumnoServicio = new AlumnoServicio();
 		CursoServicio cursoServicio = new CursoServicio();
 		NotaServicio notaServicio = new NotaServicio();
-
-		Alumno a = alumnoDAO.muestraAlumno(1);
-		Curso c = cursoDAO.muestraCurso(99);
-
-		notaDAO.editarNota(new Nota(a,c,"Parcial 1", 9));
+		CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
 
 
 	}

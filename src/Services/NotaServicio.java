@@ -1,6 +1,7 @@
 package Services;
 
 import DAO.Alumno.AlumnoDAOH2Impl;
+import DAO.Cursada.CursadaDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
@@ -15,6 +16,7 @@ public class NotaServicio {
     NotaDAOH2Impl notaDAO = new NotaDAOH2Impl();
     AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
     CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
+    CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
 
     public List<Nota> listarNotasAlumno(int alumno) throws ServiceLegajoNoExsiteException {
         try{
@@ -49,7 +51,7 @@ public class NotaServicio {
             }
             else if(tipoNota == "FINAL" && notasAprobadas.size() == c.getCantidad_parciales()){
                 notaDAO.crearNota(new Nota(a, c, tipoNota, nota));
-                alumnoDAO.borrarCursada(a.getLegajo(),c.getId());
+                cursadaDAO.borrarCursada(a.getLegajo(),c.getId());
             }
             else {
                 notaDAO.crearNota(new Nota(a, c, tipoNota, nota));

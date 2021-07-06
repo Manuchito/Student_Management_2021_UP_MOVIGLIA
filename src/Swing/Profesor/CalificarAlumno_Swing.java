@@ -5,6 +5,7 @@ import Entidades.Nota;
 import Exceptions.*;
 import Main.PanelManager;
 import Services.AlumnoServicio;
+import Services.CursadaServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
 import Swing.Tablas.CursoTableModel;
@@ -42,6 +43,7 @@ public class CalificarAlumno_Swing extends JPanel {
     AlumnoServicio servAlumno = new AlumnoServicio();
     CursoServicio servCurso = new CursoServicio();
     NotaServicio servParcial = new NotaServicio();
+    CursadaServicio servCursada = new CursadaServicio();
 
     private PanelManager panelManager;
 
@@ -96,7 +98,7 @@ public class CalificarAlumno_Swing extends JPanel {
                 if (state == ItemEvent.SELECTED) {
                     try {
                         if(buttonBuscarAlumno.isSelected()){
-                            cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
+                            cursoTableModel.setContenido(servCursada.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
                             cursoTableModel.fireTableDataChanged();
                             parcialTableModel.setContenido(servParcial.listarNotasAlumno(Integer.parseInt(fieldLegajo.getText())));
                             parcialTableModel.fireTableDataChanged();
@@ -156,7 +158,7 @@ public class CalificarAlumno_Swing extends JPanel {
                     parcialTableModel.setContenido(null);
                     parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText())));
                     cursoTableModel.setContenido(null);
-                    cursoTableModel.setContenido(servAlumno.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
+                    cursoTableModel.setContenido(servCursada.listarCursosDelAlumno(Integer.parseInt(fieldLegajo.getText())));
                     cursoTableModel.fireTableDataChanged();
                     parcialTableModel.fireTableDataChanged();
 

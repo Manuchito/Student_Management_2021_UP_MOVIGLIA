@@ -55,11 +55,6 @@ public class Alumno {
         this.cursos = cursos;
     }
 
-    public void addCurso(Curso curso){
-        curso.getAlumnos().add(this);
-        cursos.add(curso);
-    }
-
     public int getLimiteCursos() {
         return limiteCursos;
     }
