@@ -155,6 +155,7 @@ public class CalificarAlumno_Swing extends JPanel {
 
                 try{
                     servParcial.calificarAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText()), (String)fieldTipoNota.getSelectedItem(), Integer.parseInt((String)fieldNota.getSelectedItem()));
+                    JOptionPane.showMessageDialog(null, "Usted califico con exito al Alumno con LEGAJO: " + fieldLegajo.getText() + " Curso con ID: " + fieldCurso.getText() + " en el TIPO NOTA: " + fieldTipoNota.getSelectedItem(), "Aviso de edición", JOptionPane.INFORMATION_MESSAGE);
                     parcialTableModel.setContenido(null);
                     parcialTableModel.setContenido(servParcial.listarNotasCursoDelAlumno(Integer.parseInt(fieldLegajo.getText()), Integer.parseInt(fieldCurso.getText())));
                     cursoTableModel.setContenido(null);

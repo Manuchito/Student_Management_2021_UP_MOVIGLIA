@@ -160,7 +160,10 @@ public class Profesor_Swing extends JPanel {
         buttonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelInicioSesion();
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere volver al menu principal?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (exit == JOptionPane.YES_OPTION){
+                    panelManager.mostrarPanelInicioSesion();
+                }
             }
         });
 

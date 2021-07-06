@@ -20,16 +20,13 @@ public class LoginAdmin_Swing extends JPanel {
     public boolean CheckPw(char[] pwIngresada){
         char[] pwCorrecta = new char[] {'a','d','m','i','n'};
         if(pwIngresada.length != pwCorrecta.length){
-            System.out.println("bbbbbbbbbb");
             return false;
         }
         for(int i = 0; i < pwIngresada.length; i++){
             if(pwIngresada[i] != pwCorrecta[i]){
-                System.out.println("xxxxxxxxxxxxxxx");
                 return false;
             }
         }
-        System.out.println("AAAAAAAAAAAAAA");
         return true;
     }
 

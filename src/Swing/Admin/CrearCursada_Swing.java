@@ -61,6 +61,7 @@ public class CrearCursada_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     servCursada.inscribirAlumnoxCurso((Integer) fieldLegajo.getSelectedItem(), (Integer) fieldCurso.getSelectedItem());
+
                 } catch (ServiceLegajoNoExsiteException legajoNoExsite) {
                     JOptionPane.showMessageDialog(null, "El alumno "+ fieldLegajo.getSelectedItem() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);

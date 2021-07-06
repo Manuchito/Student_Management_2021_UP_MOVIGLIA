@@ -104,6 +104,7 @@ public class InscribirAlumno_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     cursadaServicio.inscribirAlumnoxCurso(Integer.parseInt(fieldAlumno.getText()), Integer.parseInt(fieldCurso.getText()));
+                    JOptionPane.showMessageDialog(null, "Usted inscribio con exito al alumno con LEGAJO: " + fieldAlumno.getText() + " al curso con ID: " + fieldCurso.getText(), "Aviso de inscripcion", JOptionPane.INFORMATION_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException legajoNoExsite) {
                     JOptionPane.showMessageDialog(null, "El alumno "+ fieldAlumno.getText() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);
