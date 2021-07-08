@@ -31,9 +31,6 @@ public class CrearCursada_Swing extends JPanel {
 
     public void armarCrearCursada(){
 
-        List<Alumno> listaAlumnos = servAlumno.listarAlumnos();
-        List<Curso> listaCursos = servCurso.listarCursos();
-
         JButton buttonCancelar = new JButton("Cancelar");
         JButton buttonCrear = new JButton("Crear");
         fieldLegajo = new JComboBox();
@@ -44,11 +41,11 @@ public class CrearCursada_Swing extends JPanel {
         fieldLegajo.setMaximumRowCount(6);
         fieldCurso.setMaximumRowCount(6);
 
-        for(Alumno a : listaAlumnos){
+        for(Alumno a : servAlumno.listarAlumnos()){
             fieldLegajo.addItem(a.getLegajo());
         }
 
-        for(Curso c : listaCursos){
+        for(Curso c : servCurso.listarCursos()){
             fieldCurso.addItem(c.getId());
         }
 

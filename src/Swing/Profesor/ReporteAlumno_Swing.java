@@ -13,12 +13,13 @@ import Swing.Tablas.NotaTableModel;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.*;
 
 public class ReporteAlumno_Swing extends JPanel {
     private JLabel textBuscarLegajo;
-    private JTextField fieldBuscarLegajo;
+    private JComboBox fieldBuscarLegajo;
     private JButton buttonBuscar;
 
     private JLabel textDescNotasAlumno;
@@ -61,13 +62,11 @@ public class ReporteAlumno_Swing extends JPanel {
     public void  armarReporteAlumno() {
         //construct components
         textBuscarLegajo = new JLabel ("Legajo Alumno");
-        fieldBuscarLegajo = new JTextField (5);
+        fieldBuscarLegajo = new JComboBox();
+
         buttonBuscar = new JButton ("Buscar");
-
         textDescNotasAlumno = new JLabel ("NOTAS DEL ALUMNO");
-
         textDescCursosAprobados = new JLabel ("CURSOS APROBADOS");
-
         textDescCursada = new JLabel ("CURSOS DEL ALUMNO");
         textLegajo = new JLabel ("Legajo");
         textNombre = new JLabel ("Nombre");
@@ -82,6 +81,10 @@ public class ReporteAlumno_Swing extends JPanel {
         fieldCantidadAprobados = new JTextField (5);
 
         buttonVolver = new JButton ("Volver");
+
+        for(Alumno a : servAlumno.listarAlumnos()){
+            fieldBuscarLegajo.addItem(a.getLegajo());
+        }
 
         //set components properties
         fieldLegajo.setEnabled (false);
@@ -106,21 +109,23 @@ public class ReporteAlumno_Swing extends JPanel {
         scrollpaneNotasAlumno = new JScrollPane(tablaNotasAluno);
         scrollpaneCursosAprobados = new JScrollPane(tablaCursosAprobados);
 
+
+
         buttonBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 try{
-                    tablaCursadaTableModel.setContenido(servCursada.listarCursosDelAlumno(Integer.parseInt(fieldBuscarLegajo.getText())));
+                    tablaCursadaTableModel.setContenido(servCursada.listarCursosDelAlumno((Integer)fieldBuscarLegajo.getSelectedItem()));
                     tablaCursadaTableModel.fireTableDataChanged();
 
-                    tablaCursosAprobadosTableModel.setContenido(servAlumno.listarCursosAprobados(Integer.parseInt(fieldBuscarLegajo.getText())));
+                    tablaCursosAprobadosTableModel.setContenido(servAlumno.listarCursosAprobados((Integer)fieldBuscarLegajo.getSelectedItem()));
                     tablaCursosAprobadosTableModel.fireTableDataChanged();
 
-                    tablaNotasTableModel.setContenido(servNota.listarNotasAlumno(Integer.parseInt(fieldBuscarLegajo.getText())));
+                    tablaNotasTableModel.setContenido(servNota.listarNotasAlumno((Integer)fieldBuscarLegajo.getSelectedItem()));
                     tablaNotasTableModel.fireTableDataChanged();
 
-                    Alumno a = servAlumno.mostrar(Integer.parseInt(fieldBuscarLegajo.getText()));
+                    Alumno a = servAlumno.mostrar((Integer)fieldBuscarLegajo.getSelectedItem());
                     fieldLegajo.setText(String.valueOf(a.getLegajo()));
                     fieldNombre.setText(a.getNombre());
                     fieldApellido.setText(a.getApellido());
@@ -128,10 +133,13 @@ public class ReporteAlumno_Swing extends JPanel {
                     fieldCantidadAprobados.setText(String.valueOf(servAlumno.listarCursosAprobados(a.getLegajo()).size()));
 
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
-                    JOptionPane.showMessageDialog(null, "El alumno "+ fieldBuscarLegajo.getText() +" no existe.",
+                    JOptionPane.showMessageDialog(null, "El alumno "+ fieldBuscarLegajo.getSelectedItem() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                     serviceCursoNoExisteException.printStackTrace();
+                } catch (NumberFormatException numberFormatException){
+                    JOptionPane.showMessageDialog(null, "El legajo no puede contener nu",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

@@ -2,6 +2,7 @@ package Swing.Admin;
 
 import DAO.Cursada.CursadaDAOH2Impl;
 import Entidades.Alumno;
+import Entidades.Cursada;
 import Entidades.Curso;
 import Entidades.Nota;
 import Exceptions.*;
@@ -45,7 +46,6 @@ public class Admin_Swing extends JPanel {
     private JButton buttonModificarNota;
     private JButton buttonCrearCursada;
     private JButton buttonEliminarCursada;
-    private JButton buttonModificarCursada;
 
     private JLabel textAlumnos;
     private JLabel textCursos;
@@ -99,7 +99,6 @@ public class Admin_Swing extends JPanel {
         buttonModificarNota = new JButton ("Modificar");
         buttonCrearCursada = new JButton ("Crear");
         buttonEliminarCursada = new JButton ("Eliminar");
-        buttonModificarCursada = new JButton ("Modificar");
 
         textAlumnos = new JLabel ("ALUMNOS");
         textCursos = new JLabel ("CURSOS");
@@ -144,6 +143,16 @@ public class Admin_Swing extends JPanel {
                 int filaSeleccionadaNotas = tablaNotas.getSelectedRow();
                 if(filaSeleccionadaNotas != -1){
                     buttonEliminarNota.setEnabled(true);
+                }
+            }
+        });
+
+        tablaCursada.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionadaCursada = tablaCursada.getSelectedRow();
+                if(filaSeleccionadaCursada != -1){
+                    buttonEliminarCursada.setEnabled(true);
                 }
             }
         });
@@ -241,6 +250,31 @@ public class Admin_Swing extends JPanel {
             }
         });
 
+
+        buttonCrearCursada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelCrearCursada();
+            }
+        });
+
+        buttonEliminarCursada.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int filaSeleccionadaCursada = tablaCursada.getSelectedRow();
+                Cursada c = cursadaTableModel.getContenido().get(filaSeleccionadaCursada);
+                try {
+                    servCursada.borrarCursada(c.getCursada());
+                    buttonEliminarCursada.setEnabled(false);
+                    cursadaTableModel.getContenido().remove(filaSeleccionadaCursada);
+                    cursadaTableModel.fireTableDataChanged();
+                } catch (ServiceLegajoNoExsiteException | ServiceCursoNoExisteException | ServiceCursadaNoExisteException serviceLegajoNoExsiteException) {
+                    serviceLegajoNoExsiteException.printStackTrace();
+                }
+
+            }
+        });
+
         buttonActualizarTablas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -259,13 +293,6 @@ public class Admin_Swing extends JPanel {
                 cursadaTableModel.setContenido(new ArrayList<>());
                 cursadaTableModel.setContenido(servCursada.mostrarCursadas());
                 cursoTableModel.fireTableDataChanged();
-            }
-        });
-
-        buttonCrearCursada.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelCrearCursada();
             }
         });
 
@@ -297,7 +324,6 @@ public class Admin_Swing extends JPanel {
 
         add (buttonCrearCursada);
         add (buttonEliminarCursada);
-        add (buttonModificarCursada);
 
         add (textAlumnos);
         add (textCursos);
@@ -323,7 +349,6 @@ public class Admin_Swing extends JPanel {
         buttonModificarNota.setBounds (850, 190, 100, 25);
         buttonCrearCursada.setBounds (1200, 70, 100, 25);
         buttonEliminarCursada.setBounds (1200, 130, 100, 25);
-        buttonModificarCursada.setBounds (1200, 190, 100, 25);
 
         textAlumnos.setBounds (175, 25, 60, 25);
         textCursos.setBounds (525, 25, 50, 25);

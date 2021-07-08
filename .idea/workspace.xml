@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/DAOCursadaNoExisteException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/ServiceCursadaNoExisteException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/Cursada/CursadaDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Cursada/CursadaDAOH2Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/CursadaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/CursadaServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/CrearAlumno_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearCursada_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/CrearCursada_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearNota_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/CrearNota_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/LoginAdmin_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/LoginAdmin_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/ReporteAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/ReporteAlumno_Swing.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,11 +288,6 @@
           <url>file://$PROJECT_DIR$/src/DAO/TableManager.java</url>
           <line>9</line>
           <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Services/NotaServicio.java</url>

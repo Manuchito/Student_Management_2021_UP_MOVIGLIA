@@ -7,6 +7,7 @@ import DAO.DBManager;
 import Entidades.Alumno;
 import Entidades.Cursada;
 import Entidades.Curso;
+import Exceptions.DAOCursadaNoExisteException;
 import Exceptions.DAOCursoNoExisteException;
 import Exceptions.DAOInscripcionDublicadaException;
 import Exceptions.DAOLegajoNoExisteException;
@@ -54,6 +55,7 @@ public class CursadaDAOH2Impl {
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
+            s.executeUpdate(sql);
             c.commit();
 
         } catch (SQLException e) {
@@ -72,6 +74,47 @@ public class CursadaDAOH2Impl {
             }
         }
     }
+
+    public Cursada muestraCursada(int id_cursada) throws DAOCursadaNoExisteException, DAOLegajoNoExisteException, DAOCursoNoExisteException {
+        Cursada resultado = null;
+        String sql = "SELECT * FROM cursada WHERE ID_CURSADA = '" + id_cursada + "'";
+        Connection c = DBManager.connect();
+        try {
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery(sql);
+
+
+            if (rs.next()) {
+                CursoDAO cursoDAO = new CursoDAOH2Impl();
+                AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
+                Alumno alumno = alumnoDAO.muestraAlumno(rs.getInt("ID_ALUMNO"));
+                Curso curso = cursoDAO.muestraCurso(rs.getInt("ID_CURSO"));
+
+                resultado = new Cursada(id_cursada,alumno,curso);
+                return resultado;
+            }
+
+        } catch (SQLException e) {
+            try {
+                c.rollback();
+                e.printStackTrace();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        } finally {
+            if(resultado == null)
+            {
+                throw new DAOCursadaNoExisteException();
+            }
+            try {
+                c.close();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return resultado;
+    }
+
 
     public List<Cursada> listarTodosLasCursadas(){
         List<Cursada> resultado = new ArrayList<>();

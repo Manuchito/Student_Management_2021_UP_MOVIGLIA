@@ -79,15 +79,16 @@ public class CursadaServicio {
         }
     }
 
-    public void borrarCursada(int legajo, int id_curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
+    public void borrarCursada(int id_cursada) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceCursadaNoExisteException {
         try {
-            Alumno a = alumnoDAO.muestraAlumno(legajo);
-            Curso c = cursoDAO.muestraCurso(id_curso);
-            cursadaDAO.borrarCursada(a.getLegajo(),c.getId());
-        } catch (DAOCursoNoExisteException cursoNoExisteException) {
-            throw new ServiceCursoNoExisteException("El curso con id " + id_curso + " no existe.");
+            Cursada c = cursadaDAO.muestraCursada(id_cursada);
+            cursadaDAO.borrarCursada(c.getAlumno().getLegajo() ,c.getCurso().getId());
         } catch (DAOLegajoNoExisteException legajoNoExisteException) {
-            throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
+            throw new ServiceLegajoNoExsiteException("El alumno no existe.");
+        } catch (DAOCursadaNoExisteException e) {
+            throw new ServiceCursadaNoExisteException("La cursada " + id_cursada);
+        } catch (DAOCursoNoExisteException cursoNoExisteException) {
+            throw new ServiceCursoNoExisteException("El curso no existe");
         }
     }
 }

@@ -58,6 +58,7 @@ public class Profesor_Swing extends JPanel {
         alumnoTableModel = new AlumnoTableModel();
         tablaAlumnosCurso = new JTable(alumnoTableModel);
         scrollPaneAlumnosCurso = new JScrollPane(tablaAlumnosCurso);
+
         buttonBuscarCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,7 +67,8 @@ public class Profesor_Swing extends JPanel {
                     alumnoTableModel.setContenido(servCursada.listarAlumnosDelCurso(Integer.parseInt(fieldCurso.getText())));
                     alumnoTableModel.fireTableDataChanged();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    serviceCursoNoExisteException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El curso con legajo " + fieldCurso.getText() + " no existe",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
                 }
@@ -87,7 +89,8 @@ public class Profesor_Swing extends JPanel {
                 } catch (NumberFormatException numberFormatException) {
                     numberFormatException.printStackTrace();
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
-                    serviceLegajoNoExsiteException.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "El alumno con legajo " + fieldAlumno.getText() + " no existe",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                     serviceCursoNoExisteException.printStackTrace();
                 }

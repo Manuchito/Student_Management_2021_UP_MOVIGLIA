@@ -55,7 +55,6 @@ public class CrearNota_Swing extends JPanel {
         buttonCancelar = new JButton ("Cancelar");
         fieldTipoNota = new JComboBox (fieldTipoNotaItems);
 
-
         NotaServicio servNota = new NotaServicio();
         //adjust size and set layout
         setPreferredSize(new Dimension(526, 347));
