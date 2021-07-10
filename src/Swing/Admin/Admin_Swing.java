@@ -176,9 +176,8 @@ public class Admin_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tablaAlumnos.getSelectedRow();
                 Alumno a = alumnoTableModel.getContenido().get(filaSeleccionada);
-
                 AlumnoServicio servAlumno = new AlumnoServicio();
-                buttonEliminarAlumno.setEnabled(false);
+                System.out.println(a.getLegajo());
                 servAlumno.eliminar(a.getLegajo());
                 alumnoTableModel.getContenido().remove(filaSeleccionada);
                 alumnoTableModel.fireTableDataChanged();

@@ -167,7 +167,7 @@ public class PanelManager {
 
     public void mostrarPanelReporteCurso(){
         frame.getContentPane().removeAll();
-        frame.setSize(980, 550);
+        frame.setSize(980, 600);
         centerFrame(frame);
         frame.getContentPane().add(reporteCurso);
         frame.getContentPane().validate();

@@ -189,11 +189,9 @@ public class CalificarAlumno_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El Alumno "+ fieldLegajo.getSelectedItem() +" ya esta calificado en el " + fieldTipoNota.getSelectedItem() + " del Curso " + fieldCurso.getText(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-
             }
-
         });
+
 
         tablaCursosAlumno.addMouseListener(new MouseAdapter() {
             @Override

@@ -14,13 +14,10 @@ public class CursadaTableModel extends AbstractTableModel {
     private static final int COLUMNA_IDALUMNO = 1;
     private static final int COLUMNA_IDCURSO = 2;
 
-
-
     private String[] nombresColumnas = {"Id Cursada", "Id Alumno", "Id Curso"};
     private Class[] tiposColumnas = {Integer.class, Integer.class, Integer.class};
 
     private List<Cursada> contenido;
-
 
     public CursadaTableModel() {
         contenido = new ArrayList<Cursada>();

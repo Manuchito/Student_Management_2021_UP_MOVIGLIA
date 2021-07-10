@@ -13,7 +13,7 @@ public class Alumno {
     public Alumno() {
 
     }
-
+    
     public Alumno(int legajo, String nombre, String apellido, int limiteCursos)
     {
         this.legajo = legajo;

@@ -58,8 +58,8 @@ public class AlumnoDAOH2Impl{
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
+            s.executeUpdate(sql);
             c.commit();
-
         } catch (SQLException e) {
             try {
 

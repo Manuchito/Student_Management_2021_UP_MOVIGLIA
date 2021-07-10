@@ -5,3 +5,12 @@ PONER PANELES DE PREGUNTA, CONFIRMACION Y AVISO DE LO QUE SE HIZO //almost
 CUANDO MUESTRO UNA ENTIDAD EN DAO, HACERLO COMO LISTAR ALUMNOS ANTIGUA
 
 PARA CODIGO REPETIDO DE SWING (ENABLE, DISABLE, SETTEXT("") HACERLOS FUNCIONES DON'T REPEAT YOURSELF
+
+bucle reporte cursos
+
+alumnos aprobados pendiente final
+
+alumnos aprobados con final
+
+boton salir pagina principal no funciona
+

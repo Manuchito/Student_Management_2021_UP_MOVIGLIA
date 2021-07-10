@@ -23,7 +23,6 @@ TODO:
 
 DONE:
 1)
-
     Administrar usuarios: los administradores pueden crear cursos y dar de alta
    alumnos. Los usuarios profesores pueden ingresar datos sobre el curso o alumno
    (calificaciones, por ejemplo).
@@ -36,6 +35,8 @@ DONE:
     Se debe poder emitir un reporte de los cursos, sus anotados y su recaudación en
    dinero.
     Mostrar un reporte de la recaudación de los cursos
+
+
 
 2)
    Manejar calificaciones parciales. No se puede incluir una nota final si no se tienen
