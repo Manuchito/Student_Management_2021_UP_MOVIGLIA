@@ -1,5 +1,6 @@
 package Swing.Tablas;
 
+import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
 
@@ -71,6 +72,30 @@ public class NotaTableModel extends AbstractTableModel {
         return result;
     }
 
+    public void setValueAt(Object value, int rowIndex, int columnIndex) {
+
+        Nota p = contenido.get(rowIndex);
+
+        Object result = null;
+
+        switch (columnIndex) {
+            case COLUMNA_ALUMNO:
+                p.setAlumno((Alumno) value);
+                break;
+            case COLUMNA_CURSO:
+                p.setCurso((Curso) value);
+                break;
+            case COLUMNA_TIPONOTA:
+                p.setTipoNota((String) value);
+                break;
+            case COLUMNA_NOTAPARCIAL:
+                p.setNotaParcial((Integer) value);
+                break;
+
+        }
+        fireTableCellUpdated(rowIndex,columnIndex);
+    }
+
 
     public String getColumnName(int col) {
         return nombresColumnas[col];
@@ -97,5 +122,8 @@ public class NotaTableModel extends AbstractTableModel {
         this.contenido = contenido;
     }
 
-
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex){
+        return columnIndex == 3;
+    }
 }

@@ -134,10 +134,9 @@ public class ReporteCurso_Swing extends JPanel {
         buttonAprobados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                alumnoTableModel.setContenido(null);
+                alumnoTableModel.setContenido(new ArrayList<>());
                 try {
                     alumnoTableModel.setContenido(servCurso.mostrarAlumnosAprobadosParaFinal(Integer.parseInt(fieldCursoBuscar.getText())));
-                    alumnoTableModel.fireTableDataChanged();
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                     JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getText() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);
@@ -147,6 +146,7 @@ public class ReporteCurso_Swing extends JPanel {
                     JOptionPane.showMessageDialog(null, "El Curso "+ fieldCurso.getText() + " acutalmente no tiene ningun aprobado para rendir final.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
+                alumnoTableModel.fireTableDataChanged();
             }
         });
 

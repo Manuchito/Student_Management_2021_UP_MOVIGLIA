@@ -49,14 +49,11 @@ public class NotaDAOH2Impl {
         }
     }
 
-    public void borrarNota(int legajo ,int id_curso, String tipo_nota) throws DAONotaNoExisteException {
+    public void borrarNota(int legajo ,int id_curso, String tipo_nota){
         String sql = "DELETE FROM NOTAS WHERE ID_ALUMNO = '" + legajo + "' AND ID_CURSO = '" + id_curso + "' AND TIPO_NOTA = '" + tipo_nota + "'";
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
-            if(s.executeUpdate(sql) == 0){
-                throw new DAONotaNoExisteException();
-            }
             c.commit();
 
 

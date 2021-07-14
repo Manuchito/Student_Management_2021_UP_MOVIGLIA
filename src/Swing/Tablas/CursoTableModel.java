@@ -74,6 +74,30 @@ public class CursoTableModel extends AbstractTableModel {
         return result;
     }
 
+    public void setValueAt(Object value, int row, int col){
+        Curso c = contenido.get(row);
+
+        Object result = null;
+
+        switch (col) {
+            case COLUMNA_IDCURSO:
+                c.setId((Integer) value);
+                break;
+            case COLUMNA_NOMBRE:
+                c.setNombre((String) value);
+                break;
+            case COLUMNA_PRECIO:
+                c.setPrecio((Integer) value);
+                break;
+            case COLUMNA_CUPO:
+                c.setCupo((Integer) value);
+                break;
+            case COLUMNA_CANTIDADPARCIALES:
+                c.setCantidad_parciales((Integer) value);
+                break;
+        }
+        fireTableCellUpdated(row,col);
+    }
 
     public String getColumnName(int col) {
         return nombresColumnas[col];
@@ -98,6 +122,11 @@ public class CursoTableModel extends AbstractTableModel {
      */
     public void setContenido(List<Curso> contenido) {
         this.contenido = contenido;
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex){
+        return columnIndex == 1 || columnIndex == 2 || columnIndex == 3 || columnIndex == 4;
     }
 
 

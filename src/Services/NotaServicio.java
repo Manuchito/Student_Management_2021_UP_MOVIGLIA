@@ -65,7 +65,7 @@ public class NotaServicio {
         }
     }
 
-    public void eliminarNota(int legajo, int id_curso, String tipo_nota) throws ServiceNotaNoExisteException, ServiceNotaParcialesDependenDeFinalException {
+    public void eliminarNota(int legajo, int id_curso, String tipo_nota) throws ServiceNotaParcialesDependenDeFinalException {
 
         try {
             Curso c = cursoDAO.muestraCurso(id_curso);
@@ -84,8 +84,6 @@ public class NotaServicio {
             else {
                 notaDAO.borrarNota(legajo,id_curso,tipo_nota);
             }
-        } catch (DAONotaNoExisteException e) {
-            throw new ServiceNotaNoExisteException();
         } catch (DAOCursoNoExisteException cursoNoExisteException) {
             cursoNoExisteException.printStackTrace();
         } catch (DAOLegajoNoExisteException legajoNoExisteException) {
@@ -93,7 +91,7 @@ public class NotaServicio {
         }
     }
 
-    public void editarNota(int legajo, int curso, String tipoNota, int nota) throws ServiceNotaParcialesDependenDeFinalException {
+    public void editarNota(int legajo, int curso, String tipoNota, int nota) throws ServiceNotaParcialesDependenDeFinalException, ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
         try {
             Curso c = cursoDAO.muestraCurso(curso);
             Alumno a = alumnoDAO.muestraAlumno(legajo);
@@ -114,9 +112,9 @@ public class NotaServicio {
             }
 
         } catch (DAOCursoNoExisteException cursoNoExisteException) {
-            cursoNoExisteException.printStackTrace();
+            throw new ServiceCursoNoExisteException();
         } catch (DAOLegajoNoExisteException legajoNoExisteException) {
-            legajoNoExisteException.printStackTrace();
+            throw new ServiceLegajoNoExsiteException();
         }
     }
         public List<Nota> listarNotasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {

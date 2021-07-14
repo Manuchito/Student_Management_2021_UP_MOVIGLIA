@@ -86,6 +86,8 @@ public class LoginAdmin_Swing extends JPanel {
         buttonLogin.setBounds (75, 195, 105, 25);
         buttonVolver.setBounds (225, 195, 100, 25);
         fieldPassword.setBounds (200, 115, 100, 25);
+
+        repaint();
     }
 
 

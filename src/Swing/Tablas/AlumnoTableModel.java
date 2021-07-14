@@ -76,6 +76,28 @@ public class AlumnoTableModel extends AbstractTableModel {
         return result;
     }
 
+    public void setValueAt(Object value, int row, int col){
+        Alumno a = contenido.get(row);
+
+        Object result = null;
+
+        switch (col) {
+            case COLUMNA_LEGAJO:
+                a.setLegajo((Integer) value);
+                break;
+            case COLUMNA_NOMBRE:
+                a.setNombre((String) value);
+                break;
+            case COLUMNA_APELLIDO:
+                a.setApellido((String) value);
+                break;
+            case COLUMNA_LIMITECURSOS:
+                a.setLimiteCursos((Integer) value);
+                break;
+        }
+        fireTableCellUpdated(row,col);
+    }
+
     /**
      * METODO QUE HAY QUE PISAR
      */
@@ -107,5 +129,10 @@ public class AlumnoTableModel extends AbstractTableModel {
      */
     public void setContenido(List<Alumno> contenido) {
         this.contenido = contenido;
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex){
+        return columnIndex == 1 || columnIndex == 2 || columnIndex == 3;
     }
 }

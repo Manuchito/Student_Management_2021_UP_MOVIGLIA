@@ -46,8 +46,8 @@ public class Profesor_Swing extends JPanel {
         JLabel textCursosAlumno = new JLabel("Cursos del Alumno");
         JLabel textAlumnosCurso = new JLabel("Alumnos del Curso");
         JLabel textCurso = new JLabel("Codigo Curso");
-        JTextField fieldAlumno = new JTextField("");
-        JTextField fieldCurso = new JTextField(5);
+        JTextField fieldAlumno = new JTextField();
+        JTextField fieldCurso = new JTextField();
         JButton buttonBuscarCurso = new JButton("Buscar");
         JButton buttonReporteAlumno = new JButton("Reporte Alumno");
         JButton buttonInscribir = new JButton("Inscribir Alumno");
@@ -58,6 +58,7 @@ public class Profesor_Swing extends JPanel {
         alumnoTableModel = new AlumnoTableModel();
         tablaAlumnosCurso = new JTable(alumnoTableModel);
         scrollPaneAlumnosCurso = new JScrollPane(tablaAlumnosCurso);
+
 
         buttonBuscarCurso.addActionListener(new ActionListener() {
             @Override
@@ -78,6 +79,7 @@ public class Profesor_Swing extends JPanel {
         cursoTableModel = new CursoTableModel();
         tablaCursosAlumno = new JTable(cursoTableModel);
         scrollPaneCursosAlumno = new JScrollPane(tablaCursosAlumno);
+
 
         buttonBuscarAlumno.addActionListener(new ActionListener() {
             @Override

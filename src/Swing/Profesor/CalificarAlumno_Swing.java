@@ -236,9 +236,6 @@ public class CalificarAlumno_Swing extends JPanel {
                     servParcial.eliminarNota(n.getAlumno().getLegajo(),n.getCurso().getId(),n.getTipoNota());
                     parcialTableModel.getContenido().remove(filaSeleccionada);
                     parcialTableModel.fireTableDataChanged();
-
-                } catch (ServiceNotaNoExisteException serviceNotaNoExisteException) {
-                    serviceNotaNoExisteException.printStackTrace();
                 } catch (ServiceNotaParcialesDependenDeFinalException serviceNotaParcialesDependenDeFinalException) {
                     serviceNotaParcialesDependenDeFinalException.printStackTrace();
                 }

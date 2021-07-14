@@ -11,20 +11,18 @@ import Services.AlumnoServicio;
 import Services.CursadaServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
-import Swing.Tablas.AlumnoTableModel;
-import Swing.Tablas.CursadaTableModel;
-import Swing.Tablas.CursoTableModel;
-import Swing.Tablas.NotaTableModel;
+import Swing.Tablas.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class Admin_Swing extends JPanel {
+public class Admin_Swing extends JPanel{
     AlumnoServicio servAlumno = new AlumnoServicio();
     CursoServicio servCurso = new CursoServicio();
     NotaServicio servNota = new NotaServicio();
@@ -35,15 +33,17 @@ public class Admin_Swing extends JPanel {
     private JScrollPane scrollpaneNotas;
     private JScrollPane scrollPaneCursadas;
 
+    private JTable tablaAlumnos;
+    private JTable tablaCursos;
+    private JTable tablaNotas;
+    private JTable tablaCursada;
+
     private JButton buttonCrearAlumno;
     private JButton buttonEliminarAlumno;
-    private JButton buttonModificarAlumno;
-    private JButton buttonModificarCurso;
     private JButton buttonEliminarCurso;
     private JButton buttonCrearCurso;
     private JButton buttonCrearNota;
     private JButton buttonEliminarNota;
-    private JButton buttonModificarNota;
     private JButton buttonCrearCursada;
     private JButton buttonEliminarCursada;
 
@@ -65,6 +65,19 @@ public class Admin_Swing extends JPanel {
         this.panelManager = m;
     }
 
+    private void activarBottonEliminar(JTable t, JButton b){
+        t.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = t.getSelectedRow();
+                if(filaSeleccionada!= -1){
+                    b.setEnabled(true);
+                }
+            }
+        });
+
+    }
+
     public void armarAdminSwing() {
         //construct components
 
@@ -73,10 +86,10 @@ public class Admin_Swing extends JPanel {
         NotaTableModel notaTableModel = new NotaTableModel();
         CursadaTableModel cursadaTableModel = new CursadaTableModel();
 
-        JTable tablaAlumnos = new JTable(alumnoTableModel);
-        JTable tablaCursos = new JTable(cursoTableModel);
-        JTable tablaNotas = new JTable(notaTableModel);
-        JTable tablaCursada = new JTable(cursadaTableModel);
+        tablaAlumnos = new JTable(alumnoTableModel);
+        tablaCursos = new JTable(cursoTableModel);
+        tablaNotas = new JTable(notaTableModel);
+        tablaCursada = new JTable(cursadaTableModel);
 
         scrollpaneAlumnos = new JScrollPane (tablaAlumnos);
         scrollpaneCursos = new JScrollPane (tablaCursos);
@@ -90,13 +103,10 @@ public class Admin_Swing extends JPanel {
 
         buttonCrearAlumno = new JButton ("Crear");
         buttonEliminarAlumno = new JButton ("Eliminar");
-        buttonModificarAlumno = new JButton ("Modificar");
-        buttonModificarCurso = new JButton ("Modificar");
         buttonEliminarCurso = new JButton ("Eliminar");
         buttonCrearCurso = new JButton ("Crear");
         buttonCrearNota = new JButton ("Crear");
         buttonEliminarNota = new JButton ("Eliminar");
-        buttonModificarNota = new JButton ("Modificar");
         buttonCrearCursada = new JButton ("Crear");
         buttonEliminarCursada = new JButton ("Eliminar");
 
@@ -117,45 +127,74 @@ public class Admin_Swing extends JPanel {
         setLayout (null);
 
         //listeners
-        tablaAlumnos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int filaSeleccionadaAlumnos = tablaAlumnos.getSelectedRow();
-                if(filaSeleccionadaAlumnos != -1){
-                    buttonEliminarAlumno.setEnabled(true);
+        TableCellListener tclAlumno = new TableCellListener(tablaAlumnos, new AbstractAction(){
+            public void actionPerformed(ActionEvent e){
+                TableCellListener tclAlumno = (TableCellListener)e.getSource();
+                Alumno a = alumnoTableModel.getContenido().get(tablaAlumnos.getSelectedRow());
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (exit == JOptionPane.YES_OPTION) {
+                    try {
+                        servAlumno.editar(a.getLegajo(),a.getNombre(),a.getApellido(),a.getLimiteCursos());
+                    } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                        serviceLegajoNoExsiteException.printStackTrace();
+                    }
+                }
+                else {
+                    tablaAlumnos.setValueAt(tclAlumno.getOldValue(), tclAlumno.getRow(), tclAlumno.getColumn());
+                }
+            }
+
+        });
+
+        TableCellListener tclCurso = new TableCellListener(tablaCursos, new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                TableCellListener tclCurso = (TableCellListener)e.getSource();
+                Curso c = cursoTableModel.getContenido().get(tablaCursos.getSelectedRow());
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar el curso?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (exit == JOptionPane.YES_OPTION) {
+                    try {
+                        servCurso.editarCurso(c.getId(),c.getNombre(),c.getCupo(),c.getPrecio(),c.getCantidad_parciales());
+                    } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
+                        serviceCursoNoExisteException.printStackTrace();
+                    }
+                }
+                else {
+                    tablaCursos.setValueAt(tclCurso.getOldValue(), tclCurso.getRow(), tclCurso.getColumn());
                 }
             }
         });
 
-        tablaCursos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int filaSeleccionadaCursos = tablaCursos.getSelectedRow();
-                if(filaSeleccionadaCursos != -1){
-                    buttonEliminarCurso.setEnabled(true);
+        TableCellListener tclNota = new TableCellListener(tablaNotas, new AbstractAction(){
+            public void actionPerformed(ActionEvent e){
+                TableCellListener tclNota = (TableCellListener)e.getSource();
+                Nota n = notaTableModel.getContenido().get(tablaNotas.getSelectedRow());
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (exit == JOptionPane.YES_OPTION) {
+                    try {
+                        servNota.editarNota(n.getAlumno().getLegajo(), n.getCurso().getId(), n.getTipoNota(),n.getNotaParcial());
+                    } catch (ServiceNotaParcialesDependenDeFinalException serviceNotaParcialesDependenDeFinalException) {
+                        serviceNotaParcialesDependenDeFinalException.printStackTrace();
+                    } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
+                        serviceCursoNoExisteException.printStackTrace();
+                    } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                        serviceLegajoNoExsiteException.printStackTrace();
+                    }
+                }
+                else {
+                    tablaNotas.setValueAt(tclNota.getOldValue(), tclNota.getRow(), tclNota.getColumn());
                 }
             }
+
         });
 
-        tablaNotas.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int filaSeleccionadaNotas = tablaNotas.getSelectedRow();
-                if(filaSeleccionadaNotas != -1){
-                    buttonEliminarNota.setEnabled(true);
-                }
-            }
-        });
+        activarBottonEliminar(tablaAlumnos,buttonEliminarAlumno);
 
-        tablaCursada.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int filaSeleccionadaCursada = tablaCursada.getSelectedRow();
-                if(filaSeleccionadaCursada != -1){
-                    buttonEliminarCursada.setEnabled(true);
-                }
-            }
-        });
+        activarBottonEliminar(tablaCursos, buttonEliminarCurso);
+
+        activarBottonEliminar(tablaNotas, buttonEliminarNota);
+
+        activarBottonEliminar(tablaCursada, buttonEliminarCursada);
+
 
         buttonCrearAlumno.addActionListener(new ActionListener() {
             @Override
@@ -164,12 +203,7 @@ public class Admin_Swing extends JPanel {
             }
         });
 
-        buttonModificarAlumno.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelEditarAlumno();
-            }
-        });
+
 
         buttonEliminarAlumno.addActionListener(new ActionListener() {
             @Override
@@ -177,7 +211,6 @@ public class Admin_Swing extends JPanel {
                 int filaSeleccionada = tablaAlumnos.getSelectedRow();
                 Alumno a = alumnoTableModel.getContenido().get(filaSeleccionada);
                 AlumnoServicio servAlumno = new AlumnoServicio();
-                System.out.println(a.getLegajo());
                 servAlumno.eliminar(a.getLegajo());
                 alumnoTableModel.getContenido().remove(filaSeleccionada);
                 alumnoTableModel.fireTableDataChanged();
@@ -193,20 +226,18 @@ public class Admin_Swing extends JPanel {
             }
         });
 
+
         buttonEliminarNota.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionadaNotas = tablaNotas.getSelectedRow();
                 Nota c = notaTableModel.getContenido().get(filaSeleccionadaNotas);
                 NotaServicio servNota = new NotaServicio();
-
                 try {
                     servNota.eliminarNota(c.getAlumno().getLegajo(), c.getCurso().getId(), c.getTipoNota());
                     buttonEliminarNota.setEnabled(false);
                     notaTableModel.getContenido().remove(filaSeleccionadaNotas);
                     notaTableModel.fireTableDataChanged();
-                } catch (ServiceNotaNoExisteException serviceNotaNoExisteException) {
-                    serviceNotaNoExisteException.printStackTrace();
                 } catch (ServiceNotaParcialesDependenDeFinalException serviceNotaParcialesDependenDeFinalException) {
                     JOptionPane.showMessageDialog(null, "El final de la materia depende de la nota a eliminar",
                             "Error", JOptionPane.ERROR_MESSAGE);
@@ -214,12 +245,6 @@ public class Admin_Swing extends JPanel {
             }
         });
 
-        buttonModificarNota.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelEditarNota();
-            }
-        });
 
         buttonCrearCurso.addActionListener(new ActionListener() {
             @Override
@@ -242,12 +267,6 @@ public class Admin_Swing extends JPanel {
             }
         });
 
-        buttonModificarCurso.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelEditarCurso();
-            }
-        });
 
 
         buttonCrearCursada.addActionListener(new ActionListener() {
@@ -313,14 +332,10 @@ public class Admin_Swing extends JPanel {
 
         add (buttonCrearAlumno);
         add (buttonEliminarAlumno);
-        add (buttonModificarAlumno);
-        add (buttonModificarCurso);
         add (buttonEliminarCurso);
         add (buttonCrearCurso);
         add (buttonCrearNota);
         add (buttonEliminarNota);
-        add (buttonModificarNota);
-
         add (buttonCrearCursada);
         add (buttonEliminarCursada);
 
@@ -331,21 +346,19 @@ public class Admin_Swing extends JPanel {
 
         add (buttonVolver);
         add (buttonActualizarTablas);
-        //set component bounds (only needed by Absolute Positioning)
-        scrollpaneAlumnos.setBounds (45, 255, 315, 515);
-        scrollpaneCursos.setBounds (395, 255, 315, 515);
-        scrollpaneNotas.setBounds (745, 255, 315, 515);
-        scrollPaneCursadas.setBounds (1095, 255, 315, 515);
+
+
+        scrollpaneAlumnos.setBounds (45, 220, 315, 515);
+        scrollpaneCursos.setBounds (395, 220, 315, 515);
+        scrollpaneNotas.setBounds (745, 220, 315, 515);
+        scrollPaneCursadas.setBounds (1095, 220, 315, 515);
 
         buttonCrearAlumno.setBounds (155, 70, 100, 25);
         buttonEliminarAlumno.setBounds (155, 130, 100, 25);
-        buttonModificarAlumno.setBounds (155, 190, 100, 25);
-        buttonModificarCurso.setBounds (500, 190, 100, 25);
         buttonEliminarCurso.setBounds (500, 130, 100, 25);
         buttonCrearCurso.setBounds (500, 70, 100, 25);
         buttonCrearNota.setBounds (850, 70, 100, 25);
         buttonEliminarNota.setBounds (850, 130, 100, 25);
-        buttonModificarNota.setBounds (850, 190, 100, 25);
         buttonCrearCursada.setBounds (1200, 70, 100, 25);
         buttonEliminarCursada.setBounds (1200, 130, 100, 25);
 
@@ -356,8 +369,8 @@ public class Admin_Swing extends JPanel {
         textCursadas.setBounds (1215, 20, 65, 25);
 
         buttonVolver.setBounds (1300, 795, 100, 25);
-        buttonActualizarTablas.setBounds (635, 790, 185, 35);
+        buttonActualizarTablas.setBounds (635, 770, 185, 35);
+
+
     }
-
-
 }
