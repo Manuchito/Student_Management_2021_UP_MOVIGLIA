@@ -76,7 +76,6 @@ public class CursoDAOH2Impl implements CursoDAO {
         }
     }
 
-    @Override
     public void actualizaCurso(Curso unCurso) throws DAOCursoNoExisteException {
         int id = unCurso.getId();
         String nombre = unCurso.getNombre();

@@ -10,7 +10,9 @@ import DAO.TableManager;
 import Services.AlumnoServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
+import Swing.Profesor.CalificarAlumno_Swing;
 
+import javax.swing.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -26,7 +28,9 @@ public class test {
 		CursoServicio cursoServicio = new CursoServicio();
 		NotaServicio notaServicio = new NotaServicio();
 		CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
+		CalificarAlumno_Swing a;
 
+		System.out.println(false);
 
 	}
 

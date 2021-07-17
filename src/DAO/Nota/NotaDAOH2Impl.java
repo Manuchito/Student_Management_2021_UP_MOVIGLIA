@@ -17,7 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotaDAOH2Impl {
+public class NotaDAOH2Impl implements NotaDAO{
     public void crearNota(Nota unaNota) throws DAOClaveDuplicadaException {
         int legajo = unaNota.getAlumno().getLegajo();
         int id_curso = unaNota.getCurso().getId();

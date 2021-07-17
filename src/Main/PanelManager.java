@@ -22,6 +22,8 @@ public class PanelManager {
     private LoginAdmin_Swing loginAdmin;
     private CrearCursada_Swing crearCursada;
 
+    private JPanel prevoiusPanel;
+
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
     public PanelManager(){
@@ -156,13 +158,14 @@ public class PanelManager {
         frame.getContentPane().repaint();
     }
 
-    public void mostrarPanelCalificarAlumno(){
+    public void mostrarPanelCalificarAlumno(JPanel jPanel){
+        calificarAlumno.setPreviousPanel(jPanel);
         frame.getContentPane().removeAll();
         frame.setSize(700, 520);
         centerFrame(frame);
         frame.setTitle("Calificar Alumno");
         frame.getContentPane().add(calificarAlumno);
-        frame.getContentPane().validate();
+        frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
     }
 
@@ -207,5 +210,11 @@ public class PanelManager {
     }
 
 
+    public JPanel getPrevoiusPanel() {
+        return prevoiusPanel;
+    }
 
+    public void setPrevoiusPanel(JPanel prevoiusPanel) {
+        this.prevoiusPanel = prevoiusPanel;
+    }
 }

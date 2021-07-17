@@ -18,10 +18,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlumnoDAOH2Impl{
+public class AlumnoDAOH2Impl implements AlumnoDAO{
 
 
-    public void crearAlumno(Alumno unAlumno) throws DAOClaveDuplicadaException, NumberFormatException{
+    public void crearAlumno(Alumno unAlumno) throws DAOClaveDuplicadaException{
         int id = unAlumno.getLegajo();
         String nombre = unAlumno.getNombre();
         String apellido = unAlumno.getApellido();

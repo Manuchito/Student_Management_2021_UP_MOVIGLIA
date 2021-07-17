@@ -222,7 +222,7 @@ public class Admin_Swing extends JPanel{
         buttonCrearNota.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelCrearNota();
+                panelManager.mostrarPanelCalificarAlumno(new Admin_Swing(panelManager));
             }
         });
 

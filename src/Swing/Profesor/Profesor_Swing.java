@@ -7,6 +7,7 @@ import Main.PanelManager;
 import Services.AlumnoServicio;
 import Services.CursadaServicio;
 import Services.CursoServicio;
+import Swing.Admin.Admin_Swing;
 import Swing.Tablas.AlumnoTableModel;
 import Swing.Tablas.CursoTableModel;
 
@@ -117,7 +118,7 @@ public class Profesor_Swing extends JPanel {
         buttonCalificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelCalificarAlumno();
+                panelManager.mostrarPanelCalificarAlumno(new Profesor_Swing(panelManager));
             }
         });
 

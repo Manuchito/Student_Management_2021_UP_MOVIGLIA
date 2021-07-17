@@ -19,7 +19,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CursadaDAOH2Impl {
+public class CursadaDAOH2Impl implements CursadaDAO{
 
     public void inscribirAlumnoxCurso(Alumno unAlumno, Curso unCurso) throws DAOInscripcionDublicadaException {
         int id = unAlumno.getLegajo();
@@ -114,7 +114,6 @@ public class CursadaDAOH2Impl {
         }
         return resultado;
     }
-
 
     public List<Cursada> listarTodosLasCursadas(){
         List<Cursada> resultado = new ArrayList<>();

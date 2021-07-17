@@ -9,6 +9,7 @@ import Services.AlumnoServicio;
 import Services.CursadaServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
+import Swing.Admin.Admin_Swing;
 import Swing.Tablas.CursoTableModel;
 import Swing.Tablas.NotaTableModel;
 
@@ -33,6 +34,8 @@ public class CalificarAlumno_Swing extends JPanel {
     private JToggleButton buttonBuscarAlumno;
     private JButton buttonEliminarNota;
 
+    private JPanel previousPanel;
+
     private CursoTableModel cursoTableModel;
     private JTable tablaCursosAlumno;
     private JScrollPane scrollPaneCursosAlumno;
@@ -51,6 +54,10 @@ public class CalificarAlumno_Swing extends JPanel {
     public CalificarAlumno_Swing(PanelManager m){
         super();
         this.panelManager = m;
+    }
+
+    public CalificarAlumno_Swing(JPanel previousPanel){
+        this.previousPanel = previousPanel;
     }
 
     public void armarCalificarCurso() {
@@ -223,7 +230,16 @@ public class CalificarAlumno_Swing extends JPanel {
         buttonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelProfesor();
+                if(previousPanel instanceof Profesor_Swing){
+                    revalidate();
+                    repaint();
+
+                    panelManager.mostrarPanelProfesor();
+                }
+                else if(previousPanel instanceof Admin_Swing){
+                    panelManager.mostrarPanelAdmin();
+                }
+
             }
         });
 
@@ -283,4 +299,11 @@ public class CalificarAlumno_Swing extends JPanel {
     }
 
 
+    public JPanel getPreviousPanel() {
+        return previousPanel;
+    }
+
+    public void setPreviousPanel(JPanel previousPanel) {
+        this.previousPanel = previousPanel;
+    }
 }
