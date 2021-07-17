@@ -104,7 +104,7 @@ public class Profesor_Swing extends JPanel {
         buttonInscribir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelInscribirAlumno();
+                panelManager.mostrarPanelInscribirAlumno(new Profesor_Swing(panelManager));
             }
         });
 

@@ -38,8 +38,11 @@ public class AlumnoServicio {
         alumnoDAO.borraAlumno(legajo);
     }
 
-    public void editar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceLegajoNoExsiteException, NumberFormatException {
+    public void editar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceLegajoNoExsiteException, NumberFormatException, ServiceLimiteDeCursoIncorrecto {
 
+        if(limiteCursos >= 6 || limiteCursos < 0){
+            throw new ServiceLimiteDeCursoIncorrecto();
+        }
         try {
             alumnoDAO.actualizaAlumno(new Alumno(legajo, nombre, apellido, limiteCursos));
         } catch (DAOLegajoNoExisteException daoLegajoNoExiste) {

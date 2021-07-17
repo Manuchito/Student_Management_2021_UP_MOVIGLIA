@@ -117,7 +117,8 @@ public class NotaServicio {
             throw new ServiceLegajoNoExsiteException();
         }
     }
-        public List<Nota> listarNotasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
+
+    public List<Nota> listarNotasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
         try {
             return notaDAO.listarNotasCursoALumno(alumnoDAO.muestraAlumno(legajo), cursoDAO.muestraCurso(curso));
         } catch (DAOCursoNoExisteException cursoNoExisteException) {

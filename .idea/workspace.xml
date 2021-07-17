@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DAO/Cursada/CursadaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAO/Nota/NotaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/ServiceLimiteDeCursoIncorrecto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Cursada/CursadaDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Cursada/CursadaDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Curso/CursoDAOH2Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/PanelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/PanelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ideas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ideas.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

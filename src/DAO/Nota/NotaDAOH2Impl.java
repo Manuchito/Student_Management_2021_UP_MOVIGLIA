@@ -54,6 +54,7 @@ public class NotaDAOH2Impl implements NotaDAO{
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
+            s.executeUpdate(sql);
             c.commit();
 
 

@@ -7,6 +7,7 @@ import Main.PanelManager;
 import Services.AlumnoServicio;
 import Services.CursadaServicio;
 import Services.CursoServicio;
+import Swing.Admin.Admin_Swing;
 import Swing.Tablas.AlumnoTableModel;
 import Swing.Tablas.CursoTableModel;
 
@@ -26,6 +27,8 @@ public class InscribirAlumno_Swing extends JPanel {
     private JTable tabla;
     private JScrollPane scrollTable;
 
+    private JPanel previousPanel;
+
     private AlumnoTableModel alumnoTableModel;
     private AlumnoServicio servAlumno;
     private CursoServicio servCurso;
@@ -33,6 +36,10 @@ public class InscribirAlumno_Swing extends JPanel {
     public InscribirAlumno_Swing(PanelManager m){
         super();
         this.panelManager = m;
+    }
+
+    public InscribirAlumno_Swing(JPanel previousPanel){
+        this.previousPanel = previousPanel;
     }
 
     public void armarInscribirAlumnoSwing() {
@@ -135,8 +142,13 @@ public class InscribirAlumno_Swing extends JPanel {
 
         buttonCancelar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelProfesor();
+            public void actionPerformed(ActionEvent e){
+                if(previousPanel instanceof  Profesor_Swing){
+                    panelManager.mostrarPanelProfesor();
+                }
+                else if(previousPanel instanceof  Admin_Swing){
+                    panelManager.mostrarPanelAdmin();
+                }
             }
         });
 
@@ -168,4 +180,11 @@ public class InscribirAlumno_Swing extends JPanel {
     }
 
 
+    public JPanel getPreviousPanel() {
+        return previousPanel;
+    }
+
+    public void setPreviousPanel(JPanel previousPanel) {
+        this.previousPanel = previousPanel;
+    }
 }

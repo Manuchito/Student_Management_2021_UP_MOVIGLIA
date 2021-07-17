@@ -6,5 +6,7 @@ alumnos aprobados pendiente final
 
 alumnos aprobados con final
 
+pantallas abstractas
+
 boton salir pagina principal no funciona
 

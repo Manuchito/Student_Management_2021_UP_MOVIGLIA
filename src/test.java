@@ -7,10 +7,12 @@ import Entidades.Curso;
 import Entidades.Nota;
 import Exceptions.*;
 import DAO.TableManager;
+import Main.PanelManager;
 import Services.AlumnoServicio;
 import Services.CursoServicio;
 import Services.NotaServicio;
 import Swing.Profesor.CalificarAlumno_Swing;
+import Swing.Profesor.Profesor_Swing;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -28,9 +30,10 @@ public class test {
 		CursoServicio cursoServicio = new CursoServicio();
 		NotaServicio notaServicio = new NotaServicio();
 		CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
-		CalificarAlumno_Swing a;
+		CalificarAlumno_Swing a = new CalificarAlumno_Swing(new PanelManager());
 
-		System.out.println(false);
+
+		notaDAO.borrarNota(11,72,"Parcial 1");
 
 	}
 

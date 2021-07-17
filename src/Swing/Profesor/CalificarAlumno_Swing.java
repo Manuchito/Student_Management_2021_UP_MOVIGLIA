@@ -231,9 +231,6 @@ public class CalificarAlumno_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(previousPanel instanceof Profesor_Swing){
-                    revalidate();
-                    repaint();
-
                     panelManager.mostrarPanelProfesor();
                 }
                 else if(previousPanel instanceof Admin_Swing){

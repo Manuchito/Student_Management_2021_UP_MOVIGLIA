@@ -190,7 +190,8 @@ public class PanelManager {
     }
 
 
-    public void mostrarPanelInscribirAlumno(){
+    public void mostrarPanelInscribirAlumno(JPanel jPanel){
+        inscribirAlumno.setPreviousPanel(jPanel);
         frame.getContentPane().removeAll();
         frame.setSize(950, 475);
         centerFrame(frame);

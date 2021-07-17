@@ -137,6 +137,10 @@ public class Admin_Swing extends JPanel{
                         servAlumno.editar(a.getLegajo(),a.getNombre(),a.getApellido(),a.getLimiteCursos());
                     } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                         serviceLegajoNoExsiteException.printStackTrace();
+                    } catch (ServiceLimiteDeCursoIncorrecto serviceLimiteDeCursoIncorrecto) {
+                        JOptionPane.showMessageDialog(null, "El numero de limite de cursos tiene que ser menor o igual a 6 y mayor a 0",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                        tablaAlumnos.setValueAt(tclAlumno.getOldValue(), tclAlumno.getRow(), tclAlumno.getColumn());
                     }
                 }
                 else {
@@ -272,7 +276,7 @@ public class Admin_Swing extends JPanel{
         buttonCrearCursada.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelCrearCursada();
+                panelManager.mostrarPanelInscribirAlumno(new Admin_Swing(panelManager));
             }
         });
 
