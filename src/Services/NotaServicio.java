@@ -128,6 +128,17 @@ public class NotaServicio {
         }
     }
 
+    public List<Nota> listarNotasFinales(){
+        List<Nota> notas = listarTodasLasNotas();
+        List<Nota> notasFinal = new ArrayList<>();
+        for(Nota n : notas){
+            if(n.getTipoNota().equals("FINAL")){
+                notasFinal.add(n);
+            }
+        }
+        return notasFinal;
+    }
+
     public List<Nota> listarNotasAprobadasCursoDelAlumno(int legajo, int curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException, ServiceNoHayAprobadosException {
         try{
             List<Nota> notasAprobadas = new ArrayList<>();

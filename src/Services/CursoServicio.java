@@ -18,33 +18,34 @@ public class CursoServicio {
     CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
     NotaDAOH2Impl parcialDAO = new NotaDAOH2Impl();
     CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
+    NotaServicio notaServicio = new NotaServicio();
 
     public void crearCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoYaExisteException {
-        try{
-            cursoDAO.crearCurso(new Curso(id_curso,nombre,cupo_maximo,precio,cantidad_parciales));
+        try {
+            cursoDAO.crearCurso(new Curso(id_curso, nombre, cupo_maximo, precio, cantidad_parciales));
         } catch (DAOClaveDuplicadaException daoClaveDuplicadaException) {
-            throw new ServiceCursoYaExisteException("El curso "+ id_curso + " ya existe.");
+            throw new ServiceCursoYaExisteException("El curso " + id_curso + " ya existe.");
         }
     }
 
-    public void borrarCurso(int id_curso){
+    public void borrarCurso(int id_curso) {
         cursoDAO.borraCurso(id_curso);
     }
 
     public void editarCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoNoExisteException {
         try {
-            cursoDAO.actualizaCurso(new Curso(id_curso,nombre,cupo_maximo,precio,cantidad_parciales));
+            cursoDAO.actualizaCurso(new Curso(id_curso, nombre, cupo_maximo, precio, cantidad_parciales));
         } catch (DAOCursoNoExisteException cursoNoExisteException) {
-            throw new ServiceCursoNoExisteException("El curso "+ id_curso + " no existe.");
+            throw new ServiceCursoNoExisteException("El curso " + id_curso + " no existe.");
         }
     }
 
-    public List<Curso> listarCursos(){
+    public List<Curso> listarCursos() {
         return cursoDAO.listaTodosLosCursos();
     }
 
     public Curso muestraCurso(int id_curso) throws ServiceCursoNoExisteException {
-        try{
+        try {
             return cursoDAO.muestraCurso(id_curso);
         } catch (DAOCursoNoExisteException cursoNoExisteException) {
             throw new ServiceCursoNoExisteException("El curso con id " + id_curso + " no existe.");
@@ -52,8 +53,8 @@ public class CursoServicio {
     }
 
     public int muestraRecaudacionTotal(int id_curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
-        List<Alumno> alumnosCurso  = new ArrayList<>();
-        try{
+        List<Alumno> alumnosCurso = new ArrayList<>();
+        try {
             Curso c = cursoDAO.muestraCurso(id_curso);
             alumnosCurso = cursadaDAO.listaAlumnosCurso(c);
             return alumnosCurso.size() * c.getPrecio();
@@ -69,20 +70,20 @@ public class CursoServicio {
         try {
             Curso curso = cursoDAO.muestraCurso(id_curso);
             List<Alumno> cursando = cursadaDAO.listaAlumnosCurso(curso);
-            for(Alumno a : cursando){
+            for (Alumno a : cursando) {
                 List<Nota> notas = parcialDAO.listarNotasCursoALumno(a, curso);
                 List<Nota> notasAprobadasAlumno = new ArrayList<>();
-                for(Nota n : notas){
-                    if(n.getNotaParcial() >= 4){
+                for (Nota n : notas) {
+                    if (n.getNotaParcial() >= 4) {
                         notasAprobadasAlumno.add(n);
                     }
                 }
-                if(notasAprobadasAlumno.size() == curso.getCantidad_parciales()){
+                if (notasAprobadasAlumno.size() == curso.getCantidad_parciales()) {
                     aprobados.add(a);
                 }
             }
-            if(aprobados.size() == 0){
-                throw new ServiceNoHayAprobadosException("El curso "+ curso + " no tiene ninguna aprobado actualmente.");
+            if (aprobados.size() == 0) {
+                throw new ServiceNoHayAprobadosException("El curso " + curso + " no tiene ninguna aprobado actualmente.");
             }
             return aprobados;
 
@@ -92,4 +93,19 @@ public class CursoServicio {
             throw new ServiceLegajoNoExsiteException("El alumno con legajo no existe.");
         }
     }
+
+    public List<Alumno> mostrarAlumnosAprobadosConFinal(int id_curso) throws ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
+        List<Alumno> aprobadosConFinal = new ArrayList<>();
+
+        List<Nota> notasFinales = notaServicio.listarNotasFinales();
+        System.out.println(notasFinales);
+        for (Nota n : notasFinales) {
+            if (n.getCurso().getId() == id_curso) {
+                aprobadosConFinal.add(n.getAlumno());
+            }
+        }
+
+        return aprobadosConFinal;
+    }
+
 }

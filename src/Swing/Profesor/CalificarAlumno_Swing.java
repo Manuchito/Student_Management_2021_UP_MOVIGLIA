@@ -54,6 +54,7 @@ public class CalificarAlumno_Swing extends JPanel {
     public CalificarAlumno_Swing(PanelManager m){
         super();
         this.panelManager = m;
+        armarCalificarCurso();
     }
 
     public CalificarAlumno_Swing(JPanel previousPanel){

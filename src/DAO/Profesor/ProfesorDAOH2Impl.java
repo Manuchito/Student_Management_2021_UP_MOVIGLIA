@@ -82,7 +82,7 @@ public class ProfesorDAOH2Impl {
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
-            String sql = "UPDATE profesores set nombres = '" + nombre + "', apellidos = '" + apellido + "', pw = '" + pw + "'WHERE usuario = '" + usuario + "'";
+            String sql = "UPDATE profesores set nombre = '" + nombre + "', apellido = '" + apellido + "', pw = '" + pw + "'WHERE usuario = '" + usuario + "'";
             if(s.executeUpdate(sql) == 0){
                 throw new DAOLegajoNoExisteException("La clave ( "+ usuario +" ) no existe");
             }

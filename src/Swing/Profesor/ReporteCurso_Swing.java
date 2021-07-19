@@ -19,7 +19,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 public class ReporteCurso_Swing extends JPanel {
-    private JTextField fieldCursoBuscar;
+    private JComboBox fieldCursoBuscar;
     private JLabel textCurso;
     private JLabel textTotal;
     private JLabel textCantidad;
@@ -59,7 +59,7 @@ public class ReporteCurso_Swing extends JPanel {
 
     public void armarReporteCurso() {
         //construct components
-        fieldCursoBuscar = new JTextField(5);
+        fieldCursoBuscar = new JComboBox();
         textCurso = new JLabel("Id Curso:");
         textTotal = new JLabel("Recaudacion Total:");
         textCantidad = new JLabel("Cantidad Examenes:");
@@ -72,20 +72,24 @@ public class ReporteCurso_Swing extends JPanel {
         textAprobadosFinal = new JLabel("Aprobados final:");
         buttonBuscar = new JButton("Buscar");
 
-        fieldCantidad = new JTextField(5);
-        fieldCantidadAlumnos = new JTextField(5);
-        fieldCapacidadMaxima = new JTextField(5);
-        fieldAprobadosPendienteFinal = new JTextField(5);
-        fieldPrecio = new JTextField(5);
-        fieldNombre = new JTextField(5);
-        fieldCurso = new JTextField(5);
-        fieldRecaudacionTotal = new JTextField(5);
+        fieldCantidad = new JTextField();
+        fieldCantidadAlumnos = new JTextField();
+        fieldCapacidadMaxima = new JTextField();
+        fieldAprobadosPendienteFinal = new JTextField();
+        fieldPrecio = new JTextField();
+        fieldNombre = new JTextField();
+        fieldCurso = new JTextField();
+        fieldRecaudacionTotal = new JTextField();
         fieldAprobadosFinal = new JTextField();
 
         buttonVolver = new JButton ("Volver");
         buttonAprobados = new JButton ("Mostrar Aprobados");
 
-        //set components properties
+
+        for(Curso a : servCurso.listarCursos()){
+            fieldCursoBuscar.addItem(a.getId());
+        }
+
         fieldCantidad.setEnabled(false);
         fieldCantidadAlumnos.setEnabled(false);
         fieldCapacidadMaxima.setEnabled(false);
@@ -98,7 +102,6 @@ public class ReporteCurso_Swing extends JPanel {
 
         //adjust size and set layout
         setLayout(null);
-
         //listeners
         alumnoTableModel = new AlumnoTableModel();
         tabla = new JTable(alumnoTableModel);
@@ -107,7 +110,7 @@ public class ReporteCurso_Swing extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Curso c = servCurso.muestraCurso(Integer.parseInt(fieldCursoBuscar.getText()));
+                    Curso c = servCurso.muestraCurso((Integer)fieldCursoBuscar.getSelectedItem());
                     List<Alumno> alumnosCurso= servCursada.listarAlumnosDelCurso(c.getId());
                     alumnoTableModel.setContenido(alumnosCurso);
                     alumnoTableModel.fireTableDataChanged();
@@ -118,10 +121,11 @@ public class ReporteCurso_Swing extends JPanel {
                     fieldCantidadAlumnos.setText(String.valueOf(alumnosCurso.size()));
                     fieldCapacidadMaxima.setText(String.valueOf(c.getCupo()));
                     fieldRecaudacionTotal.setText("$" + String.valueOf(servCurso.muestraRecaudacionTotal(c.getId())));
+                    fieldAprobadosFinal.setText(String.valueOf(servCurso.mostrarAlumnosAprobadosConFinal(c.getId()).size()));
                     fieldAprobadosPendienteFinal.setText(String.valueOf(servCurso.mostrarAlumnosAprobadosParaFinal(c.getId()).size()));
 
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getText() +" no existe.",
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getSelectedItem() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();
@@ -136,9 +140,9 @@ public class ReporteCurso_Swing extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 alumnoTableModel.setContenido(new ArrayList<>());
                 try {
-                    alumnoTableModel.setContenido(servCurso.mostrarAlumnosAprobadosParaFinal(Integer.parseInt(fieldCursoBuscar.getText())));
+                    alumnoTableModel.setContenido(servCurso.mostrarAlumnosAprobadosParaFinal((Integer)fieldCursoBuscar.getSelectedItem()));
                 } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
-                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getText() +" no existe.",
+                    JOptionPane.showMessageDialog(null, "El curso "+ fieldCursoBuscar.getSelectedItem() +" no existe.",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                     serviceLegajoNoExsiteException.printStackTrace();

@@ -17,11 +17,19 @@ import Swing.Profesor.Profesor_Swing;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class test {
 
-	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException, DAOInscripcionDublicadaException {
+	public static ArrayList<Alumno> animales = new ArrayList<Alumno>();
+
+
+
+
+
+
+	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException, DAOInscripcionDublicadaException, ServiceNoHayAprobadosException {
 
 		TableManager t = new TableManager();
 		AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
@@ -34,7 +42,9 @@ public class test {
 		CalificarAlumno_Swing a = new CalificarAlumno_Swing(new PanelManager());
 		ProfesorDAOH2Impl profesorDAO = new ProfesorDAOH2Impl();
 
-		System.out.println(profesorDAO.listaTodosLosProfesores());
+
+
+		System.out.println(cursoServicio.mostrarAlumnosAprobadosConFinal(34).size());
 
 
 	}

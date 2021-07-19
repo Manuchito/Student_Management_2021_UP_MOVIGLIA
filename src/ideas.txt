@@ -1,12 +1,7 @@
 PARA CODIGO REPETIDO DE SWING (ENABLE, DISABLE, SETTEXT("") HACERLOS FUNCIONES DON'T REPEAT YOURSELF
 
-bucle reporte cursos
-
-alumnos aprobados pendiente final
-
-alumnos aprobados con final
-
 pantallas abstractas
 
 boton salir pagina principal no funciona
 
+MOSTRAR APROBADOS CON FINAL

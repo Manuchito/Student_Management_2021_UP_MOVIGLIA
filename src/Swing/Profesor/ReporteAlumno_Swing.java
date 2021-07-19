@@ -74,11 +74,11 @@ public class ReporteAlumno_Swing extends JPanel {
         textCantidadCursos = new JLabel ("Cantidad Cursando");
         textCantidadAprobados = new JLabel ("Cantidad Aprobados");
 
-        fieldLegajo = new JTextField (5);
-        fieldNombre = new JTextField (5);
-        fieldApellido = new JTextField (5);
+        fieldLegajo = new JTextField ();
+        fieldNombre = new JTextField ();
+        fieldApellido = new JTextField ();
         fieldCantidadCursada = new JTextField ();
-        fieldCantidadAprobados = new JTextField (5);
+        fieldCantidadAprobados = new JTextField ();
 
         buttonVolver = new JButton ("Volver");
 

@@ -19,7 +19,6 @@ public class PanelManager {
     private ReporteAlumno_Swing reporteAlumno;
     private Admin_Swing admin;
     private CrearCurso_Swing crearCurso;
-    private CrearNota_Swing crearNota;
     private InicioSesion_Swing inicioSesion;
     private PantallaLoginAdmin loginAdmin;
     private CrearCursada_Swing crearCursada;
@@ -49,7 +48,6 @@ public class PanelManager {
         profesor.armarProfesorSwing();
 
         calificarAlumno = new CalificarAlumno_Swing(this);
-        calificarAlumno.armarCalificarCurso();
 
         reporteCurso = new ReporteCurso_Swing(this);
         reporteCurso.armarReporteCurso();
@@ -62,9 +60,6 @@ public class PanelManager {
 
         crearCurso = new CrearCurso_Swing(this);
         crearCurso.armarCrearCurso();
-
-        crearNota = new CrearNota_Swing(this);
-        crearNota.armarCrearNota();
 
         inicioSesion = new InicioSesion_Swing(this);
         inicioSesion.armarInicioSesion();
@@ -118,17 +113,6 @@ public class PanelManager {
     }
 
 
-    public void mostrarPanelCrearNota(){
-        frame.getContentPane().removeAll();
-        frame.setSize(550, 350);
-        centerFrame(frame);
-        frame.setTitle("Crear Nota");
-        frame.getContentPane().add(crearNota);
-        frame.getContentPane().validate();
-        frame.getContentPane().repaint();
-    }
-
-
     public void mostrarPanelCrearCurso(){
         frame.getContentPane().removeAll();
         frame.setSize(550, 400);
@@ -141,7 +125,7 @@ public class PanelManager {
 
     public void mostrarPanelAdmin(){
         frame.getContentPane().removeAll();
-        frame.setSize(1500, 870);
+        frame.setSize(1850, 870);
         centerFrame(frame);
         frame.setTitle("Administrador");
         frame.getContentPane().add(admin);

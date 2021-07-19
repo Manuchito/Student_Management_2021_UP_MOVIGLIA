@@ -1,16 +1,10 @@
 package Swing.Admin;
 
 import DAO.Cursada.CursadaDAOH2Impl;
-import Entidades.Alumno;
-import Entidades.Cursada;
-import Entidades.Curso;
-import Entidades.Nota;
+import Entidades.*;
 import Exceptions.*;
 import Main.PanelManager;
-import Services.AlumnoServicio;
-import Services.CursadaServicio;
-import Services.CursoServicio;
-import Services.NotaServicio;
+import Services.*;
 import Swing.Tablas.*;
 
 import java.awt.*;
@@ -27,16 +21,19 @@ public class Admin_Swing extends JPanel{
     CursoServicio servCurso = new CursoServicio();
     NotaServicio servNota = new NotaServicio();
     CursadaServicio servCursada = new CursadaServicio();
+    ProfesorServicio servProfesor = new ProfesorServicio();
 
     private JScrollPane scrollpaneAlumnos;
     private JScrollPane scrollpaneCursos;
     private JScrollPane scrollpaneNotas;
     private JScrollPane scrollPaneCursadas;
+    private JScrollPane scrollpaneProfesores;
 
     private JTable tablaAlumnos;
     private JTable tablaCursos;
     private JTable tablaNotas;
     private JTable tablaCursada;
+    private JTable tablaProfesores;
 
     private JButton buttonCrearAlumno;
     private JButton buttonEliminarAlumno;
@@ -46,11 +43,14 @@ public class Admin_Swing extends JPanel{
     private JButton buttonEliminarNota;
     private JButton buttonCrearCursada;
     private JButton buttonEliminarCursada;
+    private JButton buttonCrearProfesor;
+    private JButton buttonEliminarProfesor;
 
     private JLabel textAlumnos;
     private JLabel textCursos;
     private JLabel textNotas;
     private JLabel textCursadas;
+    private JLabel textProfesores;
 
     private JButton buttonVolver;
 
@@ -79,27 +79,31 @@ public class Admin_Swing extends JPanel{
     }
 
     public void armarAdminSwing() {
-        //construct components
 
         AlumnoTableModel alumnoTableModel = new AlumnoTableModel();
         CursoTableModel cursoTableModel = new CursoTableModel();
         NotaTableModel notaTableModel = new NotaTableModel();
         CursadaTableModel cursadaTableModel = new CursadaTableModel();
+        ProfesorTableModel profesorTableModel = new ProfesorTableModel();
 
         tablaAlumnos = new JTable(alumnoTableModel);
         tablaCursos = new JTable(cursoTableModel);
         tablaNotas = new JTable(notaTableModel);
         tablaCursada = new JTable(cursadaTableModel);
+        tablaProfesores = new JTable(profesorTableModel);
 
         scrollpaneAlumnos = new JScrollPane (tablaAlumnos);
         scrollpaneCursos = new JScrollPane (tablaCursos);
         scrollpaneNotas = new JScrollPane (tablaNotas);
         scrollPaneCursadas = new JScrollPane(tablaCursada);
+        scrollpaneProfesores = new JScrollPane(tablaProfesores);
 
         alumnoTableModel.setContenido(servAlumno.listarAlumnos());
         cursoTableModel.setContenido(servCurso.listarCursos());
         notaTableModel.setContenido(servNota.listarTodasLasNotas());
         cursadaTableModel.setContenido(servCursada.mostrarCursadas());
+        profesorTableModel.setContenido(servProfesor.listar());
+
 
         buttonCrearAlumno = new JButton ("Crear");
         buttonEliminarAlumno = new JButton ("Eliminar");
@@ -109,11 +113,15 @@ public class Admin_Swing extends JPanel{
         buttonEliminarNota = new JButton ("Eliminar");
         buttonCrearCursada = new JButton ("Crear");
         buttonEliminarCursada = new JButton ("Eliminar");
+        buttonCrearProfesor = new JButton("Crear");
+        buttonEliminarProfesor = new JButton("Eliminar");
+
 
         textAlumnos = new JLabel ("ALUMNOS");
         textCursos = new JLabel ("CURSOS");
         textNotas = new JLabel ("NOTAS");
         textCursadas = new JLabel ("CURSADAS");
+        textProfesores = new JLabel("PROFESORES");
 
         buttonVolver = new JButton ("Volver");
         buttonActualizarTablas = new JButton ("Actualizar Tablas");
@@ -122,6 +130,7 @@ public class Admin_Swing extends JPanel{
         buttonEliminarCurso.setEnabled(false);
         buttonEliminarNota.setEnabled(false);
         buttonEliminarCursada.setEnabled(false);
+        buttonEliminarProfesor.setEnabled(false);
 
         //adjust size and set layout
         setLayout (null);
@@ -189,6 +198,25 @@ public class Admin_Swing extends JPanel{
                 }
             }
 
+        });
+
+        TableCellListener tclProfesor = new TableCellListener(tablaProfesores, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TableCellListener tclProfesor = (TableCellListener)e.getSource();
+                Profesor p = profesorTableModel.getContenido().get(tablaProfesores.getSelectedRow());
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar el profesor?" , "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if(exit == JOptionPane.YES_OPTION){
+                    try {
+                        servProfesor.editar(p.getNombre(),p.getApellido(),p.getUsuario(),p.getPw());
+                    } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
+                        serviceLegajoNoExsiteException.printStackTrace();
+                    }
+                }
+                else {
+                    tablaProfesores.setValueAt(tclProfesor.getOldValue(), tclProfesor.getRow(),tclProfesor.getColumn());
+                }
+            }
         });
 
         activarBottonEliminar(tablaAlumnos,buttonEliminarAlumno);
@@ -333,6 +361,7 @@ public class Admin_Swing extends JPanel{
         add (scrollpaneCursos);
         add (scrollpaneNotas);
         add (scrollPaneCursadas);
+        add (scrollpaneProfesores);
 
         add (buttonCrearAlumno);
         add (buttonEliminarAlumno);
@@ -342,11 +371,14 @@ public class Admin_Swing extends JPanel{
         add (buttonEliminarNota);
         add (buttonCrearCursada);
         add (buttonEliminarCursada);
+        add (buttonCrearProfesor);
+        add (buttonEliminarProfesor);
 
         add (textAlumnos);
         add (textCursos);
         add (textNotas);
         add (textCursadas);
+        add (textProfesores);
 
         add (buttonVolver);
         add (buttonActualizarTablas);
@@ -356,6 +388,7 @@ public class Admin_Swing extends JPanel{
         scrollpaneCursos.setBounds (395, 220, 315, 515);
         scrollpaneNotas.setBounds (745, 220, 315, 515);
         scrollPaneCursadas.setBounds (1095, 220, 315, 515);
+        scrollpaneProfesores.setBounds (1445,220,315,515);
 
         buttonCrearAlumno.setBounds (155, 70, 100, 25);
         buttonEliminarAlumno.setBounds (155, 130, 100, 25);
@@ -365,15 +398,17 @@ public class Admin_Swing extends JPanel{
         buttonEliminarNota.setBounds (850, 130, 100, 25);
         buttonCrearCursada.setBounds (1200, 70, 100, 25);
         buttonEliminarCursada.setBounds (1200, 130, 100, 25);
+        buttonCrearProfesor.setBounds(1550, 70,100,25);
+        buttonEliminarProfesor.setBounds(1550, 130, 100, 25);
 
         textAlumnos.setBounds (175, 25, 60, 25);
         textCursos.setBounds (525, 25, 50, 25);
         textNotas.setBounds (880, 20, 40, 25);
         textCursadas.setBounds (1215, 20, 65, 25);
-        textCursadas.setBounds (1215, 20, 65, 25);
+        textProfesores.setBounds (1560, 20, 80, 25);
 
-        buttonVolver.setBounds (1300, 795, 100, 25);
-        buttonActualizarTablas.setBounds (635, 770, 185, 35);
+        buttonVolver.setBounds (1650, 795, 100, 25);
+        buttonActualizarTablas.setBounds (815, 770, 185, 35);
 
 
     }
