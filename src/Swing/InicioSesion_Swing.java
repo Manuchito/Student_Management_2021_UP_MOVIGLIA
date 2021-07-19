@@ -37,7 +37,7 @@ public class InicioSesion_Swing extends JPanel {
         buttonProfesor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.mostrarPanelProfesor();
+                panelManager.mostrarPanelLoginProfesor();
             }
         });
 

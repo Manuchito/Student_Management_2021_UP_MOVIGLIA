@@ -2,6 +2,7 @@ import DAO.Alumno.AlumnoDAOH2Impl;
 import DAO.Cursada.CursadaDAOH2Impl;
 import DAO.Curso.CursoDAOH2Impl;
 import DAO.Nota.NotaDAOH2Impl;
+import DAO.Profesor.ProfesorDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class test {
 
-	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, ClaveNoExisteException, IntegerVaciaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException, DAOInscripcionDublicadaException {
+	public static void main(String [] args) throws SQLException, DAOClaveDuplicadaException, DAOCursoNoExisteException, DAOLegajoNoExisteException, ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceNotaParcialesDependenDeFinalException, DAOInscripcionDublicadaException {
 
 		TableManager t = new TableManager();
 		AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
@@ -31,9 +32,10 @@ public class test {
 		NotaServicio notaServicio = new NotaServicio();
 		CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
 		CalificarAlumno_Swing a = new CalificarAlumno_Swing(new PanelManager());
+		ProfesorDAOH2Impl profesorDAO = new ProfesorDAOH2Impl();
 
+		System.out.println(profesorDAO.listaTodosLosProfesores());
 
-		notaDAO.borrarNota(11,72,"Parcial 1");
 
 	}
 

@@ -1,11 +1,8 @@
 package DAO.Alumno;
 
 import Entidades.Alumno;
-import Entidades.Curso;
 import Exceptions.DAOLegajoNoExisteException;
-import Exceptions.IntegerVaciaException;
 import Exceptions.DAOClaveDuplicadaException;
-import Exceptions.DAOInscripcionDublicadaException;
 
 import java.util.List;
 

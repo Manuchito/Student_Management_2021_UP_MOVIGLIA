@@ -131,7 +131,7 @@ public class Admin_Swing extends JPanel{
             public void actionPerformed(ActionEvent e){
                 TableCellListener tclAlumno = (TableCellListener)e.getSource();
                 Alumno a = alumnoTableModel.getContenido().get(tablaAlumnos.getSelectedRow());
-                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar el alumno " + a.getLegajo() + " ?" , "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION) {
                     try {
                         servAlumno.editar(a.getLegajo(),a.getNombre(),a.getApellido(),a.getLimiteCursos());
@@ -154,7 +154,7 @@ public class Admin_Swing extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 TableCellListener tclCurso = (TableCellListener)e.getSource();
                 Curso c = cursoTableModel.getContenido().get(tablaCursos.getSelectedRow());
-                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar el curso?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar el curso numero " + c.getId() + " ?" , "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION) {
                     try {
                         servCurso.editarCurso(c.getId(),c.getNombre(),c.getCupo(),c.getPrecio(),c.getCantidad_parciales());
@@ -172,7 +172,7 @@ public class Admin_Swing extends JPanel{
             public void actionPerformed(ActionEvent e){
                 TableCellListener tclNota = (TableCellListener)e.getSource();
                 Nota n = notaTableModel.getContenido().get(tablaNotas.getSelectedRow());
-                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere editar la nota del alumno " + n.getAlumno().getLegajo() + " ?" , "Warning", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION) {
                     try {
                         servNota.editarNota(n.getAlumno().getLegajo(), n.getCurso().getId(), n.getTipoNota(),n.getNotaParcial());
@@ -321,7 +321,7 @@ public class Admin_Swing extends JPanel{
         buttonVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere volver al menu principal?" , null, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                int exit = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere volver al menu principal?" , "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                 if (exit == JOptionPane.YES_OPTION) {
                     panelManager.mostrarPanelInicioSesion();
                 }

@@ -2,6 +2,8 @@ package Main;
 
 import Swing.Admin.*;
 import Swing.InicioSesion_Swing;
+import Swing.PantallaLoginAdmin;
+import Swing.PantallaLoginProfesor;
 import Swing.Profesor.*;
 
 import javax.swing.*;
@@ -19,8 +21,10 @@ public class PanelManager {
     private CrearCurso_Swing crearCurso;
     private CrearNota_Swing crearNota;
     private InicioSesion_Swing inicioSesion;
-    private LoginAdmin_Swing loginAdmin;
+    private PantallaLoginAdmin loginAdmin;
     private CrearCursada_Swing crearCursada;
+    private PantallaLoginProfesor loginProfesor;
+
 
     private JPanel prevoiusPanel;
 
@@ -59,20 +63,28 @@ public class PanelManager {
         crearCurso = new CrearCurso_Swing(this);
         crearCurso.armarCrearCurso();
 
-
-
         crearNota = new CrearNota_Swing(this);
         crearNota.armarCrearNota();
-
 
         inicioSesion = new InicioSesion_Swing(this);
         inicioSesion.armarInicioSesion();
 
-        loginAdmin = new LoginAdmin_Swing(this);
-        loginAdmin.armarLoginAdmin();
+        loginAdmin = new PantallaLoginAdmin(this);
+
+        loginProfesor = new PantallaLoginProfesor(this);
 
         crearCursada = new CrearCursada_Swing(this);
         crearCursada.armarCrearCursada();
+    }
+
+    public void mostrarPanelLoginProfesor(){
+        frame.getContentPane().removeAll();
+        frame.setSize(410,300);
+        centerFrame(frame);
+        frame.setTitle("Login Profesor");
+        frame.getContentPane().add(loginProfesor);
+        frame.getContentPane().validate();
+        frame.getContentPane().repaint();
     }
 
     public void mostrarPanelCrearCursada(){
@@ -80,7 +92,6 @@ public class PanelManager {
         frame.setSize(475, 270);
         centerFrame(frame);
         frame.setTitle("Crear Cursada");
-        frame.setTitle("AAAAAAAAAAAAAAA");
         frame.getContentPane().add(crearCursada);
         frame.getContentPane().validate();
         frame.getContentPane().repaint();
@@ -173,7 +184,7 @@ public class PanelManager {
         frame.getContentPane().removeAll();
         frame.setSize(800, 600);
         centerFrame(frame);
-        frame.setTitle("Inicio Profesor");
+        frame.setTitle("Inicio ProfesorDAOH2Impl");
         frame.getContentPane().add(profesor);
         frame.getContentPane().validate();
         frame.getContentPane().repaint();
