@@ -36,8 +36,15 @@ public class CursoServicio {
         cursoDAO.borraCurso(id_curso);
     }
 
-    public void editarCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoNoExisteException {
+    public void editarCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoNoExisteException, ServiceCantidadParcialesIncorrecto, ServiceCupoMaximoExcedido {
         try {
+            if(cantidad_parciales >= 7 || cantidad_parciales < 0){
+                throw new ServiceCantidadParcialesIncorrecto();
+            }
+            else if(cupo_maximo >= 121){
+                throw new ServiceCupoMaximoExcedido();
+            }
+
             cursoDAO.actualizaCurso(new Curso(id_curso, nombre, cupo_maximo, precio, cantidad_parciales));
         } catch (DAOCursoNoExisteException cursoNoExisteException) {
             throw new ServiceCursoNoExisteException("El curso " + id_curso + " no existe.");

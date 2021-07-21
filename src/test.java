@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Services.ProfesorServicio.print;
+
 public class test {
 
 	public static ArrayList<Alumno> animales = new ArrayList<Alumno>();
@@ -46,6 +48,7 @@ public class test {
 
 		System.out.println(cursoServicio.mostrarAlumnosAprobadosConFinal(34).size());
 
+		print();
 
 	}
 

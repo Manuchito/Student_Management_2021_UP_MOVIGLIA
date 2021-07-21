@@ -95,8 +95,12 @@ public class NotaServicio {
         }
     }
 
-    public void editarNota(int legajo, int curso, String tipoNota, int nota) throws ServiceNotaParcialesDependenDeFinalException, ServiceCursoNoExisteException, ServiceLegajoNoExsiteException {
+    public void editarNota(int legajo, int curso, String tipoNota, int nota) throws ServiceNotaParcialesDependenDeFinalException, ServiceCursoNoExisteException, ServiceLegajoNoExsiteException, ServiceNumeroNotaIncorrectoException {
         try {
+
+            if(nota > 10 || nota < 1){
+                throw new ServiceNumeroNotaIncorrectoException();
+            }
             Curso c = cursoDAO.muestraCurso(curso);
             Alumno a = alumnoDAO.muestraAlumno(legajo);
             List<Nota> notasCursoAlumno = notaDAO.listarNotasCursoALumno(a,c);

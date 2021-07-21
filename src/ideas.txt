@@ -1,9 +1,68 @@
-PARA CODIGO REPETIDO DE SWING (ENABLE, DISABLE, SETTEXT("") HACERLOS FUNCIONES DON'T REPEAT YOURSELF
+ARRAY LIST
 
-pantallas abstractas
+ArrayList is not synchronized.
+ArrayList supports dynamic array which can grow as needed.
+Size of ArrayList can be dynamically increased or decreased.
+ArrayLists are created with initial size.
+In Java, standard arrays are of fixed length. After arrays are created, they cannot grow or shrink means you must know
+in advance how many elements an array will hold.
+ArrayList can contain duplicate elements.
+ArrayList maintains insertion order of the elements.
+Retrieval is random access because array works at index basis.
 
-boton salir pagina principal no funciona
+HashTable
 
-MOSTRAR APROBADOS CON FINAL
+A HashTable is an array of the list.
+HashTable is similar to HashMap which can store elements in the form of key-value pairs and it is synchronized.
+It contains unique elements and neither the keys nor the values can be null.
 
+HashMap
+
+HashMap is a collection which stores key-value pairs, where key is a reference and value is the actual data.
+HashMap extends AbstractMap and implements the Map interface. It uses hash table to store the map.
+It contains unique elements.
+We cannot use duplicate data for keys in the HashMap.
+
+
+DIFERENCIAS HASHTABLE Y HASHMAP
+
+Para aplicaciones multi-hilo es preferible elegir Hashtable sobre HashMap, que no tiene sincronización.
+
+Debes tener en cuenta, sin embargo, que HashTable ofrece sincronización en los métodos de acceso y mutación,
+que impedirán que dos hilos diferentes agreguen o eliminen de manera concurrente de la lista, pero hay operaciones
+típicas de una aplicación multi-hilo que van a requerir de sincronización externa.
+
+Otra diferencia importante es que Hashtable no permite llaves o valores null, mientras que HashMap permite una llave y
+cualquier vantidad de valores null.
+
+Una de las subclases de HashMapes LinkedHashMap , que te sirve en el caso que requieras un orden de iteración predecible
+(que por defecto es el orden de inserción). Puedes fácilmente cambiar tu declaración de HashMap por LinkedHashMap.
+
+HashSet
+
+A HashSet represents a set of elements. It is available with collection package and extends AbstractSet and implements
+the Set interface.
+
+The HashSet class is used to create a collection and store it in a hash table. It does not guarantee the order of
+elements. It does not allow the duplicate elements to be stored.
+
+No se garantiza que los objetos que inserte en HashSet se inserten en el mismo orden.Los objetos se insertan en función
+de su código hash.
+Se permiten elementos NULL en HashSet.
+HashSet también implementa interfaces serializables y clonables.
+
+LinkedList
+
+LinkedList is very convenient to store the data.
+It can contain duplicate elements.
+It maintains insertion order.
+It is not synchronized.
+It doesn’t support random access for retrieving values.
+It can be used as list, stack or queue.
+
+
+MAP
+
+A map contains values on the basis of key, i.e. key and value pair. Each key and value pair is known as an entry. A Map contains unique keys.
+A Map is useful if you have to search, update or delete elements on the basis of a key.
 

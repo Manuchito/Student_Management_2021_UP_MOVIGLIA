@@ -30,4 +30,5 @@ public class PantallaLoginProfesor extends AbstractPantallaLogin{
     public void ejecutarAccionCanel() {
         panelManager.mostrarPanelInicioSesion();
     }
+
 }

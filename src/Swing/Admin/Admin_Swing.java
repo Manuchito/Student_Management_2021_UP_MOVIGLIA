@@ -165,6 +165,12 @@ public class Admin_Swing extends JPanel{
                         servCurso.editarCurso(c.getId(),c.getNombre(),c.getCupo(),c.getPrecio(),c.getCantidad_parciales());
                     } catch (ServiceCursoNoExisteException serviceCursoNoExisteException) {
                         serviceCursoNoExisteException.printStackTrace();
+                    } catch (ServiceCantidadParcialesIncorrecto serviceCantidadParcialesIncorrecto) {
+                        JOptionPane.showMessageDialog(null, "El numero de limite de cantidad de parciales tiene que ser menor o igual a 6 y mayor a 0",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                    } catch (ServiceCupoMaximoExcedido serviceCupoMaximoExcedido) {
+                        JOptionPane.showMessageDialog(null, "El numero de limite alumnos en curso es de 120",
+                                "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else {
@@ -187,6 +193,9 @@ public class Admin_Swing extends JPanel{
                         serviceCursoNoExisteException.printStackTrace();
                     } catch (ServiceLegajoNoExsiteException serviceLegajoNoExsiteException) {
                         serviceLegajoNoExsiteException.printStackTrace();
+                    } catch (ServiceNumeroNotaIncorrectoException serviceNumeroNotaIncorrectoException) {
+                        JOptionPane.showMessageDialog(null, "El numero de nota que ingreso no es correcto (1 al 10 permitido)",
+                                "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else {

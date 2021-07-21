@@ -57,7 +57,7 @@ public class CrearCurso_Swing extends JPanel {
         buttonCancelar = new JButton ("Cancelar");
         fieldCantidadParciales = new JComboBox (fieldCantidadParcialesItems);
 
-        setLayout (null);
+        setLayout(null);
 
         buttonCrear.addActionListener(new ActionListener() {
             @Override

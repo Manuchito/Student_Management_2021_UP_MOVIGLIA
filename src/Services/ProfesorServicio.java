@@ -34,6 +34,10 @@ public class ProfesorServicio {
         }
     }
 
+    public static void print(){
+        System.out.println("comemla");
+    }
+
     public List<Profesor> listar(){
         return profesorDAOH2.listaTodosLosProfesores();
     }
