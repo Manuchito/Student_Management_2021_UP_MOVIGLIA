@@ -44,7 +44,6 @@ public class InscribirAlumno_Swing extends JPanel {
 
     public void armarInscribirAlumnoSwing() {
 
-        //componentes del JFrame
 
         JButton buttonMostrarAlumnos = new JButton ("Mosatrar Alumnos");
         JButton buttonMostrarCursos = new JButton ("Mostrar Cursos");
@@ -154,29 +153,29 @@ public class InscribirAlumno_Swing extends JPanel {
 
 
 
-        //agrego componentes al JFrame (Mismo que hacer frame.add(XXX))
-        add (scrollTable);
-        add (buttonMostrarAlumnos);
-        add (buttonMostrarCursos);
-        add (fieldAlumno);
-        add (fieldCurso);
-        add (textAlumno);
-        add (textCurso);
-        add (buttonInscribirAlumno);
-        add (buttonCancelar);
-        add (textInscribir);
 
-        //ubico componentes en JFrame
-        scrollTable.setBounds (375, 90, 490, 325);
-        buttonMostrarAlumnos.setBounds (435, 35, 150, 30);
-        buttonMostrarCursos.setBounds (655, 35, 150, 30);
-        textAlumno.setBounds (50, 150, 100, 25);
-        textCurso.setBounds (50, 215, 100, 25);
-        fieldAlumno.setBounds (185, 150, 120, 25);
-        fieldCurso.setBounds (185, 215, 120, 25);
-        buttonInscribirAlumno.setBounds (65, 370, 110, 35);
-        buttonCancelar.setBounds (225, 370, 110, 35);
-        textInscribir.setBounds (100, 50, 155, 25);
+        add(scrollTable);
+        add(buttonMostrarAlumnos);
+        add(buttonMostrarCursos);
+        add(fieldAlumno);
+        add(fieldCurso);
+        add(textAlumno);
+        add(textCurso);
+        add(buttonInscribirAlumno);
+        add(buttonCancelar);
+        add(textInscribir);
+
+
+        scrollTable.setBounds(375, 90, 490, 325);
+        buttonMostrarAlumnos.setBounds(435, 35, 150, 30);
+        buttonMostrarCursos.setBounds(655, 35, 150, 30);
+        textAlumno.setBounds(50, 150, 100, 25);
+        textCurso.setBounds(50, 215, 100, 25);
+        fieldAlumno.setBounds(185, 150, 120, 25);
+        fieldCurso.setBounds(185, 215, 120, 25);
+        buttonInscribirAlumno.setBounds(65, 370, 110, 35);
+        buttonCancelar.setBounds(225, 370, 110, 35);
+        textInscribir.setBounds(100, 50, 155, 25);
     }
 
 

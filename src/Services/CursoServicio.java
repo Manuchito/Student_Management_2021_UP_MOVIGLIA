@@ -1,9 +1,13 @@
 package Services;
 
 
+import DAO.Alumno.AlumnoDAO;
 import DAO.Alumno.AlumnoDAOH2Impl;
+import DAO.Cursada.CursadaDAO;
 import DAO.Cursada.CursadaDAOH2Impl;
+import DAO.Curso.CursoDAO;
 import DAO.Curso.CursoDAOH2Impl;
+import DAO.Nota.NotaDAO;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Curso;
@@ -14,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CursoServicio {
-    AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-    CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
-    NotaDAOH2Impl parcialDAO = new NotaDAOH2Impl();
-    CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
+    AlumnoDAO alumnoDAO = new AlumnoDAOH2Impl();
+    CursoDAO cursoDAO = new CursoDAOH2Impl();
+    NotaDAO parcialDAO = new NotaDAOH2Impl();
+    CursadaDAO cursadaDAO = new CursadaDAOH2Impl();
     NotaServicio notaServicio = new NotaServicio();
 
     public void crearCurso(int id_curso, String nombre, int precio, int cupo_maximo, int cantidad_parciales) throws ServiceCursoYaExisteException {
@@ -53,7 +57,7 @@ public class CursoServicio {
     }
 
     public int muestraRecaudacionTotal(int id_curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException {
-        List<Alumno> alumnosCurso = new ArrayList<>();
+        List<Alumno> alumnosCurso;
         try {
             Curso c = cursoDAO.muestraCurso(id_curso);
             alumnosCurso = cursadaDAO.listaAlumnosCurso(c);

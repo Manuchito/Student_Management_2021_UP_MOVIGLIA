@@ -3,6 +3,7 @@ package Swing.Tablas;
 import Entidades.Alumno;
 import Entidades.Curso;
 import Entidades.Nota;
+import Entidades.Profesor;
 
 
 import javax.swing.table.AbstractTableModel;
@@ -125,5 +126,13 @@ public class NotaTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex){
         return columnIndex == 3;
+    }
+
+    public void reiniciarTabla(List<Nota> contenido){
+        this.setContenido(new ArrayList<>());
+        this.setContenido(contenido);
+        this.fireTableDataChanged();
+
+
     }
 }

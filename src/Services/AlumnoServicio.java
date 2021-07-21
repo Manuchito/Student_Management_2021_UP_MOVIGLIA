@@ -1,7 +1,11 @@
 package Services;
 
+import DAO.Alumno.AlumnoDAO;
+import DAO.Cursada.CursadaDAO;
 import DAO.Cursada.CursadaDAOH2Impl;
+import DAO.Curso.CursoDAO;
 import DAO.Curso.CursoDAOH2Impl;
+import DAO.Nota.NotaDAO;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
 import DAO.Alumno.AlumnoDAOH2Impl;
@@ -16,12 +20,12 @@ import Exceptions.ServiceInscripcionRepetidaException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlumnoServicio {
+public class AlumnoServicio{
 
-    AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-    CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
-    NotaDAOH2Impl notaDAO = new NotaDAOH2Impl();
-    CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
+    AlumnoDAO alumnoDAO = new AlumnoDAOH2Impl();
+    CursoDAO cursoDAO = new CursoDAOH2Impl();
+    NotaDAO notaDAO = new NotaDAOH2Impl();
+    CursadaDAO cursadaDAO = new CursadaDAOH2Impl();
 
 
     public void registrar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceClaveDuplicadaException{
@@ -34,9 +38,7 @@ public class AlumnoServicio {
 
     }
 
-    public void eliminar(int legajo){
-        alumnoDAO.borraAlumno(legajo);
-    }
+
 
     public void editar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceLegajoNoExsiteException, NumberFormatException, ServiceLimiteDeCursoIncorrecto {
 
@@ -77,4 +79,10 @@ public class AlumnoServicio {
             throw new ServiceLegajoNoExsiteException("El alumno con legajo " + legajo + " no existe.");
         }
     }
+
+
+    public void eliminar(int legajo) {
+        alumnoDAO.borraAlumno(legajo);
+    }
+
 }

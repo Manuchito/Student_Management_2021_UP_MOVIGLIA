@@ -60,7 +60,6 @@ public class ReporteAlumno_Swing extends JPanel {
     }
 
     public void  armarReporteAlumno() {
-        //construct components
         textBuscarLegajo = new JLabel ("Legajo Alumno");
         fieldBuscarLegajo = new JComboBox();
 
@@ -86,7 +85,6 @@ public class ReporteAlumno_Swing extends JPanel {
             fieldBuscarLegajo.addItem(a.getLegajo());
         }
 
-        //set components properties
         fieldLegajo.setEnabled (false);
         fieldNombre.setEnabled (false);
         fieldApellido.setEnabled (false);
@@ -94,7 +92,6 @@ public class ReporteAlumno_Swing extends JPanel {
         fieldCantidadAprobados.setEnabled (false);
 
 
-        //adjust size and set layout
         setLayout(null);
 
         NotaTableModel tablaNotasTableModel= new NotaTableModel();
@@ -150,52 +147,51 @@ public class ReporteAlumno_Swing extends JPanel {
             }
         });
 
-        //add components
-        add (textBuscarLegajo);
-        add (fieldBuscarLegajo);
-        add (buttonBuscar);
-        add (scrollpaneNotasAlumno);
-        add (textDescNotasAlumno);
-        add (scrollpaneCursosAprobados);
-        add (textDescCursosAprobados);
-        add (scrollpaneCursada);
-        add (textDescCursada);
-        add (textLegajo);
-        add (textNombre);
-        add (textApellido);
-        add (textCantidadCursos);
-        add (textCantidadAprobados);
 
-        add (fieldLegajo);
-        add (fieldNombre);
-        add (fieldApellido);
-        add (fieldCantidadCursada);
-        add (fieldCantidadAprobados);
+        add(textBuscarLegajo);
+        add(fieldBuscarLegajo);
+        add(buttonBuscar);
+        add(scrollpaneNotasAlumno);
+        add(textDescNotasAlumno);
+        add(scrollpaneCursosAprobados);
+        add(textDescCursosAprobados);
+        add(scrollpaneCursada);
+        add(textDescCursada);
+        add(textLegajo);
+        add(textNombre);
+        add(textApellido);
+        add(textCantidadCursos);
+        add(textCantidadAprobados);
 
-        add (buttonVolver);
+        add(fieldLegajo);
+        add(fieldNombre);
+        add(fieldApellido);
+        add(fieldCantidadCursada);
+        add(fieldCantidadAprobados);
 
-        //set component bounds (only needed by Absolute Positioning)
-        textBuscarLegajo.setBounds (435, 55, 85, 25);
-        fieldBuscarLegajo.setBounds (545, 55, 100, 25);
-        buttonBuscar.setBounds (670, 55, 125, 25);
-        scrollpaneNotasAlumno.setBounds (40, 200, 250, 210);
-        textDescNotasAlumno.setBounds (105, 150, 125, 25);
-        scrollpaneCursosAprobados.setBounds (330, 200, 250, 210);
-        textDescCursosAprobados.setBounds (390, 150, 130, 25);
-        scrollpaneCursada.setBounds (620, 200, 250, 210);
-        textDescCursada.setBounds (680, 150, 130, 25);
-        textLegajo.setBounds (895, 185, 100, 25);
-        textNombre.setBounds (895, 225, 100, 25);
-        textApellido.setBounds (895, 265, 100, 25);
-        textCantidadCursos.setBounds (895, 345, 110, 25);
-        textCantidadAprobados.setBounds (895, 385, 115, 25);
+        add(buttonVolver);
 
-        fieldLegajo.setBounds (1030, 185, 75, 25);
-        fieldNombre.setBounds (1030, 225, 105, 25);
-        fieldApellido.setBounds (1030, 265, 105, 25);
-        fieldCantidadCursada.setBounds (1030, 345, 75, 25);
-        fieldCantidadAprobados.setBounds (1030, 385, 75, 25);
+        textBuscarLegajo.setBounds(435, 55, 85, 25);
+        fieldBuscarLegajo.setBounds(545, 55, 100, 25);
+        buttonBuscar.setBounds(670, 55, 125, 25);
+        scrollpaneNotasAlumno.setBounds(40, 200, 250, 210);
+        textDescNotasAlumno.setBounds(105, 150, 125, 25);
+        scrollpaneCursosAprobados.setBounds(330, 200, 250, 210);
+        textDescCursosAprobados.setBounds(390, 150, 130, 25);
+        scrollpaneCursada.setBounds(620, 200, 250, 210);
+        textDescCursada.setBounds(680, 150, 130, 25);
+        textLegajo.setBounds(895, 185, 100, 25);
+        textNombre.setBounds(895, 225, 100, 25);
+        textApellido.setBounds(895, 265, 100, 25);
+        textCantidadCursos.setBounds(895, 345, 110, 25);
+        textCantidadAprobados.setBounds(895, 385, 115, 25);
 
-        buttonVolver.setBounds (950, 455, 100, 25);
+        fieldLegajo.setBounds(1030, 185, 75, 25);
+        fieldNombre.setBounds(1030, 225, 105, 25);
+        fieldApellido.setBounds(1030, 265, 105, 25);
+        fieldCantidadCursada.setBounds(1030, 345, 75, 25);
+        fieldCantidadAprobados.setBounds(1030, 385, 75, 25);
+
+        buttonVolver.setBounds(950, 455, 100, 25);
     }
 }

@@ -38,10 +38,7 @@ public class Profesor_Swing extends JPanel {
     }
 
     public void armarProfesorSwing() {
-        //construct preComponents
 
-
-        //construct components
         JLabel textAlumno = new JLabel("Legajo Alumno");
         JButton buttonBuscarAlumno = new JButton("Buscar");
         JLabel textCursosAlumno = new JLabel("Cursos del Alumno");
@@ -173,48 +170,42 @@ public class Profesor_Swing extends JPanel {
             }
         });
 
+        setLayout(null);
+
+        add(scrollPaneCursosAlumno);
+        add(scrollPaneAlumnosCurso);
+
+        add(textAlumno);
+        add(buttonBuscarAlumno);
+        add(textCursosAlumno);
+        add(textAlumnosCurso);
+        add(textCurso);
+        add(fieldAlumno);
+        add(fieldCurso);
+        add(buttonBuscarCurso);
+        add(buttonReporteAlumno);
+        add(buttonInscribir);
+        add(buttonVolver);
+        add(buttonCalificar);
+        add(buttonReporte);
 
 
-
-        //adjust size and set layout
-        setLayout (null);
-
-        //add components
-        add (scrollPaneCursosAlumno);
-        add (scrollPaneAlumnosCurso);
-
-        add (textAlumno);
-        add (buttonBuscarAlumno);
-        add (textCursosAlumno);
-        add (textAlumnosCurso);
-        add (textCurso);
-        add (fieldAlumno);
-        add (fieldCurso);
-        add (buttonBuscarCurso);
-        add (buttonReporteAlumno);
-        add (buttonInscribir);
-        add (buttonVolver);
-        add (buttonCalificar);
-        add (buttonReporte);
-
-        //set component bounds (only needed by Absolute Positioning)
-
-        scrollPaneCursosAlumno.setBounds (385, 90, 330, 115);
+        scrollPaneCursosAlumno.setBounds(385, 90, 330, 115);
         scrollPaneAlumnosCurso.setBounds(385, 305, 330, 220);
 
-        textAlumno.setBounds (385, 50, 100, 25);
-        buttonBuscarAlumno.setBounds (625, 50, 90, 25);
-        textCursosAlumno.setBounds (410, 10, 120, 25);
-        textAlumnosCurso.setBounds (410, 225, 140, 25);
-        textCurso.setBounds (385, 265, 100, 25);
-        fieldAlumno.setBounds (475, 50, 135, 25);
-        fieldCurso.setBounds (475, 265, 135, 25);
-        buttonBuscarCurso.setBounds (625, 265, 90, 25);
-        buttonReporteAlumno.setBounds (100, 80, 140, 45);
-        buttonInscribir.setBounds (100, 180, 140, 45);
-        buttonVolver.setBounds (110, 485, 120, 40);
-        buttonCalificar.setBounds (100, 280, 140, 45);
-        buttonReporte.setBounds (100, 380, 140, 45);
+        textAlumno.setBounds(385, 50, 100, 25);
+        buttonBuscarAlumno.setBounds(625, 50, 90, 25);
+        textCursosAlumno.setBounds(410, 10, 120, 25);
+        textAlumnosCurso.setBounds(410, 225, 140, 25);
+        textCurso.setBounds(385, 265, 100, 25);
+        fieldAlumno.setBounds(475, 50, 135, 25);
+        fieldCurso.setBounds(475, 265, 135, 25);
+        buttonBuscarCurso.setBounds(625, 265, 90, 25);
+        buttonReporteAlumno.setBounds(100, 80, 140, 45);
+        buttonInscribir.setBounds(100, 180, 140, 45);
+        buttonVolver.setBounds(110, 485, 120, 40);
+        buttonCalificar.setBounds(100, 280, 140, 45);
+        buttonReporte.setBounds(100, 380, 140, 45);
     }
 
 

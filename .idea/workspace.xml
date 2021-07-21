@@ -2,20 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6053aee5-ef2a-4948-b6ec-98c48bc40d4c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/AbstractPantallaCreacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/CamposCrearAlumno.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/CamposCrearProfesor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/CamposPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/PantallaCrearAlumno.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swing/Admin/PantallaCrearProfesor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.h2.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" beforeDir="false" afterPath="$PROJECT_DIR$/h2/base_de_datos/ejemplo.lock.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/Profesor/ProfesorDAOH2Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/Profesor/ProfesorDAOH2Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/DBManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main/PanelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/PanelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/AlumnoServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/CursadaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/CursadaServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/CursoServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/CursoServicio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/NotaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/NotaServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/AbstractPantallaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/AbstractPantallaLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/Admin_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearAlumno_Swing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearCursada_Swing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearCurso_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Admin/CrearCurso_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Admin/CrearNota_Swing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/InicioSesion_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/InicioSesion_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/CalificarAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/InscribirAlumno_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/Profesor_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/ReporteAlumno_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/ReporteAlumno_Swing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Swing/Profesor/ReporteCurso_Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Profesor/ReporteCurso_Swing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Tablas/AlumnoTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Tablas/AlumnoTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Tablas/CursadaTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Tablas/CursadaTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Tablas/CursoTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Tablas/CursoTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Tablas/NotaTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Tablas/NotaTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swing/Tablas/ProfesorTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swing/Tablas/ProfesorTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ideas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ideas.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +311,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Services/NotaServicio.java</url>
-          <line>21</line>
+          <line>25</line>
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -301,12 +321,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Services/NotaServicio.java</url>
-          <line>62</line>
+          <line>66</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Services/NotaServicio.java</url>
-          <line>36</line>
+          <line>40</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -316,18 +336,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java</url>
           <line>147</line>
           <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="120" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/DAO/Nota/NotaDAOH2Impl.java</url>
@@ -338,6 +348,16 @@
           <url>file://$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java</url>
           <line>24</line>
           <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Swing/Tablas/CursadaTableModel.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Services/CursadaServicio.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="127" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="org.h2.jdbc.JdbcSQLException" package="org.h2.jdbc" />
@@ -356,16 +376,8 @@
           <option name="timeStamp" value="79" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/DAO/Alumno/AlumnoDAOH2Impl.java</url>
-          <line>55</line>
-          <properties class="DAO.Alumno.AlumnoDAOH2Impl" method="borraAlumno">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/Services/CursadaServicio.java</url>
-          <line>20</line>
+          <line>24</line>
           <properties class="Services.CursadaServicio" method="inscribirAlumnoxCurso">
             <option name="EMULATED" value="true" />
           </properties>
@@ -373,7 +385,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/Services/NotaServicio.java</url>
-          <line>35</line>
+          <line>39</line>
           <properties class="Services.NotaServicio" method="calificarAlumno">
             <option name="EMULATED" value="true" />
           </properties>
@@ -386,14 +398,6 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="119" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Services/CursoServicio.java</url>
-          <line>67</line>
-          <properties class="Services.CursoServicio" method="mostrarAlumnosAprobadosParaFinal">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="125" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

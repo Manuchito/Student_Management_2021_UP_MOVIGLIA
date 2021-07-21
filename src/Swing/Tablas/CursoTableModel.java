@@ -129,5 +129,10 @@ public class CursoTableModel extends AbstractTableModel {
         return columnIndex == 1 || columnIndex == 2 || columnIndex == 3 || columnIndex == 4;
     }
 
+    public void reiniciarTabla(List<Curso> contenido){
+        this.setContenido(new ArrayList<>());
+        this.setContenido(contenido);
+        this.fireTableDataChanged();
 
+    }
 }

@@ -135,4 +135,12 @@ public class AlumnoTableModel extends AbstractTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex){
         return columnIndex == 1 || columnIndex == 2 || columnIndex == 3;
     }
+
+    public void reiniciarTabla(List<Alumno> contenido){
+        this.setContenido(new ArrayList<>());
+        this.setContenido(contenido);
+        this.fireTableDataChanged();
+
+
+    }
 }

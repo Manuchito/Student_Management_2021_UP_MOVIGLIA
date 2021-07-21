@@ -30,8 +30,6 @@ public abstract class AbstractPantallaLogin extends JPanel {
         buttonVolver = new JButton ("Volver");
         fieldPassword = new JPasswordField (5);
 
-        //adjust size and set layout
-        setPreferredSize (new Dimension (393, 265));
         setLayout (null);
 
         buttonLogin.addActionListener(new ActionListener() {
@@ -48,15 +46,13 @@ public abstract class AbstractPantallaLogin extends JPanel {
             }
         });
 
-        //add components
-        add (textUsuario);
-        add (textPassword);
-        add (fieldUsuario);
-        add (buttonLogin);
-        add (buttonVolver);
-        add (fieldPassword);
+        add(textUsuario);
+        add(textPassword);
+        add(fieldUsuario);
+        add(buttonLogin);
+        add(buttonVolver);
+        add(fieldPassword);
 
-        //set component bounds (only needed by Absolute Positioning)
         textUsuario.setBounds (100, 70, 100, 25);
         textPassword.setBounds (100, 115, 100, 25);
         fieldUsuario.setBounds (200, 70, 100, 25);

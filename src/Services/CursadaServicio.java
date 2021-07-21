@@ -1,8 +1,12 @@
 package Services;
 
+import DAO.Alumno.AlumnoDAO;
 import DAO.Alumno.AlumnoDAOH2Impl;
+import DAO.Cursada.CursadaDAO;
 import DAO.Cursada.CursadaDAOH2Impl;
+import DAO.Curso.CursoDAO;
 import DAO.Curso.CursoDAOH2Impl;
+import DAO.Nota.NotaDAO;
 import DAO.Nota.NotaDAOH2Impl;
 import Entidades.Alumno;
 import Entidades.Cursada;
@@ -13,10 +17,10 @@ import Exceptions.*;
 import java.util.List;
 
 public class CursadaServicio {
-    AlumnoDAOH2Impl alumnoDAO = new AlumnoDAOH2Impl();
-    CursoDAOH2Impl cursoDAO = new CursoDAOH2Impl();
-    NotaDAOH2Impl notaDAO = new NotaDAOH2Impl();
-    CursadaDAOH2Impl cursadaDAO = new CursadaDAOH2Impl();
+    AlumnoDAO alumnoDAO = new AlumnoDAOH2Impl();
+    CursoDAO cursoDAO = new CursoDAOH2Impl();
+    NotaDAO notaDAO = new NotaDAOH2Impl();
+    CursadaDAO cursadaDAO = new CursadaDAOH2Impl();
 
     public void inscribirAlumnoxCurso(int legajo, int curso) throws ServiceLegajoNoExsiteException, ServiceCursoNoExisteException, ServiceCupoCompletoException, ServiceCapacidadMaximaCursosAlumnoException, ServiceInscripcionRepetidaException, ServiceFinalPendiente, ServiceAlmunoYaCursoMateria {
         try{

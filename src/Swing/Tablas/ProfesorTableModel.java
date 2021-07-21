@@ -137,4 +137,12 @@ public class ProfesorTableModel extends AbstractTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex){
         return columnIndex == 0|| columnIndex ==  1 || columnIndex == 3;
     }
+
+    public void reiniciarTabla(List<Profesor> contenido){
+        this.setContenido(new ArrayList<>());
+        this.setContenido(contenido);
+        this.fireTableDataChanged();
+
+
+    }
 }

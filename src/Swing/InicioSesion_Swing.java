@@ -23,7 +23,7 @@ public class InicioSesion_Swing extends JPanel {
     }
 
     public void armarInicioSesion() {
-        //construct components
+
         buttonAdministrador = new JButton ("Administrador");
         buttonProfesor = new JButton ("Profesor");
         buttonSalir = new JButton ("Salir");
@@ -31,8 +31,7 @@ public class InicioSesion_Swing extends JPanel {
         textDescripcion.setFont(new Font("Serif", Font.BOLD, 28));
 
 
-        //adjust size and set layout
-        setLayout (null);
+        setLayout(null);
 
         buttonProfesor.addActionListener(new ActionListener() {
             @Override
@@ -48,19 +47,17 @@ public class InicioSesion_Swing extends JPanel {
             }
         });
 
-        //add components
 
-        add (buttonAdministrador);
-        add (buttonProfesor);
-        add (buttonSalir);
-        add (textDescripcion);
+        add(buttonAdministrador);
+        add(buttonProfesor);
+        add(buttonSalir);
+        add(textDescripcion);
 
 
-        //set component bounds (only needed by Absolute Positioning)
-        buttonAdministrador.setBounds (185, 225, 135, 55);
-        buttonProfesor.setBounds (555, 225, 135, 55);
-        buttonSalir.setBounds (390, 400, 100, 25);
-        textDescripcion.setBounds (230, 85, 450, 45);
+        buttonAdministrador.setBounds(185, 225, 135, 55);
+        buttonProfesor.setBounds(555, 225, 135, 55);
+        buttonSalir.setBounds(390, 400, 100, 25);
+        textDescripcion.setBounds(230, 85, 450, 45);
     }
 
 }

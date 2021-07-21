@@ -1,5 +1,6 @@
 package Swing.Tablas;
 
+import Entidades.Alumno;
 import Entidades.Cursada;
 import Entidades.Curso;
 
@@ -86,6 +87,14 @@ public class CursadaTableModel extends AbstractTableModel {
      */
     public void setContenido(List<Cursada> contenido) {
         this.contenido = contenido;
+    }
+
+    public void reiniciarTabla(List<Cursada> contenido){
+        this.setContenido(new ArrayList<>());
+        this.setContenido(contenido);
+        this.fireTableDataChanged();
+
+
     }
 
 }

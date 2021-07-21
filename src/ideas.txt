@@ -5,3 +5,5 @@ pantallas abstractas
 boton salir pagina principal no funciona
 
 MOSTRAR APROBADOS CON FINAL
+
+

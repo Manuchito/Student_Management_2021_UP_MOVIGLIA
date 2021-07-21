@@ -62,7 +62,7 @@ public class CalificarAlumno_Swing extends JPanel {
     }
 
     public void armarCalificarCurso() {
-        //construct components
+
         String[] numerNotasItems = {"1","2","3","4","5","6","7","8","9","10"};
         fieldLegajo = new JComboBox();
         fieldCurso = new JTextField (5);
@@ -85,11 +85,10 @@ public class CalificarAlumno_Swing extends JPanel {
         buttonCalificarAlumno.setEnabled(false);
         buttonEliminarNota.setEnabled(false);
 
-        //adjust size and set layout
+
         setLayout (null);
 
 
-        //listeners
         cursoTableModel = new CursoTableModel();
         tablaCursosAlumno = new JTable(cursoTableModel);
         scrollPaneCursosAlumno = new JScrollPane(tablaCursosAlumno);
@@ -257,40 +256,39 @@ public class CalificarAlumno_Swing extends JPanel {
             }
         });
 
-        //add components
-        add (scrollPaneNotasAlumno);
-        add (fieldLegajo);
-        add (fieldCurso);
-        add (fieldNota);
-        add (textAlumno);
-        add (textCurso);
-        add (textNumeroNota);
-        add (fieldTipoNota);
-        add (textParcial);
-        add (scrollPaneCursosAlumno);
-        add (jcomp11);
-        add (buttonCalificarAlumno);
-        add (buttonVolver);
-        add (jcomp14);
-        add (buttonBuscarAlumno);
-        add (buttonEliminarNota);
+        add(scrollPaneNotasAlumno);
+        add(fieldLegajo);
+        add(fieldCurso);
+        add(fieldNota);
+        add(textAlumno);
+        add(textCurso);
+        add(textNumeroNota);
+        add(fieldTipoNota);
+        add(textParcial);
+        add(scrollPaneCursosAlumno);
+        add(jcomp11);
+        add(buttonCalificarAlumno);
+        add(buttonVolver);
+        add(jcomp14);
+        add(buttonBuscarAlumno);
+        add(buttonEliminarNota);
 
-        //set component bounds (only needed by Absolute Positioning)
-        scrollPaneNotasAlumno.setBounds (395, 265, 250, 155);
-        fieldLegajo.setBounds (175, 65, 100, 25);
-        fieldCurso.setBounds (175, 145, 100, 25);
-        fieldNota.setBounds (175, 225, 100, 25);
-        textAlumno.setBounds (55, 65, 120, 25);
-        textCurso.setBounds (55, 145, 125, 25);
-        textNumeroNota.setBounds (55, 305, 120, 25);
-        fieldTipoNota.setBounds (175, 305, 100, 25);
-        textParcial.setBounds (55, 225, 120, 25);
-        scrollPaneCursosAlumno.setBounds (395, 65, 250, 155);
-        jcomp11.setBounds (460, 235, 120, 30);
-        buttonCalificarAlumno.setBounds (210, 395, 130, 25);
-        buttonVolver.setBounds (550, 445, 100, 25);
-        jcomp14.setBounds (455, 40, 130, 25);
-        buttonBuscarAlumno.setBounds (55, 395, 130, 25);
+
+        scrollPaneNotasAlumno.setBounds(395, 265, 250, 155);
+        fieldLegajo.setBounds(175, 65, 100, 25);
+        fieldCurso.setBounds(175, 145, 100, 25);
+        fieldNota.setBounds(175, 225, 100, 25);
+        textAlumno.setBounds(55, 65, 120, 25);
+        textCurso.setBounds(55, 145, 125, 25);
+        textNumeroNota.setBounds(55, 305, 120, 25);
+        fieldTipoNota.setBounds(175, 305, 100, 25);
+        textParcial.setBounds(55, 225, 120, 25);
+        scrollPaneCursosAlumno.setBounds(395, 65, 250, 155);
+        jcomp11.setBounds(460, 235, 120, 30);
+        buttonCalificarAlumno.setBounds(210, 395, 130, 25);
+        buttonVolver.setBounds(550, 445, 100, 25);
+        jcomp14.setBounds(455, 40, 130, 25);
+        buttonBuscarAlumno.setBounds(55, 395, 130, 25);
         buttonEliminarNota.setBounds(130, 435,130,25);
 
 

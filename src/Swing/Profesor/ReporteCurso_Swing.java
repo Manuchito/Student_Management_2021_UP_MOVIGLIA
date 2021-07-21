@@ -58,7 +58,7 @@ public class ReporteCurso_Swing extends JPanel {
     }
 
     public void armarReporteCurso() {
-        //construct components
+
         fieldCursoBuscar = new JComboBox();
         textCurso = new JLabel("Id Curso:");
         textTotal = new JLabel("Recaudacion Total:");
@@ -100,9 +100,9 @@ public class ReporteCurso_Swing extends JPanel {
         fieldRecaudacionTotal.setEnabled(false);
         fieldAprobadosFinal.setEnabled(false);
 
-        //adjust size and set layout
+
         setLayout(null);
-        //listeners
+
         alumnoTableModel = new AlumnoTableModel();
         tabla = new JTable(alumnoTableModel);
         scrollTable = new JScrollPane(tabla);
@@ -161,7 +161,7 @@ public class ReporteCurso_Swing extends JPanel {
             }
         });
 
-        //add components
+
         add(fieldCursoBuscar);
         add(textCurso);
         add(scrollTable);
@@ -187,7 +187,7 @@ public class ReporteCurso_Swing extends JPanel {
         add(fieldAprobadosFinal);
         add(textAprobadosFinal);
 
-        //set component bounds (only needed by Absolute Positioning)
+
         fieldCursoBuscar.setBounds(155, 65, 100, 25);
         textCurso.setBounds(55, 65, 100, 25);
         scrollTable.setBounds(55, 110, 600, 310);
@@ -213,7 +213,7 @@ public class ReporteCurso_Swing extends JPanel {
         fieldAprobadosFinal.setBounds(810, 390, 100, 25);
         fieldRecaudacionTotal.setBounds(810, 430, 100, 25);
 
-        buttonAprobados.setBounds (405, 65, 145, 25);
-        buttonVolver.setBounds (810, 485, 100, 25);
+        buttonAprobados.setBounds(405, 65, 145, 25);
+        buttonVolver.setBounds(810, 485, 100, 25);
     }
 }

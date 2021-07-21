@@ -1,19 +1,17 @@
 package Swing.Admin;
 
-import DAO.Cursada.CursadaDAOH2Impl;
 import Entidades.*;
 import Exceptions.*;
 import Main.PanelManager;
 import Services.*;
 import Swing.Tablas.*;
 
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class Admin_Swing extends JPanel{
@@ -132,10 +130,8 @@ public class Admin_Swing extends JPanel{
         buttonEliminarCursada.setEnabled(false);
         buttonEliminarProfesor.setEnabled(false);
 
-        //adjust size and set layout
         setLayout (null);
 
-        //listeners
         TableCellListener tclAlumno = new TableCellListener(tablaAlumnos, new AbstractAction(){
             public void actionPerformed(ActionEvent e){
                 TableCellListener tclAlumno = (TableCellListener)e.getSource();
@@ -226,6 +222,8 @@ public class Admin_Swing extends JPanel{
         activarBottonEliminar(tablaNotas, buttonEliminarNota);
 
         activarBottonEliminar(tablaCursada, buttonEliminarCursada);
+
+        activarBottonEliminar(tablaProfesores, buttonEliminarProfesor);
 
 
         buttonCrearAlumno.addActionListener(new ActionListener() {
@@ -325,24 +323,39 @@ public class Admin_Swing extends JPanel{
             }
         });
 
+        buttonCrearProfesor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelManager.mostrarPanelCrearProfesor();
+            }
+        });
+
+        buttonEliminarProfesor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int filaSeleccionadaProfesor = tablaProfesores.getSelectedRow();
+                Profesor p = profesorTableModel.getContenido().get(filaSeleccionadaProfesor);
+                servProfesor.eliminar(p.getUsuario());
+                buttonEliminarProfesor.setEnabled(false);
+                profesorTableModel.getContenido().remove(filaSeleccionadaProfesor);
+                profesorTableModel.fireTableDataChanged();
+
+            }
+        });
+
         buttonActualizarTablas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                alumnoTableModel.setContenido(new ArrayList<>());
-                alumnoTableModel.setContenido(servAlumno.listarAlumnos());
-                alumnoTableModel.fireTableDataChanged();
 
-                cursoTableModel.setContenido(new ArrayList<>());
-                cursoTableModel.setContenido(servCurso.listarCursos());
-                cursoTableModel.fireTableDataChanged();
+                alumnoTableModel.reiniciarTabla(servAlumno.listarAlumnos());
 
-                notaTableModel.setContenido(new ArrayList<>());
-                notaTableModel.setContenido(servNota.listarTodasLasNotas());
-                notaTableModel.fireTableDataChanged();
+                cursadaTableModel.reiniciarTabla(servCursada.mostrarCursadas());
 
-                cursadaTableModel.setContenido(new ArrayList<>());
-                cursadaTableModel.setContenido(servCursada.mostrarCursadas());
-                cursoTableModel.fireTableDataChanged();
+                notaTableModel.reiniciarTabla(servNota.listarTodasLasNotas());
+
+                cursoTableModel.reiniciarTabla(servCurso.listarCursos());
+
+                profesorTableModel.reiniciarTabla(servProfesor.listar());
             }
         });
 
@@ -356,59 +369,59 @@ public class Admin_Swing extends JPanel{
             }
         });
 
-        //add components
-        add (scrollpaneAlumnos);
-        add (scrollpaneCursos);
-        add (scrollpaneNotas);
-        add (scrollPaneCursadas);
-        add (scrollpaneProfesores);
 
-        add (buttonCrearAlumno);
-        add (buttonEliminarAlumno);
-        add (buttonEliminarCurso);
-        add (buttonCrearCurso);
-        add (buttonCrearNota);
-        add (buttonEliminarNota);
-        add (buttonCrearCursada);
-        add (buttonEliminarCursada);
-        add (buttonCrearProfesor);
-        add (buttonEliminarProfesor);
+        add(scrollpaneAlumnos);
+        add(scrollpaneCursos);
+        add(scrollpaneNotas);
+        add(scrollPaneCursadas);
+        add(scrollpaneProfesores);
 
-        add (textAlumnos);
-        add (textCursos);
-        add (textNotas);
-        add (textCursadas);
-        add (textProfesores);
+        add(buttonCrearAlumno);
+        add(buttonEliminarAlumno);
+        add(buttonEliminarCurso);
+        add(buttonCrearCurso);
+        add(buttonCrearNota);
+        add(buttonEliminarNota);
+        add(buttonCrearCursada);
+        add(buttonEliminarCursada);
+        add(buttonCrearProfesor);
+        add(buttonEliminarProfesor);
 
-        add (buttonVolver);
-        add (buttonActualizarTablas);
+        add(textAlumnos);
+        add(textCursos);
+        add(textNotas);
+        add(textCursadas);
+        add(textProfesores);
+
+        add(buttonVolver);
+        add(buttonActualizarTablas);
 
 
-        scrollpaneAlumnos.setBounds (45, 220, 315, 515);
-        scrollpaneCursos.setBounds (395, 220, 315, 515);
-        scrollpaneNotas.setBounds (745, 220, 315, 515);
-        scrollPaneCursadas.setBounds (1095, 220, 315, 515);
-        scrollpaneProfesores.setBounds (1445,220,315,515);
+        scrollpaneAlumnos.setBounds(45, 220, 315, 515);
+        scrollpaneCursos.setBounds(395, 220, 315, 515);
+        scrollpaneNotas.setBounds(745, 220, 315, 515);
+        scrollPaneCursadas.setBounds(1095, 220, 315, 515);
+        scrollpaneProfesores.setBounds(1445,220,315,515);
 
-        buttonCrearAlumno.setBounds (155, 70, 100, 25);
-        buttonEliminarAlumno.setBounds (155, 130, 100, 25);
-        buttonEliminarCurso.setBounds (500, 130, 100, 25);
-        buttonCrearCurso.setBounds (500, 70, 100, 25);
-        buttonCrearNota.setBounds (850, 70, 100, 25);
-        buttonEliminarNota.setBounds (850, 130, 100, 25);
-        buttonCrearCursada.setBounds (1200, 70, 100, 25);
-        buttonEliminarCursada.setBounds (1200, 130, 100, 25);
+        buttonCrearAlumno.setBounds(155, 70, 100, 25);
+        buttonEliminarAlumno.setBounds(155, 130, 100, 25);
+        buttonEliminarCurso.setBounds(500, 130, 100, 25);
+        buttonCrearCurso.setBounds(500, 70, 100, 25);
+        buttonCrearNota.setBounds(850, 70, 100, 25);
+        buttonEliminarNota.setBounds(850, 130, 100, 25);
+        buttonCrearCursada.setBounds(1200, 70, 100, 25);
+        buttonEliminarCursada.setBounds(1200, 130, 100, 25);
         buttonCrearProfesor.setBounds(1550, 70,100,25);
         buttonEliminarProfesor.setBounds(1550, 130, 100, 25);
 
-        textAlumnos.setBounds (175, 25, 60, 25);
-        textCursos.setBounds (525, 25, 50, 25);
-        textNotas.setBounds (880, 20, 40, 25);
-        textCursadas.setBounds (1215, 20, 65, 25);
-        textProfesores.setBounds (1560, 20, 80, 25);
+        textAlumnos.setBounds(175, 25, 60, 25);
+        textCursos.setBounds(525, 25, 50, 25);
+        textNotas.setBounds(880, 20, 40, 25);
+        textCursadas.setBounds(1215, 20, 65, 25);
+        textProfesores.setBounds(1560, 20, 80, 25);
 
-        buttonVolver.setBounds (1650, 795, 100, 25);
-        buttonActualizarTablas.setBounds (815, 770, 185, 35);
+        buttonVolver.setBounds(1650, 795, 100, 25);
+        buttonActualizarTablas.setBounds(815, 770, 185, 35);
 
 
     }
