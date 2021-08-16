@@ -42,7 +42,7 @@ public class AlumnoServicio{
 
     public void editar(int legajo, String nombre, String apellido, int limiteCursos) throws ServiceLegajoNoExsiteException, NumberFormatException, ServiceLimiteDeCursoIncorrecto {
 
-        if(limiteCursos >= 6 || limiteCursos < 0){
+        if(limiteCursos >= 7 || limiteCursos < 0){
             throw new ServiceLimiteDeCursoIncorrecto();
         }
         try {

@@ -30,10 +30,10 @@ public class AlumnoDAOH2Impl implements AlumnoDAO{
         Connection c = DBManager.connect();
         try {
             Statement s = c.createStatement();
-
             String sql = "INSERT INTO alumnos (id_alumno,nombres,apellidos,limite_cursos) VALUES ('" + id + "', '" + nombre + "', '" + apellido + "', '" + limiteCursos + "')";
             s.executeUpdate(sql);
             c.commit();
+
         } catch (SQLException e) {
             try {
                 if(e.getErrorCode() == 23505) {

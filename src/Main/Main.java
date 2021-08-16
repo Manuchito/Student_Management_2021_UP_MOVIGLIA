@@ -13,7 +13,7 @@ public class Main {
     public void iniciarManager(){
         manager = new PanelManager();
         manager.armarManager();
-        manager.mostrarPanelCreacionAlumno();
+        manager.mostrarPanelInicioSesion();
     }
 
     public void mostrarFrame() {
